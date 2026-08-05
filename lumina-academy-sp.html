@@ -27,10 +27,10 @@
   --line:rgba(194,162,78,.35);
   --font-serif:"Noto Serif JP",serif;
   --font-en:"Cormorant Garamond","Noto Serif JP",serif;
-  /* タイトル基準＝「こんなことを感じていませんか？」が1行で収まるサイズ */
-  --fs-title:clamp(1.08rem,4.05vw,1.28rem);
-  --fs-lead:clamp(1.32rem,5.7vw,1.66rem);
-  --fs-body:clamp(1.2rem,5.2vw,1.5rem);
+  /* タイトル＝本文より大きい／全セクション統一 */
+  --fs-title:clamp(1.45rem,5.6vw,1.7rem);
+  --fs-lead:clamp(1.28rem,5.4vw,1.55rem);
+  --fs-body:clamp(1.15rem,4.9vw,1.38rem);
   --fs-small:clamp(.95rem,4vw,1.1rem);
   --band:3.2rem;
   --gap:1.7rem;
@@ -76,7 +76,7 @@ p{margin:0 0 1.1em;}
 }
 .sec-title{
   margin:0 0 var(--gap);text-align:left;font-size:var(--fs-title);font-weight:700;
-  line-height:1.65;letter-spacing:.025em;color:var(--primary-deep);
+  line-height:1.65;letter-spacing:.02em;color:var(--primary-deep);
 }
 .lead{font-size:var(--fs-lead);line-height:2;text-align:left;font-weight:600;margin:0;}
 .body{font-size:var(--fs-body);text-align:left;}
@@ -327,7 +327,7 @@ p{margin:0 0 1.1em;}
 }
 .empathy-hero__title{
   margin:0;max-width:100%;
-  font-size:var(--fs-title);font-weight:700;line-height:1.45;letter-spacing:.015em;
+  font-size:var(--fs-title);font-weight:700;line-height:1.45;letter-spacing:.01em;
   color:var(--primary-deep);text-shadow:var(--glow);
   white-space:nowrap;
 }
@@ -530,7 +530,7 @@ p{margin:0 0 1.1em;}
 }
 .closing-hero__content .sec-title{
   margin:0;
-  font-size:clamp(1.48rem,5.9vw,1.88rem);
+  font-size:var(--fs-title);
   font-weight:700;
   letter-spacing:.02em;line-height:1.65;
   text-shadow:var(--glow);
