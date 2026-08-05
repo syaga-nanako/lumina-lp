@@ -27,10 +27,11 @@
   --line:rgba(194,162,78,.35);
   --font-serif:"Noto Serif JP",serif;
   --font-en:"Cormorant Garamond","Noto Serif JP",serif;
-  --fs-title:clamp(1.55rem,6.6vw,2.02rem);
-  --fs-lead:clamp(1.2rem,5.2vw,1.5rem);
-  --fs-body:clamp(1.05rem,4.4vw,1.24rem);
-  --fs-small:clamp(.88rem,3.7vw,1.02rem);
+  /* 本文基準 = 「あなた自身に、実際に魔法を使っていただきます。」のサイズ */
+  --fs-title:clamp(1.68rem,7vw,2.2rem);
+  --fs-lead:clamp(1.32rem,5.7vw,1.66rem);
+  --fs-body:clamp(1.2rem,5.2vw,1.5rem);
+  --fs-small:clamp(.95rem,4vw,1.1rem);
   --band:3.2rem;
   --gap:1.7rem;
   --gap-sm:1rem;
@@ -81,7 +82,7 @@ p{margin:0 0 1.1em;}
 .body{font-size:var(--fs-body);text-align:left;}
 .hl{background:linear-gradient(transparent 87%,rgba(194,162,78,.55) 87%);padding-bottom:.1em;}
 .statement{
-  margin:var(--gap) 0;font-size:clamp(1.28rem,5.6vw,1.62rem);font-weight:700;
+  margin:var(--gap) 0;font-size:clamp(1.35rem,5.8vw,1.72rem);font-weight:700;
   line-height:1.9;text-align:left;letter-spacing:.05em;color:var(--primary-deep);
 }
 .statement em{font-style:normal;color:var(--gold-deep);}
@@ -361,7 +362,7 @@ p{margin:0 0 1.1em;}
 }
 .doors-body:last-child{margin-bottom:0;}
 .doors-closing{
-  margin:1.15rem 0 0;font-size:var(--fs-lead);font-weight:700;line-height:1.95;color:var(--primary-deep);
+  margin:1.15rem 0 0;font-size:var(--fs-body);font-weight:700;line-height:1.95;color:var(--primary-deep);
 }
 .doors-closing em{font-style:normal;color:var(--gold-deep);}
 
@@ -496,7 +497,7 @@ p{margin:0 0 1.1em;}
   font-weight:700;color:var(--primary-deep);letter-spacing:.06em;
 }
 
-/* クロージング：テキスト上＋画像下。画像は女性を右寄せ */
+/* クロージング：見出し → 左リスト／右女性 → 本文 */
 .closing-sec{
   position:relative;width:100%;overflow:hidden;
   padding:var(--band) 0 0;
@@ -504,48 +505,53 @@ p{margin:0 0 1.1em;}
 }
 .closing-sec__inner{position:relative;z-index:1;}
 .closing-sec__title{
-  padding:0 var(--wrap-pad) 1.1rem;
+  padding:0 var(--wrap-pad) 1.05rem;
 }
 .closing-sec__title .sec-title{
   margin:0;
   font-size:clamp(1.42rem,5.9vw,1.82rem);
   letter-spacing:.04em;line-height:1.7;
 }
-.closing-sec__body{padding:0 var(--wrap-pad);}
-.closing-panel{
-  padding:.2rem .05rem .15rem;
-  background:transparent;
-  text-align:left;
+.closing-sec__split{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  gap:.45rem .55rem;
+  padding:0 var(--wrap-pad);
+  margin:0 0 var(--gap);
 }
 .closing-list{
-  list-style:none;margin:0 0 var(--gap);padding:0;text-align:left;
-  font-size:var(--fs-lead);font-weight:600;line-height:2.4;
+  flex:1 1 auto;min-width:0;
+  list-style:none;margin:0;padding:0;text-align:left;
+  font-size:clamp(1.08rem,4.6vw,1.42rem);font-weight:600;line-height:2.25;
 }
+.closing-list li{white-space:nowrap;}
 .closing-sec__visual{
-  position:relative;width:100%;margin-top:1.35rem;
-  aspect-ratio:4 / 5;
+  position:relative;flex:0 0 auto;
+  width:clamp(5.7rem,28vw,8.3rem);
+  aspect-ratio:3 / 4;
+  align-self:center;
   overflow:hidden;
+  border-radius:2px;
 }
 .closing-sec__visual img{
-  position:absolute;top:0;left:0;bottom:0;
-  width:158%;height:100%;max-width:none;
-  display:block;
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  display:block;max-width:none;
   object-fit:cover;
-  object-position:85% 10%;
+  object-position:82% 8%;
   -webkit-mask-image:
-    linear-gradient(180deg,transparent 0%,#000 8%,#000 92%,transparent 100%),
-    linear-gradient(90deg,rgba(0,0,0,.45) 0%,#000 24%,#000 100%);
+    linear-gradient(180deg,transparent 0%,#000 10%,#000 88%,transparent 100%),
+    linear-gradient(90deg,rgba(0,0,0,.35) 0%,#000 22%,#000 100%);
   mask-image:
-    linear-gradient(180deg,transparent 0%,#000 8%,#000 92%,transparent 100%),
-    linear-gradient(90deg,rgba(0,0,0,.45) 0%,#000 24%,#000 100%);
+    linear-gradient(180deg,transparent 0%,#000 10%,#000 88%,transparent 100%),
+    linear-gradient(90deg,rgba(0,0,0,.35) 0%,#000 22%,#000 100%);
   -webkit-mask-composite:source-in;
   mask-composite:intersect;
 }
-.closing-sec__visual::after{
-  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:
-    linear-gradient(96deg,rgba(253,250,243,.55) 0%,rgba(253,250,243,.18) 32%,transparent 52%),
-    linear-gradient(180deg,rgba(253,250,243,.2) 0%,transparent 16%,rgba(248,242,230,.35) 82%,rgba(248,242,230,.95) 100%);
+.closing-sec__body{padding:0 var(--wrap-pad);}
+.closing-panel{
+  padding:.1rem .05rem .15rem;
+  background:transparent;
+  text-align:left;
 }
 
 /* 開催概要：縦長画像の下部余白に日時オーバーレイ＋下にCTA */
@@ -882,21 +888,26 @@ p{margin:0 0 1.1em;}
       </div>
     </section>
 
-    <!-- 10. クロージング：テキスト上＋画像下／女性は右寄せ -->
+    <!-- 10. クロージング：左リスト／右に女性（小さめ）→ 本文 -->
     <section class="closing-sec">
       <div class="closing-sec__inner">
         <div class="closing-sec__title">
           <div class="orn"><i></i></div>
           <h2 class="sec-title">これまでの人生は、<br>終わった過去ではありません</h2>
         </div>
+        <div class="closing-sec__split">
+          <ul class="closing-list">
+            <li>悩んだこと。</li>
+            <li>傷ついたこと。</li>
+            <li>誰かを支えてきたこと。</li>
+            <li>乗り越えてきたこと。</li>
+          </ul>
+          <div class="closing-sec__visual">
+            <img src="assets/closing-light.jpg" alt="翼を広げた光の女性と、金色に輝く城" loading="lazy" width="682" height="1024">
+          </div>
+        </div>
         <div class="closing-sec__body">
           <div class="closing-panel">
-            <ul class="closing-list">
-              <li>悩んだこと。</li>
-              <li>傷ついたこと。</li>
-              <li>誰かを支えてきたこと。</li>
-              <li>乗り越えてきたこと。</li>
-            </ul>
             <p class="body" style="margin-bottom:0;">そのすべてが、<br>これから誰かを照らすための</p>
             <p class="statement"><em>「魔法の材料」</em>です。</p>
             <p class="body">今のあなたに必要なのは、<br>別の誰かになることではありません。</p>
@@ -909,9 +920,6 @@ p{margin:0 0 1.1em;}
             <p class="body" style="margin-bottom:0;">未来への7つの扉を、<br>ここから一緒に開いていきましょう。</p>
           </div>
         </div>
-      </div>
-      <div class="closing-sec__visual">
-        <img src="assets/closing-light.jpg" alt="翼を広げた光の女性と、金色に輝く城" loading="lazy" width="682" height="1024">
       </div>
     </section>
 
@@ -954,7 +962,6 @@ p{margin:0 0 1.1em;}
     <ul class="footer__links">
       <li><a href="https://lumina.syagapro.com/p/pp" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a></li>
       <li><a href="https://lumina.syagapro.com/p/tokushou" target="_blank" rel="noopener noreferrer">特定商取引法に基づく表記</a></li>
-      <li><a href="REPLACE_WITH_COMPANY_URL">運営者情報</a></li>
     </ul>
     <p class="footer__copy">&copy; LUMINA ACADEMY All Rights Reserved.</p>
   </footer>
