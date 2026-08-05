@@ -274,14 +274,15 @@ p{margin:0 0 1.1em;}
 
 .checklist{list-style:none;margin:0;padding:0;text-align:left;}
 .checklist li{
-  position:relative;padding:.7rem .1rem .7rem 2.2rem;
+  position:relative;padding:.55rem .1rem .55rem 2.05rem;
   border-bottom:1px dashed rgba(194,162,78,.32);
-  font-size:var(--fs-body);font-weight:600;line-height:1.65;
+  font-size:clamp(1.02rem,4.15vw,1.22rem);font-weight:600;line-height:1.5;
+  letter-spacing:.02em;
   text-shadow:var(--glow);
 }
 .checklist li:last-child{border-bottom:none;}
 .checklist li::before{
-  content:"";position:absolute;left:.2rem;top:1.12em;width:1.05rem;height:.58rem;
+  content:"";position:absolute;left:.2rem;top:1em;width:1.05rem;height:.58rem;
   border-left:2.5px solid var(--gold);border-bottom:2.5px solid var(--gold);
   transform:rotate(-45deg) translateY(-50%);
   filter:drop-shadow(0 0 6px rgba(253,250,243,.95));
@@ -296,17 +297,18 @@ p{margin:0 0 1.1em;}
   object-fit:cover;
   /* タイトル行の右に顔が来るよう強めに右上 */
   object-position:100% 0%;
+  opacity:.62;
   -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 8%,#000 88%,transparent 100%);
   mask-image:linear-gradient(180deg,transparent 0%,#000 8%,#000 88%,transparent 100%);
 }
 .empathy-hero__veil{
   position:absolute;inset:0;z-index:1;pointer-events:none;
   background:
-    /* 左〜中央のみ光。右上（顔）はほぼ素通し */
-    radial-gradient(80% 55% at 8% 10%,rgba(255,252,240,.82) 0%,transparent 58%),
-    radial-gradient(100% 85% at 18% 62%,rgba(253,250,243,.72) 0%,transparent 64%),
-    linear-gradient(95deg,rgba(253,250,243,.68) 0%,rgba(253,250,243,.28) 34%,transparent 52%),
-    linear-gradient(180deg,rgba(253,250,243,.12) 0%,transparent 26%,rgba(248,242,230,.32) 78%,rgba(248,242,230,.92) 100%);
+    /* 文字側を明るく・画像はもう一段薄く */
+    radial-gradient(85% 60% at 10% 12%,rgba(255,252,240,.92) 0%,transparent 60%),
+    radial-gradient(110% 90% at 20% 58%,rgba(253,250,243,.86) 0%,transparent 68%),
+    linear-gradient(95deg,rgba(253,250,243,.88) 0%,rgba(253,250,243,.55) 38%,rgba(253,250,243,.18) 58%,transparent 72%),
+    linear-gradient(180deg,rgba(253,250,243,.22) 0%,transparent 24%,rgba(248,242,230,.45) 76%,rgba(248,242,230,.96) 100%);
 }
 .empathy-hero__content{
   position:relative;z-index:2;
@@ -318,26 +320,28 @@ p{margin:0 0 1.1em;}
 }
 .empathy-hero__title{
   margin:0;max-width:100%;
-  /* 「こんな方におすすめです」(.sec-title--recommend) と同サイズ */
-  font-size:clamp(1.32rem,5.4vw,1.75rem);font-weight:700;line-height:1.45;letter-spacing:.04em;
+  font-size:var(--fs-title);font-weight:700;line-height:1.5;letter-spacing:.03em;
   color:var(--primary-deep);text-shadow:var(--glow);
   white-space:nowrap;
 }
 .empathy-hero__list-wrap{
   position:relative;
-  width:min(72%,19.5rem);
+  width:min(88%,22.5rem);
   padding:.45rem 0;
   margin-top:.35rem;
 }
 .empathy-hero__list-wrap::before{
   content:"";position:absolute;inset:-1.4rem -1.8rem -1.6rem -1.8rem;z-index:-1;pointer-events:none;
   background:
-    radial-gradient(65% 75% at 32% 42%,rgba(253,250,243,.75) 0%,rgba(253,250,243,.3) 48%,transparent 74%);
+    radial-gradient(70% 80% at 32% 42%,rgba(253,250,243,.88) 0%,rgba(253,250,243,.42) 50%,transparent 76%);
   filter:blur(12px);
 }
 .empathy-hero__lead{
   margin:0;font-size:var(--fs-lead);line-height:1.9;font-weight:600;
   text-shadow:var(--glow);
+}
+.empathy-hero__lead-line{
+  display:inline-block;white-space:nowrap;max-width:100%;
 }
 
 /* 努力不足 → つなぎ文 → 7つの扉（同一帯で背景を統一） */
@@ -509,41 +513,45 @@ p{margin:0 0 1.1em;}
 }
 .closing-sec__title .sec-title{
   margin:0;
-  font-size:clamp(1.42rem,5.9vw,1.82rem);
+  font-size:var(--fs-title);
   letter-spacing:.04em;line-height:1.7;
 }
 .closing-sec__split{
   display:flex;align-items:flex-start;justify-content:space-between;
-  gap:.45rem .55rem;
+  gap:.35rem .4rem;
   padding:0 var(--wrap-pad);
   margin:0 0 var(--gap);
 }
 .closing-list{
-  flex:1 1 auto;min-width:0;
+  flex:1 1 auto;min-width:0;max-width:54%;
   list-style:none;margin:0;padding:0;text-align:left;
   font-size:clamp(1.08rem,4.6vw,1.42rem);font-weight:600;line-height:2.25;
 }
 .closing-list li{white-space:nowrap;}
 .closing-sec__visual{
   position:relative;flex:0 0 auto;
-  width:clamp(5.7rem,28vw,8.3rem);
-  aspect-ratio:3 / 4;
-  align-self:center;
+  /* 文字に被らないギリギリまで大きく */
+  width:clamp(8.2rem,42vw,12.5rem);
+  aspect-ratio:4 / 5;
+  align-self:flex-start;
+  margin-top:.15rem;
   overflow:hidden;
   border-radius:2px;
 }
 .closing-sec__visual img{
   position:absolute;inset:0;
-  width:100%;height:100%;
+  width:118%;height:118%;
+  left:auto;right:-6%;top:-2%;
   display:block;max-width:none;
   object-fit:cover;
-  object-position:82% 8%;
+  /* ウエストから上（顔〜胸）を中心に */
+  object-position:78% 8%;
   -webkit-mask-image:
-    linear-gradient(180deg,transparent 0%,#000 10%,#000 88%,transparent 100%),
-    linear-gradient(90deg,rgba(0,0,0,.35) 0%,#000 22%,#000 100%);
+    linear-gradient(180deg,transparent 0%,#000 8%,#000 90%,transparent 100%),
+    linear-gradient(90deg,rgba(0,0,0,.25) 0%,#000 18%,#000 100%);
   mask-image:
-    linear-gradient(180deg,transparent 0%,#000 10%,#000 88%,transparent 100%),
-    linear-gradient(90deg,rgba(0,0,0,.35) 0%,#000 22%,#000 100%);
+    linear-gradient(180deg,transparent 0%,#000 8%,#000 90%,transparent 100%),
+    linear-gradient(90deg,rgba(0,0,0,.25) 0%,#000 18%,#000 100%);
   -webkit-mask-composite:source-in;
   mask-composite:intersect;
 }
@@ -597,10 +605,10 @@ p{margin:0 0 1.1em;}
   padding:0 var(--wrap-pad);
 }
 .sec-title--program{
-  font-size:clamp(1.28rem,5.3vw,1.7rem);letter-spacing:.04em;white-space:nowrap;
+  font-size:var(--fs-title);letter-spacing:.03em;white-space:nowrap;
 }
 .sec-title--recommend{
-  font-size:clamp(1.32rem,5.4vw,1.75rem);letter-spacing:.04em;white-space:nowrap;
+  font-size:var(--fs-title);letter-spacing:.03em;white-space:nowrap;
 }
 .sec--recommend{
   background:linear-gradient(180deg,#faf6ee 0%,#fdfaf3 22%,var(--tint) 55%,#fbf6ec 100%);
@@ -623,7 +631,7 @@ p{margin:0 0 1.1em;}
 .footer__links a{color:#d9d2e6;text-decoration:none;border-bottom:1px solid rgba(217,210,230,.35);padding-bottom:1px;}
 .footer__copy{font-size:.7rem;color:#8f86a8;letter-spacing:.08em;margin:0;text-align:center;}
 .sec-title--instructors{
-  font-size:clamp(1.28rem,5.2vw,1.72rem);letter-spacing:.04em;white-space:nowrap;
+  font-size:var(--fs-title);letter-spacing:.03em;white-space:nowrap;
 }
 
 @media (min-width:481px){
@@ -693,7 +701,7 @@ p{margin:0 0 1.1em;}
           </div>
           <p class="empathy-hero__lead">
             ひとつでも当てはまるなら、<br>
-            この3日間は、<span class="hl">あなたのための時間</span>です。
+            <span class="empathy-hero__lead-line">この3日間は、<span class="hl">あなたのための時間</span>です。</span>
           </p>
         </div>
       </div>
