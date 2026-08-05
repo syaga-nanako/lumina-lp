@@ -276,8 +276,8 @@ p{margin:0 0 1.1em;}
 .checklist li{
   position:relative;padding:.55rem .1rem .55rem 2.05rem;
   border-bottom:1px dashed rgba(194,162,78,.32);
-  font-size:clamp(1.02rem,4.15vw,1.22rem);font-weight:600;line-height:1.5;
-  letter-spacing:.02em;
+  font-size:clamp(.98rem,3.95vw,1.14rem);font-weight:600;line-height:1.45;
+  letter-spacing:.015em;
   text-shadow:var(--glow);
 }
 .checklist li:last-child{border-bottom:none;}
@@ -297,18 +297,18 @@ p{margin:0 0 1.1em;}
   object-fit:cover;
   /* タイトル行の右に顔が来るよう強めに右上 */
   object-position:100% 0%;
-  opacity:.62;
+  opacity:.4;
   -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 8%,#000 88%,transparent 100%);
   mask-image:linear-gradient(180deg,transparent 0%,#000 8%,#000 88%,transparent 100%);
 }
 .empathy-hero__veil{
   position:absolute;inset:0;z-index:1;pointer-events:none;
   background:
-    /* 文字側を明るく・画像はもう一段薄く */
-    radial-gradient(85% 60% at 10% 12%,rgba(255,252,240,.92) 0%,transparent 60%),
-    radial-gradient(110% 90% at 20% 58%,rgba(253,250,243,.86) 0%,transparent 68%),
-    linear-gradient(95deg,rgba(253,250,243,.88) 0%,rgba(253,250,243,.55) 38%,rgba(253,250,243,.18) 58%,transparent 72%),
-    linear-gradient(180deg,rgba(253,250,243,.22) 0%,transparent 24%,rgba(248,242,230,.45) 76%,rgba(248,242,230,.96) 100%);
+    /* 文字側をさらに明るく・背景画像を薄くして可読性を確保 */
+    radial-gradient(90% 65% at 8% 10%,rgba(255,252,240,.96) 0%,transparent 62%),
+    radial-gradient(120% 95% at 18% 55%,rgba(253,250,243,.92) 0%,transparent 70%),
+    linear-gradient(95deg,rgba(253,250,243,.94) 0%,rgba(253,250,243,.72) 36%,rgba(253,250,243,.32) 56%,transparent 74%),
+    linear-gradient(180deg,rgba(253,250,243,.35) 0%,transparent 22%,rgba(248,242,230,.55) 74%,rgba(248,242,230,.98) 100%);
 }
 .empathy-hero__content{
   position:relative;z-index:2;
@@ -326,14 +326,14 @@ p{margin:0 0 1.1em;}
 }
 .empathy-hero__list-wrap{
   position:relative;
-  width:min(88%,22.5rem);
+  width:min(94%,24rem);
   padding:.45rem 0;
   margin-top:.35rem;
 }
 .empathy-hero__list-wrap::before{
   content:"";position:absolute;inset:-1.4rem -1.8rem -1.6rem -1.8rem;z-index:-1;pointer-events:none;
   background:
-    radial-gradient(70% 80% at 32% 42%,rgba(253,250,243,.88) 0%,rgba(253,250,243,.42) 50%,transparent 76%);
+    radial-gradient(70% 80% at 32% 42%,rgba(253,250,243,.94) 0%,rgba(253,250,243,.55) 50%,transparent 76%);
   filter:blur(12px);
 }
 .empathy-hero__lead{
@@ -341,8 +341,12 @@ p{margin:0 0 1.1em;}
   text-shadow:var(--glow);
 }
 .empathy-hero__lead-line{
-  display:inline-block;white-space:nowrap;max-width:100%;
+  display:block;white-space:nowrap;
+  /* 1行に収めるためわずかに縮小（可読は維持） */
+  font-size:clamp(1.18rem,4.85vw,1.5rem);
+  letter-spacing:.01em;
 }
+.empathy-hero__lead-keep{white-space:nowrap;}
 
 /* 努力不足 → つなぎ文 → 7つの扉（同一帯で背景を統一） */
 .bridge-copy{
@@ -523,35 +527,36 @@ p{margin:0 0 1.1em;}
   margin:0 0 var(--gap);
 }
 .closing-list{
-  flex:1 1 auto;min-width:0;max-width:54%;
+  flex:1 1 auto;min-width:0;max-width:46%;
   list-style:none;margin:0;padding:0;text-align:left;
-  font-size:clamp(1.08rem,4.6vw,1.42rem);font-weight:600;line-height:2.25;
+  font-size:clamp(1.05rem,4.4vw,1.34rem);font-weight:600;line-height:2.15;
 }
 .closing-list li{white-space:nowrap;}
 .closing-sec__visual{
   position:relative;flex:0 0 auto;
-  /* 文字に被らないギリギリまで大きく */
-  width:clamp(8.2rem,42vw,12.5rem);
-  aspect-ratio:4 / 5;
+  /* 文字に被らないギリギリまで大きく（ウエスト上） */
+  width:clamp(11rem,50vw,15.2rem);
+  aspect-ratio:3 / 4;
   align-self:flex-start;
-  margin-top:.15rem;
+  margin-top:-.1rem;
+  margin-right:-.35rem;
   overflow:hidden;
   border-radius:2px;
 }
 .closing-sec__visual img{
   position:absolute;inset:0;
-  width:118%;height:118%;
-  left:auto;right:-6%;top:-2%;
+  width:145%;height:145%;
+  left:auto;right:-18%;top:-8%;
   display:block;max-width:none;
   object-fit:cover;
-  /* ウエストから上（顔〜胸）を中心に */
-  object-position:78% 8%;
+  /* ウエストから上（顔・胸・翼）を大きく */
+  object-position:70% 6%;
   -webkit-mask-image:
-    linear-gradient(180deg,transparent 0%,#000 8%,#000 90%,transparent 100%),
-    linear-gradient(90deg,rgba(0,0,0,.25) 0%,#000 18%,#000 100%);
+    linear-gradient(180deg,transparent 0%,#000 6%,#000 88%,transparent 100%),
+    linear-gradient(90deg,rgba(0,0,0,.15) 0%,#000 14%,#000 100%);
   mask-image:
-    linear-gradient(180deg,transparent 0%,#000 8%,#000 90%,transparent 100%),
-    linear-gradient(90deg,rgba(0,0,0,.25) 0%,#000 18%,#000 100%);
+    linear-gradient(180deg,transparent 0%,#000 6%,#000 88%,transparent 100%),
+    linear-gradient(90deg,rgba(0,0,0,.15) 0%,#000 14%,#000 100%);
   -webkit-mask-composite:source-in;
   mask-composite:intersect;
 }
@@ -691,17 +696,17 @@ p{margin:0 0 1.1em;}
           </div>
           <div class="empathy-hero__list-wrap">
             <ul class="checklist">
-              <li>本当の自分や、やりたいことがわからない</li>
-              <li>心理学や潜在意識を学んでも、人生が変わらなかった</li>
-              <li>能力はあるはずなのに、自信を持って動けない</li>
-              <li>人の役に立ちたいけれど、自分に何ができるかわからない</li>
-              <li>「私には無理」「もう年だから」と一歩を踏み出せない</li>
-              <li>これからの人生を、もっと自分らしく生きたい</li>
+              <li>本当の自分や、<br>やりたいことがわからない</li>
+              <li>心理学や潜在意識を学んでも、<br>人生が変わらなかった</li>
+              <li>能力はあるはずなのに、<br>自信を持って動けない</li>
+              <li>人の役に立ちたいけれど、<br>自分に何ができるかわからない</li>
+              <li>「私には無理」「もう年だから」と<br>一歩を踏み出せない</li>
+              <li>これからの人生を、<br>もっと自分らしく生きたい</li>
             </ul>
           </div>
           <p class="empathy-hero__lead">
             ひとつでも当てはまるなら、<br>
-            <span class="empathy-hero__lead-line">この3日間は、<span class="hl">あなたのための時間</span>です。</span>
+            <span class="empathy-hero__lead-line">この3日間は、<span class="empathy-hero__lead-keep"><span class="hl">あなたのための時間</span>です。</span></span>
           </p>
         </div>
       </div>
