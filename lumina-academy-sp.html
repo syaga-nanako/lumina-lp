@@ -561,51 +561,68 @@ p{margin:0 0 1.1em;}
 /* クロージング：共感パートと同じ入れ方（右に人物、左に文字） */
 .closing-sec{
   position:relative;width:100%;overflow:hidden;
-  padding:0 0 0;
-  background:linear-gradient(180deg,#faf6ee 0%,var(--tint) 40%,#f7f1e4 100%);
+  padding:0;
+  /* ヒーロー〜本文まで同じトーンでグラデ接続 */
+  background:linear-gradient(180deg,#faf6ee 0%,#f8f2e6 45%,var(--tint) 72%,#f7f1e4 100%);
 }
 .closing-hero{
-  position:relative;width:100%;overflow:hidden;min-height:26rem;
+  position:relative;width:100%;overflow:hidden;min-height:28rem;
 }
 .closing-hero__img{
   position:absolute;z-index:0;
-  top:0;bottom:0;right:-30%;
-  width:60%;height:100%;
+  top:0;bottom:0;right:-14%;
+  width:78%;height:100%;
   object-fit:cover;
-  object-position:68% 6%;
-  opacity:.88;
-  -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 8%,#000 88%,transparent 100%);
-  mask-image:linear-gradient(180deg,transparent 0%,#000 8%,#000 88%,transparent 100%);
+  /* 顔が見切れないよう少し左へ */
+  object-position:52% 6%;
+  opacity:.78;
+  -webkit-mask-image:
+    linear-gradient(180deg,transparent 0%,#000 8%,#000 78%,rgba(0,0,0,.45) 90%,transparent 100%),
+    linear-gradient(90deg,transparent 0%,#000 16%,#000 100%);
+  mask-image:
+    linear-gradient(180deg,transparent 0%,#000 8%,#000 78%,rgba(0,0,0,.45) 90%,transparent 100%),
+    linear-gradient(90deg,transparent 0%,#000 16%,#000 100%);
+  -webkit-mask-composite:source-in;
+  mask-composite:intersect;
 }
 .closing-hero__veil{
   position:absolute;inset:0;z-index:1;pointer-events:none;
   background:
-    radial-gradient(95% 70% at 4% 12%,rgba(255,252,240,.98) 0%,transparent 55%),
-    radial-gradient(100% 85% at 8% 52%,rgba(253,250,243,.96) 0%,transparent 58%),
-    linear-gradient(95deg,rgba(253,250,243,.98) 0%,rgba(253,250,243,.94) 44%,rgba(253,250,243,.42) 58%,rgba(253,250,243,.1) 70%,transparent 82%),
-    linear-gradient(180deg,rgba(253,250,243,.28) 0%,transparent 20%,rgba(248,242,230,.4) 78%,rgba(248,242,230,.98) 100%);
+    /* 共感と同じ：左文字帯を明るく／右の顔は馴染ませる */
+    radial-gradient(95% 70% at 6% 12%,rgba(255,252,240,.97) 0%,transparent 58%),
+    radial-gradient(110% 90% at 12% 55%,rgba(253,250,243,.94) 0%,transparent 62%),
+    linear-gradient(95deg,rgba(253,250,243,.96) 0%,rgba(253,250,243,.88) 34%,rgba(253,250,243,.35) 52%,rgba(253,250,243,.08) 68%,transparent 82%),
+    /* 下部は本文帯へグラデで接続（色の段差を消す） */
+    linear-gradient(180deg,rgba(253,250,243,.22) 0%,transparent 18%,rgba(248,242,230,.35) 62%,rgba(248,242,230,.82) 82%,rgba(248,242,230,.98) 100%);
 }
 .closing-hero__content{
   position:relative;z-index:2;
-  padding:var(--band) var(--wrap-pad) 2rem;
+  padding:var(--band) var(--wrap-pad) 1.4rem;
   display:flex;flex-direction:column;gap:.55rem;
 }
 .closing-hero__content .sec-title{
   margin:0;
-  font-size:var(--fs-title);
+  /* タイトルとして一段大きく（2行は維持） */
+  font-size:clamp(1.42rem,5.6vw,1.78rem);
+  font-weight:700;
   letter-spacing:.02em;line-height:1.65;
   text-shadow:var(--glow);
 }
 .closing-hero__content .sec-title__keep{white-space:nowrap;}
 .closing-list{
   list-style:none;margin:.35rem 0 0;padding:.2rem 0 0;
-  width:min(70%,20rem);
+  width:min(72%,20.5rem);
   text-align:left;
   font-size:var(--fs-body);font-weight:600;line-height:2.2;
   text-shadow:var(--glow);
 }
 .closing-list li{white-space:nowrap;}
-.closing-sec__body{padding:0 var(--wrap-pad) var(--band);}
+.closing-sec__body{
+  position:relative;z-index:2;
+  margin-top:-.85rem;
+  padding:0 var(--wrap-pad) var(--band);
+  background:transparent;
+}
 .closing-panel{
   padding:.1rem .05rem .15rem;
   background:transparent;
