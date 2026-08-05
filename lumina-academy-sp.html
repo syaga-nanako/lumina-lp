@@ -561,49 +561,45 @@ p{margin:0 0 1.1em;}
 /* クロージング：共感パートと同じ入れ方（右に人物、左に文字） */
 .closing-sec{
   position:relative;width:100%;overflow:hidden;
-  padding:0;
-  /* ヒーロー〜本文まで同じトーンでグラデ接続 */
-  background:linear-gradient(180deg,#faf6ee 0%,#f8f2e6 45%,var(--tint) 72%,#f7f1e4 100%);
+  padding:0 0 var(--band);
+  background:linear-gradient(180deg,#faf6ee 0%,#f8f2e6 55%,var(--tint) 100%);
 }
 .closing-hero{
-  position:relative;width:100%;overflow:hidden;min-height:28rem;
+  position:relative;width:100%;overflow:hidden;min-height:32rem;
 }
 .closing-hero__img{
   position:absolute;z-index:0;
-  top:0;bottom:0;right:-14%;
-  width:78%;height:100%;
+  top:0;bottom:0;right:-8%;
+  width:82%;height:100%;
   object-fit:cover;
-  /* 顔が見切れないよう少し左へ */
-  object-position:52% 6%;
-  opacity:.78;
+  /* 顔が見切れないよう左へ */
+  object-position:40% 4%;
+  opacity:.76;
   -webkit-mask-image:
-    linear-gradient(180deg,transparent 0%,#000 8%,#000 78%,rgba(0,0,0,.45) 90%,transparent 100%),
-    linear-gradient(90deg,transparent 0%,#000 16%,#000 100%);
+    linear-gradient(180deg,transparent 0%,#000 7%,#000 72%,rgba(0,0,0,.4) 88%,transparent 100%),
+    linear-gradient(90deg,transparent 0%,#000 18%,#000 100%);
   mask-image:
-    linear-gradient(180deg,transparent 0%,#000 8%,#000 78%,rgba(0,0,0,.45) 90%,transparent 100%),
-    linear-gradient(90deg,transparent 0%,#000 16%,#000 100%);
+    linear-gradient(180deg,transparent 0%,#000 7%,#000 72%,rgba(0,0,0,.4) 88%,transparent 100%),
+    linear-gradient(90deg,transparent 0%,#000 18%,#000 100%);
   -webkit-mask-composite:source-in;
   mask-composite:intersect;
 }
 .closing-hero__veil{
   position:absolute;inset:0;z-index:1;pointer-events:none;
   background:
-    /* 共感と同じ：左文字帯を明るく／右の顔は馴染ませる */
     radial-gradient(95% 70% at 6% 12%,rgba(255,252,240,.97) 0%,transparent 58%),
-    radial-gradient(110% 90% at 12% 55%,rgba(253,250,243,.94) 0%,transparent 62%),
+    radial-gradient(110% 90% at 12% 48%,rgba(253,250,243,.94) 0%,transparent 62%),
     linear-gradient(95deg,rgba(253,250,243,.96) 0%,rgba(253,250,243,.88) 34%,rgba(253,250,243,.35) 52%,rgba(253,250,243,.08) 68%,transparent 82%),
-    /* 下部は本文帯へグラデで接続（色の段差を消す） */
-    linear-gradient(180deg,rgba(253,250,243,.22) 0%,transparent 18%,rgba(248,242,230,.35) 62%,rgba(248,242,230,.82) 82%,rgba(248,242,230,.98) 100%);
+    linear-gradient(180deg,rgba(253,250,243,.22) 0%,transparent 16%,rgba(248,242,230,.28) 58%,rgba(248,242,230,.78) 82%,rgba(248,242,230,.98) 100%);
 }
 .closing-hero__content{
   position:relative;z-index:2;
-  padding:var(--band) var(--wrap-pad) 1.4rem;
+  padding:var(--band) var(--wrap-pad) 2.2rem;
   display:flex;flex-direction:column;gap:.55rem;
 }
 .closing-hero__content .sec-title{
   margin:0;
-  /* タイトルとして一段大きく（2行は維持） */
-  font-size:clamp(1.42rem,5.6vw,1.78rem);
+  font-size:clamp(1.48rem,5.9vw,1.88rem);
   font-weight:700;
   letter-spacing:.02em;line-height:1.65;
   text-shadow:var(--glow);
@@ -617,16 +613,15 @@ p{margin:0 0 1.1em;}
   text-shadow:var(--glow);
 }
 .closing-list li{white-space:nowrap;}
-.closing-sec__body{
-  position:relative;z-index:2;
-  margin-top:-.85rem;
-  padding:0 var(--wrap-pad) var(--band);
-  background:transparent;
-}
 .closing-panel{
+  margin-top:.55rem;
   padding:.1rem .05rem .15rem;
   background:transparent;
   text-align:left;
+}
+.closing-panel .body,
+.closing-panel .statement{
+  text-shadow:var(--glow);
 }
 
 /* 開催概要：縦長画像の下部余白に日時オーバーレイ＋下にCTA */
@@ -984,20 +979,18 @@ p{margin:0 0 1.1em;}
             <li>誰かを支えてきたこと。</li>
             <li>乗り越えてきたこと。</li>
           </ul>
-        </div>
-      </div>
-      <div class="closing-sec__body">
-        <div class="closing-panel">
-          <p class="body" style="margin-bottom:0;">そのすべてが、<br>これから誰かを照らすための</p>
-          <p class="statement"><em>「魔法の材料」</em>です。</p>
-          <p class="body">今のあなたに必要なのは、<br>別の誰かになることではありません。</p>
-          <p class="body" style="margin-bottom:0;">忘れていた自分を思い出し、<br>まだ使っていない力を<br>目覚めさせることです。</p>
-          <p class="statement">
-            これからの人生、<br>
-            <em>あなたは何をして<br>生きていきますか？</em>
-          </p>
-          <p class="body">その答えを、<br>天使と魔王とともに見つける3日間。</p>
-          <p class="body" style="margin-bottom:0;">未来への7つの扉を、<br>ここから一緒に開いていきましょう。</p>
+          <div class="closing-panel">
+            <p class="body" style="margin-bottom:0;">そのすべてが、<br>これから誰かを照らすための</p>
+            <p class="statement"><em>「魔法の材料」</em>です。</p>
+            <p class="body">今のあなたに必要なのは、<br>別の誰かになることではありません。</p>
+            <p class="body" style="margin-bottom:0;">忘れていた自分を思い出し、<br>まだ使っていない力を<br>目覚めさせることです。</p>
+            <p class="statement">
+              これからの人生、<br>
+              <em>あなたは何をして<br>生きていきますか？</em>
+            </p>
+            <p class="body">その答えを、<br>天使と魔王とともに見つける3日間。</p>
+            <p class="body" style="margin-bottom:0;">未来への7つの扉を、<br>ここから一緒に開いていきましょう。</p>
+          </div>
         </div>
       </div>
     </section>
