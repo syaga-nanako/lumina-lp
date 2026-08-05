@@ -437,16 +437,25 @@ p{margin:0 0 1.1em;}
   width:100%;aspect-ratio:1/1;max-width:250px;margin:0 auto 1.4rem;border-radius:50%;
   border:1px solid var(--gold);
   background:radial-gradient(circle at 50% 35%,#fffdf6,#f4ead6 70%,#ecdfc4 100%);
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 6px 22px rgba(150,118,42,.18),inset 0 0 26px rgba(232,213,163,.7);
-  color:#b5a274;font-size:.78rem;letter-spacing:.14em;text-align:left;line-height:2;
+  box-shadow:0 6px 22px rgba(150,118,42,.18),inset 0 0 26px rgba(232,213,163,.55);
+  overflow:hidden;padding:0;
 }
+.photo-frame img{
+  width:100%;height:100%;display:block;
+  object-fit:cover;object-position:center 18%;
+}
+.photo-frame--seiryu img{object-position:center 12%;}
 .teacher__books{
   background:linear-gradient(180deg,#fdf8ec,#faf3e3);border-left:3px solid var(--gold);
-  border-radius:var(--radius-sm);padding:.95rem 1.05rem;margin:0 0 1.25rem;
+  border-radius:var(--radius-sm);padding:.95rem 1.05rem 1.05rem;margin:0 0 1.25rem;
   font-size:var(--fs-small);line-height:2;text-align:left;
 }
-.teacher__books b{display:block;color:var(--gold-deep);letter-spacing:.14em;margin-bottom:.3rem;font-size:.82rem;}
+.teacher__books b{display:block;color:var(--gold-deep);letter-spacing:.14em;margin-bottom:.55rem;font-size:.82rem;}
+.teacher__books-img{
+  display:block;width:100%;height:auto;margin:0 0 .65rem;
+  border-radius:4px;
+}
+.teacher__books-list{margin:0;line-height:1.85;font-size:clamp(.88rem,3.5vw,1rem);}
 .teacher__text{font-size:var(--fs-body);text-align:left;}
 .teacher__closing{
   margin:1.15rem 0 0;padding-top:1.05rem;border-top:1px solid rgba(194,162,78,.35);
@@ -812,10 +821,17 @@ p{margin:0 0 1.1em;}
         <article class="teacher">
           <p class="teacher__role">Angel</p>
           <h3 class="teacher__name">天使・白石由利奈先生<small>Yurina Shiraishi</small></h3>
-          <div class="photo-frame">お写真<br>（後日差し替え）</div>
+          <div class="photo-frame">
+            <img src="assets/teacher-yurina.png" alt="白石由利奈先生" width="819" height="1024" loading="lazy">
+          </div>
           <div class="teacher__books">
             <b>著書</b>
-            ＜書名をここに記載＞
+            <img class="teacher__books-img" src="assets/books-yurina.jpg" alt="白石由利奈先生の著書一覧" width="500" height="485" loading="lazy">
+            <p class="teacher__books-list">
+              『バッチフラワーBOOK』<br>
+              『今日から仕事が変わる NLP 7つの秘訣』<br>
+              『なぜ、イメージするだけで叶うのか？』など。
+            </p>
           </div>
           <p class="teacher__text">30年以上、1万人を超える方への心理療法・心理相談に携わってきた、公認心理師・NLP・催眠・フラワーレメディのスペシャリスト。</p>
           <p class="teacher__text">医療機関から依頼を受けて患者のカウンセリングを担当するなど、医師や相談者から厚い信頼を集め、国内外でセラピストやトレーナーの育成にも従事。</p>
@@ -826,12 +842,17 @@ p{margin:0 0 1.1em;}
         <article class="teacher">
           <p class="teacher__role">Demon King</p>
           <h3 class="teacher__name">魔王・加藤聖龍先生<small>Seiryu Kato</small></h3>
-          <div class="photo-frame">お写真<br>（後日差し替え）</div>
+          <div class="photo-frame photo-frame--seiryu">
+            <img src="assets/teacher-seiryu.png" alt="加藤聖龍先生" width="250" height="300" loading="lazy">
+          </div>
           <div class="teacher__books">
             <b>著書</b>
-            『手にとるようにNLPがわかる本』<br>
-            『一瞬で人の心を誘導する技術』<br>
-            『一瞬で幸せがあふれ出す方法』など。
+            <img class="teacher__books-img" src="assets/books-seiryu.jpg" alt="加藤聖龍先生の著書一覧" width="300" height="291" loading="lazy">
+            <p class="teacher__books-list">
+              『手にとるようにNLPがわかる本』<br>
+              『一瞬で人の心を誘導する技術』<br>
+              『一瞬で！幸せがあふれ出す方法』など。
+            </p>
           </div>
           <p class="teacher__text">46年間、延べ28万人以上の臨床経験を重ね、身体・心・意識を一つのものとして探究してきた、NLP・催眠・身体調整のスペシャリスト。</p>
           <p class="teacher__text">NLPの共同創始者の一人、リチャード・バンドラー博士から直接指導を受け、日本のバンドラー・ラインを統括する「NLPミレニアム ジャパン」の理事として、指導者育成にも携わる“先生の先生”。</p>
