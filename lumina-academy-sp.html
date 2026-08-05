@@ -294,20 +294,27 @@ p{margin:0 0 1.1em;}
 }
 .empathy-hero__img{
   position:absolute;z-index:0;
-  top:0;bottom:0;right:-30%;
-  width:60%;height:100%;
+  top:0;bottom:0;right:-14%;
+  width:78%;height:100%;
   object-fit:cover;
-  object-position:85% 4%;
-  opacity:.88;
-  -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 8%,#000 88%,transparent 100%);
-  mask-image:linear-gradient(180deg,transparent 0%,#000 8%,#000 88%,transparent 100%);
+  object-position:72% 8%;
+  opacity:.78;
+  -webkit-mask-image:
+    linear-gradient(180deg,transparent 0%,#000 8%,#000 88%,transparent 100%),
+    linear-gradient(90deg,transparent 0%,#000 16%,#000 100%);
+  mask-image:
+    linear-gradient(180deg,transparent 0%,#000 8%,#000 88%,transparent 100%),
+    linear-gradient(90deg,transparent 0%,#000 16%,#000 100%);
+  -webkit-mask-composite:source-in;
+  mask-composite:intersect;
 }
 .empathy-hero__veil{
   position:absolute;inset:0;z-index:1;pointer-events:none;
   background:
-    radial-gradient(95% 70% at 4% 12%,rgba(255,252,240,.98) 0%,transparent 55%),
-    radial-gradient(100% 85% at 8% 52%,rgba(253,250,243,.96) 0%,transparent 58%),
-    linear-gradient(95deg,rgba(253,250,243,.98) 0%,rgba(253,250,243,.94) 44%,rgba(253,250,243,.42) 58%,rgba(253,250,243,.1) 70%,transparent 82%),
+    /* 左の文字帯を明るく／右の顔は透過して見える */
+    radial-gradient(95% 70% at 6% 12%,rgba(255,252,240,.97) 0%,transparent 58%),
+    radial-gradient(110% 90% at 12% 55%,rgba(253,250,243,.94) 0%,transparent 62%),
+    linear-gradient(95deg,rgba(253,250,243,.96) 0%,rgba(253,250,243,.88) 34%,rgba(253,250,243,.35) 52%,rgba(253,250,243,.08) 68%,transparent 82%),
     linear-gradient(180deg,rgba(253,250,243,.28) 0%,transparent 20%,rgba(248,242,230,.4) 78%,rgba(248,242,230,.98) 100%);
 }
 .empathy-hero__content{
@@ -326,7 +333,7 @@ p{margin:0 0 1.1em;}
 }
 .empathy-hero__list-wrap{
   position:relative;
-  width:min(70%,20rem);
+  width:min(72%,20.5rem);
   padding:.45rem 0;
   margin-top:.35rem;
 }
