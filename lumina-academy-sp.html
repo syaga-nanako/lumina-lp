@@ -27,8 +27,8 @@
   --line:rgba(194,162,78,.35);
   --font-serif:"Noto Serif JP",serif;
   --font-en:"Cormorant Garamond","Noto Serif JP",serif;
-  /* 本文基準 = 「あなた自身に、実際に魔法を使っていただきます。」のサイズ */
-  --fs-title:clamp(1.68rem,7vw,2.2rem);
+  /* タイトル基準＝「こんなことを感じていませんか？」が1行で収まるサイズ */
+  --fs-title:clamp(1.28rem,5vw,1.52rem);
   --fs-lead:clamp(1.32rem,5.7vw,1.66rem);
   --fs-body:clamp(1.2rem,5.2vw,1.5rem);
   --fs-small:clamp(.95rem,4vw,1.1rem);
@@ -76,7 +76,7 @@ p{margin:0 0 1.1em;}
 }
 .sec-title{
   margin:0 0 var(--gap);text-align:left;font-size:var(--fs-title);font-weight:700;
-  line-height:1.75;letter-spacing:.06em;color:var(--primary-deep);
+  line-height:1.7;letter-spacing:.04em;color:var(--primary-deep);
 }
 .lead{font-size:var(--fs-lead);line-height:2;text-align:left;font-weight:600;margin:0;}
 .body{font-size:var(--fs-body);text-align:left;}
@@ -288,27 +288,28 @@ p{margin:0 0 1.1em;}
   filter:drop-shadow(0 0 6px rgba(253,250,243,.95));
 }
 
-/* —— 共感：顔は右、文字は左〜中央。四角くない柔らかい光 —— */
+/* —— 共感：顔は右に離し、文字は左。顔は薄くしすぎない —— */
 .empathy-hero{
   position:relative;width:100%;overflow:hidden;min-height:38rem;
 }
 .empathy-hero__img{
-  position:absolute;inset:0;z-index:0;width:100%;height:100%;
+  position:absolute;z-index:0;
+  top:0;bottom:0;right:-14%;
+  width:78%;height:100%;
   object-fit:cover;
-  /* タイトル行の右に顔が来るよう強めに右上 */
-  object-position:100% 0%;
-  opacity:.4;
+  object-position:72% 8%;
+  opacity:.78;
   -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 8%,#000 88%,transparent 100%);
   mask-image:linear-gradient(180deg,transparent 0%,#000 8%,#000 88%,transparent 100%);
 }
 .empathy-hero__veil{
   position:absolute;inset:0;z-index:1;pointer-events:none;
   background:
-    /* 文字側をさらに明るく・背景画像を薄くして可読性を確保 */
-    radial-gradient(90% 65% at 8% 10%,rgba(255,252,240,.96) 0%,transparent 62%),
-    radial-gradient(120% 95% at 18% 55%,rgba(253,250,243,.92) 0%,transparent 70%),
-    linear-gradient(95deg,rgba(253,250,243,.94) 0%,rgba(253,250,243,.72) 36%,rgba(253,250,243,.32) 56%,transparent 74%),
-    linear-gradient(180deg,rgba(253,250,243,.35) 0%,transparent 22%,rgba(248,242,230,.55) 74%,rgba(248,242,230,.98) 100%);
+    /* 左の文字帯を明るく／右の顔は透過して見える */
+    radial-gradient(95% 70% at 6% 12%,rgba(255,252,240,.97) 0%,transparent 58%),
+    radial-gradient(110% 90% at 12% 55%,rgba(253,250,243,.94) 0%,transparent 62%),
+    linear-gradient(95deg,rgba(253,250,243,.96) 0%,rgba(253,250,243,.88) 34%,rgba(253,250,243,.35) 52%,rgba(253,250,243,.08) 68%,transparent 82%),
+    linear-gradient(180deg,rgba(253,250,243,.28) 0%,transparent 20%,rgba(248,242,230,.4) 78%,rgba(248,242,230,.98) 100%);
 }
 .empathy-hero__content{
   position:relative;z-index:2;
@@ -320,20 +321,20 @@ p{margin:0 0 1.1em;}
 }
 .empathy-hero__title{
   margin:0;max-width:100%;
-  font-size:var(--fs-title);font-weight:700;line-height:1.5;letter-spacing:.03em;
+  font-size:var(--fs-title);font-weight:700;line-height:1.45;letter-spacing:.02em;
   color:var(--primary-deep);text-shadow:var(--glow);
   white-space:nowrap;
 }
 .empathy-hero__list-wrap{
   position:relative;
-  width:min(94%,24rem);
+  width:min(72%,20.5rem);
   padding:.45rem 0;
   margin-top:.35rem;
 }
 .empathy-hero__list-wrap::before{
-  content:"";position:absolute;inset:-1.4rem -1.8rem -1.6rem -1.8rem;z-index:-1;pointer-events:none;
+  content:"";position:absolute;inset:-1.4rem -1.5rem -1.6rem -1.5rem;z-index:-1;pointer-events:none;
   background:
-    radial-gradient(70% 80% at 32% 42%,rgba(253,250,243,.94) 0%,rgba(253,250,243,.55) 50%,transparent 76%);
+    radial-gradient(70% 80% at 28% 42%,rgba(253,250,243,.92) 0%,rgba(253,250,243,.45) 52%,transparent 76%);
   filter:blur(12px);
 }
 .empathy-hero__lead{
@@ -525,44 +526,45 @@ p{margin:0 0 1.1em;}
 .closing-sec__title .sec-title{
   margin:0;
   font-size:var(--fs-title);
-  letter-spacing:.04em;line-height:1.7;
+  letter-spacing:.03em;line-height:1.65;
 }
 .closing-sec__split{
-  display:flex;align-items:center;justify-content:space-between;
-  gap:.15rem .1rem;
+  display:flex;align-items:flex-start;justify-content:space-between;
+  gap:.55rem .7rem;
   padding:0 var(--wrap-pad);
   margin:0 0 var(--gap);
 }
 .closing-list{
-  flex:1 1 auto;min-width:0;max-width:42%;
-  list-style:none;margin:0;padding:.1rem 0 0;
+  flex:1 1 auto;min-width:0;max-width:58%;
+  list-style:none;margin:0;padding:.25rem 0 0;
   text-align:left;
-  font-size:clamp(.88rem,3.4vw,1.05rem);font-weight:600;line-height:2.05;
+  font-size:var(--fs-body);font-weight:600;line-height:2.15;
 }
 .closing-list li{white-space:nowrap;}
 .closing-sec__visual{
   position:relative;flex:0 0 auto;
-  /* 文字に被らないギリギリまで大きく（ウエスト上） */
-  width:clamp(13.2rem,55vw,16.8rem);
-  aspect-ratio:5 / 4;
-  margin-top:0;
-  margin-right:-.65rem;
+  /* 縦長・文字を小さくしなくて済む幅 */
+  width:clamp(8.6rem,36vw,11.2rem);
+  aspect-ratio:3 / 5;
+  margin-top:.1rem;
+  margin-right:-.25rem;
   overflow:hidden;
   border-radius:2px;
 }
 .closing-sec__visual img{
   position:absolute;inset:0;
-  width:112%;height:112%;
-  left:auto;right:-6%;top:-4%;
+  width:118%;height:118%;
+  left:auto;right:-10%;top:-2%;
   display:block;max-width:none;
   object-fit:cover;
-  object-position:60% 20%;
+  /* ウエストから少し下まで */
+  object-position:62% 12%;
   -webkit-mask-image:
     linear-gradient(180deg,transparent 0%,#000 5%,#000 92%,transparent 100%),
-    linear-gradient(90deg,rgba(0,0,0,.12) 0%,#000 8%,#000 100%);
+    linear-gradient(90deg,rgba(0,0,0,.18) 0%,#000 12%,#000 100%);
   mask-image:
     linear-gradient(180deg,transparent 0%,#000 5%,#000 92%,transparent 100%),
-    linear-gradient(90deg,rgba(0,0,0,.12) 0%,#000 8%,#000 100%);
+    linear-gradient(90deg,rgba(0,0,0,.18) 0%,#000 12%,#000 100%);
   -webkit-mask-composite:source-in;
   mask-composite:intersect;
 }
@@ -616,10 +618,10 @@ p{margin:0 0 1.1em;}
   padding:0 var(--wrap-pad);
 }
 .sec-title--program{
-  font-size:var(--fs-title);letter-spacing:.03em;white-space:nowrap;
+  font-size:var(--fs-title);letter-spacing:.02em;white-space:nowrap;
 }
 .sec-title--recommend{
-  font-size:var(--fs-title);letter-spacing:.03em;white-space:nowrap;
+  font-size:var(--fs-title);letter-spacing:.02em;white-space:nowrap;
 }
 .sec--recommend{
   background:linear-gradient(180deg,#faf6ee 0%,#fdfaf3 22%,var(--tint) 55%,#fbf6ec 100%);
@@ -642,7 +644,7 @@ p{margin:0 0 1.1em;}
 .footer__links a{color:#d9d2e6;text-decoration:none;border-bottom:1px solid rgba(217,210,230,.35);padding-bottom:1px;}
 .footer__copy{font-size:.7rem;color:#8f86a8;letter-spacing:.08em;margin:0;text-align:center;}
 .sec-title--instructors{
-  font-size:var(--fs-title);letter-spacing:.03em;white-space:nowrap;
+  font-size:var(--fs-title);letter-spacing:.02em;white-space:nowrap;
 }
 
 @media (min-width:481px){
