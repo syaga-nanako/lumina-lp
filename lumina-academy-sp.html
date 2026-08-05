@@ -496,7 +496,7 @@ p{margin:0 0 1.1em;}
   font-weight:700;color:var(--primary-deep);letter-spacing:.06em;
 }
 
-/* クロージング：テキスト上＋画像下（重なりなし） */
+/* クロージング：テキスト上＋画像下。画像は女性を右寄せ */
 .closing-sec{
   position:relative;width:100%;overflow:hidden;
   padding:var(--band) 0 0;
@@ -523,17 +523,29 @@ p{margin:0 0 1.1em;}
 }
 .closing-sec__visual{
   position:relative;width:100%;margin-top:1.35rem;
+  aspect-ratio:4 / 5;
+  overflow:hidden;
 }
 .closing-sec__visual img{
-  width:100%;display:block;
+  position:absolute;top:0;left:0;bottom:0;
+  width:158%;height:100%;max-width:none;
+  display:block;
+  object-fit:cover;
+  object-position:85% 10%;
   -webkit-mask-image:
-    linear-gradient(180deg,transparent 0%,#000 8%,#000 100%),
-    linear-gradient(90deg,transparent 0%,#000 3%,#000 97%,transparent 100%);
+    linear-gradient(180deg,transparent 0%,#000 8%,#000 92%,transparent 100%),
+    linear-gradient(90deg,rgba(0,0,0,.45) 0%,#000 24%,#000 100%);
   mask-image:
-    linear-gradient(180deg,transparent 0%,#000 8%,#000 100%),
-    linear-gradient(90deg,transparent 0%,#000 3%,#000 97%,transparent 100%);
+    linear-gradient(180deg,transparent 0%,#000 8%,#000 92%,transparent 100%),
+    linear-gradient(90deg,rgba(0,0,0,.45) 0%,#000 24%,#000 100%);
   -webkit-mask-composite:source-in;
   mask-composite:intersect;
+}
+.closing-sec__visual::after{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(96deg,rgba(253,250,243,.55) 0%,rgba(253,250,243,.18) 32%,transparent 52%),
+    linear-gradient(180deg,rgba(253,250,243,.2) 0%,transparent 16%,rgba(248,242,230,.35) 82%,rgba(248,242,230,.95) 100%);
 }
 
 /* 開催概要：縦長画像の下部余白に日時オーバーレイ＋下にCTA */
@@ -870,7 +882,7 @@ p{margin:0 0 1.1em;}
       </div>
     </section>
 
-    <!-- 10. クロージング：テキスト上＋画像下（重なりなし）／見出しは2行 -->
+    <!-- 10. クロージング：テキスト上＋画像下／女性は右寄せ -->
     <section class="closing-sec">
       <div class="closing-sec__inner">
         <div class="closing-sec__title">
