@@ -954,6 +954,12 @@ p{margin:0 0 1.1em;}
 <script>
 (function () {
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  /* 広告以外（Y / S / fes） */
+  var STORE_DEFAULT = 'https://lumina.syagapro.com/r/sczoIzEaObQi/store';
+  /* 広告（3days_lp_ad） */
+  var STORE_AD = 'https://lumina.syagapro.com/r/4buw4uhLgecz/store';
+  var AD_FTID = '9DnfkFBN8Cuz';
+
   function isValidEmail(value) {
     return EMAIL_RE.test(String(value || '').trim());
   }
@@ -962,30 +968,36 @@ p{margin:0 0 1.1em;}
     var btn = form.querySelector('.js-cta-submit');
     if (!input || !btn) return;
     var ok = isValidEmail(input.value);
-    /* disabled は使わず見た目を維持。送信可否は aria-disabled + submit で制御 */
     btn.disabled = false;
     btn.setAttribute('aria-disabled', ok ? 'false' : 'true');
   }
-  /* 入口UTAGEの ?ftid= を引き継ぎ（計測用） */
-  var ftid = new URLSearchParams(window.location.search).get('ftid');
+
+  var params = new URLSearchParams(window.location.search);
+  var ftid = params.get('ftid') || '';
+  var isAd = ftid === AD_FTID || params.get('entry') === 'ad';
+  var storeUrl = isAd ? STORE_AD : STORE_DEFAULT;
+
   document.querySelectorAll('.cta-form').forEach(function (form) {
     var input = form.querySelector('.js-cta-email');
     var btn = form.querySelector('.js-cta-submit');
     if (!input || !btn) return;
-    if (ftid) {
-      try {
-        var u = new URL(form.getAttribute('action'), window.location.href);
-        u.searchParams.set('ftid', ftid);
-        form.setAttribute('action', u.toString());
-      } catch (err) {}
-      if (!form.querySelector('input[name="ftid"]')) {
-        var hid = document.createElement('input');
-        hid.type = 'hidden';
-        hid.name = 'ftid';
-        hid.value = ftid;
-        form.appendChild(hid);
-      }
+
+    try {
+      var u = new URL(storeUrl, window.location.href);
+      if (ftid) u.searchParams.set('ftid', ftid);
+      form.setAttribute('action', u.toString());
+    } catch (err) {
+      form.setAttribute('action', storeUrl);
     }
+
+    if (ftid && !form.querySelector('input[name="ftid"]')) {
+      var hid = document.createElement('input');
+      hid.type = 'hidden';
+      hid.name = 'ftid';
+      hid.value = ftid;
+      form.appendChild(hid);
+    }
+
     syncForm(form);
     input.addEventListener('input', function () { syncForm(form); });
     input.addEventListener('change', function () { syncForm(form); });
