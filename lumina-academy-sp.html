@@ -551,63 +551,54 @@ p{margin:0 0 1.1em;}
   font-weight:700;color:var(--primary-deep);letter-spacing:.06em;
 }
 
-/* クロージング：見出し → 左リスト／右女性 → 本文 */
+/* クロージング：共感パートと同じ入れ方（右に人物、左に文字） */
 .closing-sec{
   position:relative;width:100%;overflow:hidden;
-  padding:var(--band) 0 0;
+  padding:0 0 0;
   background:linear-gradient(180deg,#faf6ee 0%,var(--tint) 40%,#f7f1e4 100%);
 }
-.closing-sec__inner{position:relative;z-index:1;}
-.closing-sec__title{
-  padding:0 var(--wrap-pad) 1.05rem;
+.closing-hero{
+  position:relative;width:100%;overflow:hidden;min-height:26rem;
 }
-.closing-sec__title .sec-title{
+.closing-hero__img{
+  position:absolute;z-index:0;
+  top:0;bottom:0;right:-30%;
+  width:60%;height:100%;
+  object-fit:cover;
+  object-position:68% 6%;
+  opacity:.88;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 8%,#000 88%,transparent 100%);
+  mask-image:linear-gradient(180deg,transparent 0%,#000 8%,#000 88%,transparent 100%);
+}
+.closing-hero__veil{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(95% 70% at 4% 12%,rgba(255,252,240,.98) 0%,transparent 55%),
+    radial-gradient(100% 85% at 8% 52%,rgba(253,250,243,.96) 0%,transparent 58%),
+    linear-gradient(95deg,rgba(253,250,243,.98) 0%,rgba(253,250,243,.94) 44%,rgba(253,250,243,.42) 58%,rgba(253,250,243,.1) 70%,transparent 82%),
+    linear-gradient(180deg,rgba(253,250,243,.28) 0%,transparent 20%,rgba(248,242,230,.4) 78%,rgba(248,242,230,.98) 100%);
+}
+.closing-hero__content{
+  position:relative;z-index:2;
+  padding:var(--band) var(--wrap-pad) 2rem;
+  display:flex;flex-direction:column;gap:.55rem;
+}
+.closing-hero__content .sec-title{
   margin:0;
   font-size:var(--fs-title);
   letter-spacing:.02em;line-height:1.65;
+  text-shadow:var(--glow);
 }
-.closing-sec__title .sec-title__keep{white-space:nowrap;}
-.closing-sec__split{
-  display:flex;align-items:flex-start;justify-content:space-between;
-  gap:.65rem .85rem;
-  padding:0 var(--wrap-pad);
-  margin:0 0 var(--gap);
-}
+.closing-hero__content .sec-title__keep{white-space:nowrap;}
 .closing-list{
-  flex:1 1 auto;min-width:0;max-width:62%;
-  list-style:none;margin:0;padding:.35rem 0 0;
+  list-style:none;margin:.35rem 0 0;padding:.2rem 0 0;
+  width:min(70%,20rem);
   text-align:left;
   font-size:var(--fs-body);font-weight:600;line-height:2.2;
+  text-shadow:var(--glow);
 }
 .closing-list li{white-space:nowrap;}
-.closing-sec__visual{
-  position:relative;flex:0 0 auto;
-  /* 縦長・左テキストを本文サイズのまま置ける幅 */
-  width:clamp(7.8rem,33vw,10.2rem);
-  aspect-ratio:2 / 3;
-  margin-top:.05rem;
-  margin-right:-.15rem;
-  overflow:hidden;
-  border-radius:2px;
-}
-.closing-sec__visual img{
-  position:absolute;inset:0;
-  width:125%;height:125%;
-  left:auto;right:-12%;top:-3%;
-  display:block;max-width:none;
-  object-fit:cover;
-  /* ウエストから少し下まで */
-  object-position:58% 8%;
-  -webkit-mask-image:
-    linear-gradient(180deg,transparent 0%,#000 5%,#000 92%,transparent 100%),
-    linear-gradient(90deg,rgba(0,0,0,.2) 0%,#000 14%,#000 100%);
-  mask-image:
-    linear-gradient(180deg,transparent 0%,#000 5%,#000 92%,transparent 100%),
-    linear-gradient(90deg,rgba(0,0,0,.2) 0%,#000 14%,#000 100%);
-  -webkit-mask-composite:source-in;
-  mask-composite:intersect;
-}
-.closing-sec__body{padding:0 var(--wrap-pad);}
+.closing-sec__body{padding:0 var(--wrap-pad) var(--band);}
 .closing-panel{
   padding:.1rem .05rem .15rem;
   background:transparent;
@@ -955,37 +946,34 @@ p{margin:0 0 1.1em;}
       </div>
     </section>
 
-    <!-- 10. クロージング：左リスト／右に女性（小さめ）→ 本文 -->
+    <!-- 10. クロージング：共感と同じ入れ方（右に人物背景、左に文字） -->
     <section class="closing-sec">
-      <div class="closing-sec__inner">
-        <div class="closing-sec__title">
+      <div class="closing-hero">
+        <img class="closing-hero__img" src="assets/closing-light.jpg" alt="翼を広げた光の女性と、金色に輝く城" loading="lazy" width="682" height="1024">
+        <div class="closing-hero__veil" aria-hidden="true"></div>
+        <div class="closing-hero__content">
           <div class="orn"><i></i></div>
           <h2 class="sec-title">これまでの人生は、<br><span class="sec-title__keep">終わった過去ではありません</span></h2>
-        </div>
-        <div class="closing-sec__split">
           <ul class="closing-list">
             <li>悩んだこと。</li>
             <li>傷ついたこと。</li>
             <li>誰かを支えてきたこと。</li>
             <li>乗り越えてきたこと。</li>
           </ul>
-          <div class="closing-sec__visual">
-            <img src="assets/closing-upper.jpg" alt="翼を広げた光の女性と、金色に輝く城" loading="lazy" width="682" height="532">
-          </div>
         </div>
-        <div class="closing-sec__body">
-          <div class="closing-panel">
-            <p class="body" style="margin-bottom:0;">そのすべてが、<br>これから誰かを照らすための</p>
-            <p class="statement"><em>「魔法の材料」</em>です。</p>
-            <p class="body">今のあなたに必要なのは、<br>別の誰かになることではありません。</p>
-            <p class="body" style="margin-bottom:0;">忘れていた自分を思い出し、<br>まだ使っていない力を<br>目覚めさせることです。</p>
-            <p class="statement">
-              これからの人生、<br>
-              <em>あなたは何をして<br>生きていきますか？</em>
-            </p>
-            <p class="body">その答えを、<br>天使と魔王とともに見つける3日間。</p>
-            <p class="body" style="margin-bottom:0;">未来への7つの扉を、<br>ここから一緒に開いていきましょう。</p>
-          </div>
+      </div>
+      <div class="closing-sec__body">
+        <div class="closing-panel">
+          <p class="body" style="margin-bottom:0;">そのすべてが、<br>これから誰かを照らすための</p>
+          <p class="statement"><em>「魔法の材料」</em>です。</p>
+          <p class="body">今のあなたに必要なのは、<br>別の誰かになることではありません。</p>
+          <p class="body" style="margin-bottom:0;">忘れていた自分を思い出し、<br>まだ使っていない力を<br>目覚めさせることです。</p>
+          <p class="statement">
+            これからの人生、<br>
+            <em>あなたは何をして<br>生きていきますか？</em>
+          </p>
+          <p class="body">その答えを、<br>天使と魔王とともに見つける3日間。</p>
+          <p class="body" style="margin-bottom:0;">未来への7つの扉を、<br>ここから一緒に開いていきましょう。</p>
         </div>
       </div>
     </section>
