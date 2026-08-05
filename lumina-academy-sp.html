@@ -954,11 +954,14 @@ p{margin:0 0 1.1em;}
 <script>
 (function () {
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-  /* 広告以外（Y / S / fes） */
+  /* シナリオ登録経路: 入口ftid → store?mtid=... */
+  var ROUTES = {
+    Z6aDFQonxTcg: { store: 'https://lumina.syagapro.com/r/sczoIzEaObQi/store', mtid: 'CM5KiqgkM8I3' }, /* Y */
+    R1rAY7dt1Q6Y: { store: 'https://lumina.syagapro.com/r/sczoIzEaObQi/store', mtid: 'BTBdh7vdf5YC' }, /* S */
+    jwID97qK5upE: { store: 'https://lumina.syagapro.com/r/sczoIzEaObQi/store', mtid: 'iCqWC0tdSs8l' }, /* fes */
+    '9DnfkFBN8Cuz': { store: 'https://lumina.syagapro.com/r/4buw4uhLgecz/store', mtid: 'fOBHzapwlyL6' } /* ad */
+  };
   var STORE_DEFAULT = 'https://lumina.syagapro.com/r/sczoIzEaObQi/store';
-  /* 広告（3days_lp_ad） */
-  var STORE_AD = 'https://lumina.syagapro.com/r/4buw4uhLgecz/store';
-  var AD_FTID = '9DnfkFBN8Cuz';
 
   function isValidEmail(value) {
     return EMAIL_RE.test(String(value || '').trim());
@@ -971,11 +974,27 @@ p{margin:0 0 1.1em;}
     btn.disabled = false;
     btn.setAttribute('aria-disabled', ok ? 'false' : 'true');
   }
+  function ensureHidden(form, name, value) {
+    var el = form.querySelector('input[name="' + name + '"]');
+    if (!el) {
+      el = document.createElement('input');
+      el.type = 'hidden';
+      el.name = name;
+      form.appendChild(el);
+    }
+    el.value = value;
+  }
 
   var params = new URLSearchParams(window.location.search);
   var ftid = params.get('ftid') || '';
-  var isAd = ftid === AD_FTID || params.get('entry') === 'ad';
-  var storeUrl = isAd ? STORE_AD : STORE_DEFAULT;
+  var route = ROUTES[ftid] || null;
+  /* entry=ad でも広告経路へ */
+  if (!route && params.get('entry') === 'ad') {
+    route = ROUTES['9DnfkFBN8Cuz'];
+    ftid = ftid || '9DnfkFBN8Cuz';
+  }
+  var storeUrl = route ? route.store : STORE_DEFAULT;
+  var mtid = route ? route.mtid : (params.get('mtid') || '');
 
   document.querySelectorAll('.cta-form').forEach(function (form) {
     var input = form.querySelector('.js-cta-email');
@@ -984,19 +1003,15 @@ p{margin:0 0 1.1em;}
 
     try {
       var u = new URL(storeUrl, window.location.href);
+      if (mtid) u.searchParams.set('mtid', mtid);
       if (ftid) u.searchParams.set('ftid', ftid);
       form.setAttribute('action', u.toString());
     } catch (err) {
       form.setAttribute('action', storeUrl);
     }
 
-    if (ftid && !form.querySelector('input[name="ftid"]')) {
-      var hid = document.createElement('input');
-      hid.type = 'hidden';
-      hid.name = 'ftid';
-      hid.value = ftid;
-      form.appendChild(hid);
-    }
+    if (mtid) ensureHidden(form, 'mtid', mtid);
+    if (ftid) ensureHidden(form, 'ftid', ftid);
 
     syncForm(form);
     input.addEventListener('input', function () { syncForm(form); });
