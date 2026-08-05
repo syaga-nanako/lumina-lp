@@ -27,10 +27,10 @@
   --line:rgba(194,162,78,.35);
   --font-serif:"Noto Serif JP",serif;
   --font-en:"Cormorant Garamond","Noto Serif JP",serif;
-  --fs-title:clamp(1.5rem,6.4vw,1.95rem);
-  --fs-lead:clamp(1.12rem,4.9vw,1.4rem);
-  --fs-body:clamp(.95rem,4.05vw,1.13rem);
-  --fs-small:clamp(.8rem,3.4vw,.94rem);
+  --fs-title:clamp(1.55rem,6.6vw,2.02rem);
+  --fs-lead:clamp(1.2rem,5.2vw,1.5rem);
+  --fs-body:clamp(1.05rem,4.4vw,1.24rem);
+  --fs-small:clamp(.88rem,3.7vw,1.02rem);
   --band:3.2rem;
   --gap:1.7rem;
   --gap-sm:1rem;
@@ -496,52 +496,44 @@ p{margin:0 0 1.1em;}
   font-weight:700;color:var(--primary-deep);letter-spacing:.06em;
 }
 
-/* クロージング：背景画像を見出し〜本文まで伸ばす */
+/* クロージング：テキスト上＋画像下（重なりなし） */
 .closing-sec{
   position:relative;width:100%;overflow:hidden;
-  padding:0 0 var(--band);
+  padding:var(--band) 0 0;
+  background:linear-gradient(180deg,#faf6ee 0%,var(--tint) 40%,#f7f1e4 100%);
 }
-.closing-sec__bg{
-  position:absolute;inset:0;z-index:0;width:100%;height:100%;
-  object-fit:cover;
-  object-position:12% 0%;
-  -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 6%,#000 92%,transparent 100%);
-  mask-image:linear-gradient(180deg,transparent 0%,#000 6%,#000 92%,transparent 100%);
-}
-.closing-sec__veil{
-  position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:
-    radial-gradient(90% 40% at 16% 8%,rgba(255,252,240,.1) 0%,transparent 55%),
-    radial-gradient(110% 50% at 40% 42%,rgba(253,250,243,.45) 0%,transparent 65%),
-    radial-gradient(120% 55% at 50% 78%,rgba(253,250,243,.72) 0%,transparent 70%),
-    linear-gradient(180deg,rgba(253,250,243,.1) 0%,transparent 22%,rgba(253,250,243,.28) 48%,rgba(253,250,243,.7) 78%,rgba(253,250,243,.94) 100%);
-}
-.closing-sec__inner{position:relative;z-index:2;}
+.closing-sec__inner{position:relative;z-index:1;}
 .closing-sec__title{
-  padding:8.8rem var(--wrap-pad) 1.2rem;
+  padding:0 var(--wrap-pad) 1.1rem;
 }
-.closing-sec__title .orn{filter:drop-shadow(0 0 10px rgba(253,250,243,.9));}
 .closing-sec__title .sec-title{
   margin:0;
-  font-size:clamp(1.38rem,5.8vw,1.78rem);
+  font-size:clamp(1.42rem,5.9vw,1.82rem);
   letter-spacing:.04em;line-height:1.7;
-  text-shadow:var(--glow);
-  background:radial-gradient(130% 140% at 28% 45%,rgba(253,250,243,.48) 0%,transparent 72%);
 }
 .closing-sec__body{padding:0 var(--wrap-pad);}
 .closing-panel{
-  padding:.4rem .05rem .2rem;
+  padding:.2rem .05rem .15rem;
   background:transparent;
   text-align:left;
-}
-.closing-panel .body,
-.closing-panel .statement{
-  text-shadow:0 0 14px rgba(253,250,243,.95),0 0 26px rgba(253,250,243,.65);
 }
 .closing-list{
   list-style:none;margin:0 0 var(--gap);padding:0;text-align:left;
   font-size:var(--fs-lead);font-weight:600;line-height:2.4;
-  text-shadow:0 0 14px rgba(253,250,243,.95);
+}
+.closing-sec__visual{
+  position:relative;width:100%;margin-top:1.35rem;
+}
+.closing-sec__visual img{
+  width:100%;display:block;
+  -webkit-mask-image:
+    linear-gradient(180deg,transparent 0%,#000 8%,#000 100%),
+    linear-gradient(90deg,transparent 0%,#000 3%,#000 97%,transparent 100%);
+  mask-image:
+    linear-gradient(180deg,transparent 0%,#000 8%,#000 100%),
+    linear-gradient(90deg,transparent 0%,#000 3%,#000 97%,transparent 100%);
+  -webkit-mask-composite:source-in;
+  mask-composite:intersect;
 }
 
 /* 開催概要：縦長画像の下部余白に日時オーバーレイ＋下にCTA */
@@ -775,8 +767,8 @@ p{margin:0 0 1.1em;}
         <div class="day-card__body">
           <div class="day-card__panel">
             <p>自分の光と影を、これから誰のために、どう生かしていくのか。</p>
-            <p>未来の自分と出会い、これからの生き方と最初の一歩を描きます。</p>
-            <p class="day-close"><em>「残りの人生を、自分らしく生きたい」</em>という決意へ。</p>
+            <p>未来の自分と出会い、<br>本当に望む生き方と、そこへ向かう道を描きます。</p>
+            <p class="day-close">「まだ見ぬ可能性の扉を開く」最初の一歩へ。</p>
           </div>
         </div>
       </article>
@@ -865,7 +857,7 @@ p{margin:0 0 1.1em;}
           <p>3Daysで体験した魔法を、<br>その場限りの感動で終わらせず、</p>
           <p>日常の中で使い始めるための<br>特別なプログラムをプレゼント。</p>
           <p class="bonus-point">毎日3〜5分。</p>
-          <p>魂・思考・感情・能力・行動・身体・環境。</p>
+          <p>環境・身体・行動・能力・感情・思考・魂。</p>
           <p>一日一つずつ扉を巡りながら、<br>未来を動かす魔法を使い始めていただけます。</p>
         </div>
       </div>
@@ -887,10 +879,8 @@ p{margin:0 0 1.1em;}
       </div>
     </section>
 
-    <!-- 10. クロージング：背景画像を本文まで伸ばす／見出しは2行 -->
+    <!-- 10. クロージング：テキスト上＋画像下（重なりなし）／見出しは2行 -->
     <section class="closing-sec">
-      <img class="closing-sec__bg" src="assets/closing-light.jpg" alt="金色の門の先に輝く城を見つめる女性" loading="lazy" width="576" height="1024">
-      <div class="closing-sec__veil" aria-hidden="true"></div>
       <div class="closing-sec__inner">
         <div class="closing-sec__title">
           <div class="orn"><i></i></div>
@@ -916,6 +906,9 @@ p{margin:0 0 1.1em;}
             <p class="body" style="margin-bottom:0;">未来への7つの扉を、<br>ここから一緒に開いていきましょう。</p>
           </div>
         </div>
+      </div>
+      <div class="closing-sec__visual">
+        <img src="assets/closing-light.jpg" alt="翼を広げた光の女性と、金色に輝く城" loading="lazy" width="682" height="1024">
       </div>
     </section>
 
@@ -965,8 +958,8 @@ p{margin:0 0 1.1em;}
     <p class="footer__logo">LUMINA ACADEMY</p>
     <p class="footer__sub">天使と魔王の魔法学校</p>
     <ul class="footer__links">
-      <li><a href="REPLACE_WITH_PRIVACY_URL">プライバシーポリシー</a></li>
-      <li><a href="REPLACE_WITH_TOKUSHOHO_URL">特定商取引法に基づく表記</a></li>
+      <li><a href="https://lumina.syagapro.com/p/pp" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a></li>
+      <li><a href="https://lumina.syagapro.com/p/tokushou" target="_blank" rel="noopener noreferrer">特定商取引法に基づく表記</a></li>
       <li><a href="REPLACE_WITH_COMPANY_URL">運営者情報</a></li>
     </ul>
     <p class="footer__copy">&copy; LUMINA ACADEMY All Rights Reserved.</p>
