@@ -28,7 +28,7 @@
   --font-serif:"Noto Serif JP",serif;
   --font-en:"Cormorant Garamond","Noto Serif JP",serif;
   /* タイトル基準＝「こんなことを感じていませんか？」が1行で収まるサイズ */
-  --fs-title:clamp(1.22rem,4.7vw,1.42rem);
+  --fs-title:clamp(1.16rem,4.45vw,1.34rem);
   --fs-lead:clamp(1.32rem,5.7vw,1.66rem);
   --fs-body:clamp(1.2rem,5.2vw,1.5rem);
   --fs-small:clamp(.95rem,4vw,1.1rem);
@@ -76,7 +76,7 @@ p{margin:0 0 1.1em;}
 }
 .sec-title{
   margin:0 0 var(--gap);text-align:left;font-size:var(--fs-title);font-weight:700;
-  line-height:1.7;letter-spacing:.04em;color:var(--primary-deep);
+  line-height:1.65;letter-spacing:.025em;color:var(--primary-deep);
 }
 .lead{font-size:var(--fs-lead);line-height:2;text-align:left;font-weight:600;margin:0;}
 .body{font-size:var(--fs-body);text-align:left;}
@@ -276,8 +276,8 @@ p{margin:0 0 1.1em;}
 .checklist li{
   position:relative;padding:.55rem .1rem .55rem 2.05rem;
   border-bottom:1px dashed rgba(194,162,78,.32);
-  font-size:clamp(.98rem,3.95vw,1.14rem);font-weight:600;line-height:1.45;
-  letter-spacing:.015em;
+  font-size:clamp(.9rem,3.55vw,1.05rem);font-weight:600;line-height:1.42;
+  letter-spacing:.01em;
   text-shadow:var(--glow);
 }
 .checklist li:last-child{border-bottom:none;}
@@ -294,11 +294,11 @@ p{margin:0 0 1.1em;}
 }
 .empathy-hero__img{
   position:absolute;z-index:0;
-  top:0;bottom:0;right:-22%;
-  width:68%;height:100%;
+  top:0;bottom:0;right:-30%;
+  width:60%;height:100%;
   object-fit:cover;
-  object-position:78% 6%;
-  opacity:.82;
+  object-position:85% 4%;
+  opacity:.88;
   -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 8%,#000 88%,transparent 100%);
   mask-image:linear-gradient(180deg,transparent 0%,#000 8%,#000 88%,transparent 100%);
 }
@@ -307,7 +307,7 @@ p{margin:0 0 1.1em;}
   background:
     radial-gradient(95% 70% at 4% 12%,rgba(255,252,240,.98) 0%,transparent 55%),
     radial-gradient(100% 85% at 8% 52%,rgba(253,250,243,.96) 0%,transparent 58%),
-    linear-gradient(95deg,rgba(253,250,243,.98) 0%,rgba(253,250,243,.92) 38%,rgba(253,250,243,.4) 54%,rgba(253,250,243,.08) 66%,transparent 78%),
+    linear-gradient(95deg,rgba(253,250,243,.98) 0%,rgba(253,250,243,.94) 44%,rgba(253,250,243,.42) 58%,rgba(253,250,243,.1) 70%,transparent 82%),
     linear-gradient(180deg,rgba(253,250,243,.28) 0%,transparent 20%,rgba(248,242,230,.4) 78%,rgba(248,242,230,.98) 100%);
 }
 .empathy-hero__content{
@@ -320,13 +320,13 @@ p{margin:0 0 1.1em;}
 }
 .empathy-hero__title{
   margin:0;max-width:100%;
-  font-size:var(--fs-title);font-weight:700;line-height:1.45;letter-spacing:.02em;
+  font-size:var(--fs-title);font-weight:700;line-height:1.45;letter-spacing:.015em;
   color:var(--primary-deep);text-shadow:var(--glow);
   white-space:nowrap;
 }
 .empathy-hero__list-wrap{
   position:relative;
-  width:min(68%,19.5rem);
+  width:min(70%,20rem);
   padding:.45rem 0;
   margin-top:.35rem;
 }
@@ -708,7 +708,7 @@ p{margin:0 0 1.1em;}
               <li>心理学や潜在意識を学んでも、<br>人生が変わらなかった</li>
               <li>能力はあるはずなのに、<br>自信を持って動けない</li>
               <li>人の役に立ちたいけれど、<br>自分に何ができるかわからない</li>
-              <li>「私には無理」「もう年だから」<br>と一歩を踏み出せない</li>
+              <li>「私には無理」「もう年だから」と一歩を<br>踏み出せない</li>
               <li>これからの人生を、<br>もっと自分らしく生きたい</li>
             </ul>
           </div>
