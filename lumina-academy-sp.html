@@ -651,10 +651,11 @@ p{margin:0 0 1.1em;}
     </div>
     <div class="cta">
       <!-- UTAGE: action をシナリオのオプトインURLに差し替え。フィールド名は管理画面に合わせる -->
-      <form class="cta-form" action="REPLACE_WITH_UTAGE_OPTIN_URL" method="POST" novalidate>
+      <form class="cta-form" action="https://lumina.syagapro.com/r/sczoIzEaObQi/store" method="post" novalidate>
         <label class="cta-form__label" for="email-fv">メールアドレス</label>
-        <!-- name="email" は UTAGE 側のフィールド名に合わせて変更可 -->
-        <input class="cta-form__input js-cta-email" id="email-fv" type="email" name="email" placeholder="メールアドレス" autocomplete="email" inputmode="email" required>
+        <!-- UTAGE外部設置フォーム: name は mail 固定 -->
+        <input class="cta-form__input js-cta-email" id="email-fv" type="email" name="mail" placeholder="メールアドレス" autocomplete="email" inputmode="email" required>
+        <input type="hidden" name="rid" value="">
         <button class="cta__btn js-cta-submit" type="submit" aria-disabled="true"><span>無料で3Daysに参加する</span></button>
         <p class="cta__note">登録後、LINEオープンチャットへご参加ください。</p>
         <div class="cta__legal-wrap">
@@ -833,10 +834,10 @@ p{margin:0 0 1.1em;}
       </div>
       <div class="cta">
         <!-- UTAGE: action をシナリオのオプトインURLに差し替え。フィールド名は管理画面に合わせる -->
-        <form class="cta-form" action="REPLACE_WITH_UTAGE_OPTIN_URL" method="POST" novalidate>
+        <form class="cta-form" action="https://lumina.syagapro.com/r/sczoIzEaObQi/store" method="post" novalidate>
           <label class="cta-form__label" for="email-duo">メールアドレス</label>
-          <!-- name="email" は UTAGE 側のフィールド名に合わせて変更可 -->
-          <input class="cta-form__input js-cta-email" id="email-duo" type="email" name="email" placeholder="メールアドレス" autocomplete="email" inputmode="email" required>
+          <input class="cta-form__input js-cta-email" id="email-duo" type="email" name="mail" placeholder="メールアドレス" autocomplete="email" inputmode="email" required>
+          <input type="hidden" name="rid" value="">
           <button class="cta__btn js-cta-submit" type="submit" aria-disabled="true"><span>無料で3Daysに参加する</span></button>
           <p class="cta__note">登録後、LINEオープンチャットへご参加ください。</p>
         </form>
@@ -926,10 +927,10 @@ p{margin:0 0 1.1em;}
       <div class="outline-sec__body">
         <div class="cta cta--tight">
           <!-- UTAGE: action をシナリオのオプトインURLに差し替え。フィールド名は管理画面に合わせる -->
-          <form class="cta-form" action="REPLACE_WITH_UTAGE_OPTIN_URL" method="POST" novalidate>
+          <form class="cta-form" action="https://lumina.syagapro.com/r/sczoIzEaObQi/store" method="post" novalidate>
             <label class="cta-form__label" for="email-outline">メールアドレス</label>
-            <!-- name="email" は UTAGE 側のフィールド名に合わせて変更可 -->
-            <input class="cta-form__input js-cta-email" id="email-outline" type="email" name="email" placeholder="メールアドレス" autocomplete="email" inputmode="email" required>
+            <input class="cta-form__input js-cta-email" id="email-outline" type="email" name="mail" placeholder="メールアドレス" autocomplete="email" inputmode="email" required>
+            <input type="hidden" name="rid" value="">
             <button class="cta__btn js-cta-submit" type="submit" aria-disabled="true"><span>無料で3Daysに参加する</span></button>
             <p class="cta__note">登録後、LINEオープンチャットへご参加ください。</p>
           </form>
@@ -965,10 +966,26 @@ p{margin:0 0 1.1em;}
     btn.disabled = false;
     btn.setAttribute('aria-disabled', ok ? 'false' : 'true');
   }
+  /* 入口UTAGEの ?ftid= を引き継ぎ（計測用） */
+  var ftid = new URLSearchParams(window.location.search).get('ftid');
   document.querySelectorAll('.cta-form').forEach(function (form) {
     var input = form.querySelector('.js-cta-email');
     var btn = form.querySelector('.js-cta-submit');
     if (!input || !btn) return;
+    if (ftid) {
+      try {
+        var u = new URL(form.getAttribute('action'), window.location.href);
+        u.searchParams.set('ftid', ftid);
+        form.setAttribute('action', u.toString());
+      } catch (err) {}
+      if (!form.querySelector('input[name="ftid"]')) {
+        var hid = document.createElement('input');
+        hid.type = 'hidden';
+        hid.name = 'ftid';
+        hid.value = ftid;
+        form.appendChild(hid);
+      }
+    }
     syncForm(form);
     input.addEventListener('input', function () { syncForm(form); });
     input.addEventListener('change', function () { syncForm(form); });
