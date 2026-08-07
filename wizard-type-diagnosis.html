@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>あなたの魔法使いタイプ診断｜LUMINA ACADEMY</title>
+<meta name="description" content="あなたに眠る魔力と、まだ開いていない可能性がわかる！21の質問で、あなたの魔法使いタイプを読み解きます。">
+<meta property="og:title" content="あなたの魔法使いタイプ診断｜LUMINA ACADEMY">
+<meta property="og:description" content="あなたに眠る魔力と、まだ開いていない可能性がわかる！いくつかの質問に答えるだけで、あなたの魔法使いタイプを読み解きます。">
+<meta property="og:image" content="assets/diagnosis-hero.jpg">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700;900&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#3a3050;
+  --primary-deep:#2c2246;
+  --gold:#c2a24e;
+  --gold-deep:#96762a;
+  --gold-light:#e8d5a3;
+  --ivory:#fdfaf3;
+  --tint:#f8f2e6;
+  --emphasis:#8e2b34;
+  --text:var(--primary);
+  --text-soft:#6a6180;
+  --line:rgba(194,162,78,.35);
+  --font-serif:"Noto Serif JP",serif;
+  --font-en:"Cormorant Garamond","Noto Serif JP",serif;
+  --fs-title:clamp(1.45rem,5.6vw,1.7rem);
+  --fs-lead:clamp(1.2rem,5vw,1.45rem);
+  --fs-body:clamp(1.05rem,4.5vw,1.28rem);
+  --fs-small:clamp(.9rem,3.8vw,1.05rem);
+  --band:2.8rem;
+  --gap:1.5rem;
+  --gap-sm:.9rem;
+  --max-width:480px;
+  --wrap-pad:1.35rem;
+  --glow:0 0 12px rgba(253,250,243,.98),0 0 26px rgba(253,250,243,.88);
+}
+*,*::before,*::after{box-sizing:border-box;}
+html{overflow-x:hidden;scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{
+  margin:0;width:100%;
+  font-family:var(--font-serif);
+  color:var(--text);
+  background:radial-gradient(120% 60% at 50% 0%,#fffdf7 0%,#f7f1e4 45%,#efe6d3 100%) fixed;
+  line-height:1.9;letter-spacing:.04em;font-weight:500;
+}
+img{display:block;max-width:100%;height:auto;}
+a{color:inherit;}
+p{margin:0 0 1em;}
+button{font-family:inherit;}
+.hidden{display:none!important;}
+
+.app{
+  max-width:var(--max-width);margin:0 auto;background:var(--ivory);
+  box-shadow:0 0 60px rgba(90,70,30,.14);min-height:100vh;overflow:hidden;position:relative;
+}
+.wrap{padding-left:var(--wrap-pad);padding-right:var(--wrap-pad);}
+
+.orn{display:flex;align-items:center;gap:.55rem;margin:0 0 var(--gap-sm);}
+.orn::after{content:"";display:block;width:38px;height:1px;background:var(--gold);opacity:.5;}
+.orn i{display:block;width:5px;height:5px;background:var(--gold);transform:rotate(45deg);opacity:.85;}
+
+.eyebrow{
+  font-family:var(--font-en);font-size:.78rem;letter-spacing:.3em;
+  color:var(--gold-deep);margin:0 0 .5rem;text-transform:uppercase;font-weight:600;
+}
+.sec-title{
+  margin:0 0 var(--gap);font-size:var(--fs-title);font-weight:700;
+  line-height:1.65;letter-spacing:.02em;color:var(--primary-deep);
+}
+.lead{font-size:var(--fs-lead);line-height:1.95;font-weight:600;margin:0 0 1em;}
+.body{font-size:var(--fs-body);}
+.hl{background:linear-gradient(transparent 87%,rgba(194,162,78,.55) 87%);padding-bottom:.08em;}
+
+/* Hero */
+.hero{position:relative;background:#fdfaf3;}
+.hero__img{
+  width:100%;display:block;
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 78%,transparent 100%);
+  mask-image:linear-gradient(180deg,#000 0%,#000 78%,transparent 100%);
+}
+.hero__veil{
+  position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(44,34,70,.18) 0%,transparent 35%,rgba(253,250,243,.55) 75%,var(--ivory) 100%);
+}
+.hero__content{position:relative;padding:1.2rem var(--wrap-pad) 2rem;margin-top:-4.5rem;}
+.hero__brand{
+  font-family:var(--font-en);font-size:.85rem;letter-spacing:.28em;
+  color:var(--gold-deep);margin:0 0 .7rem;font-weight:600;
+}
+.hero__title{
+  margin:0 0 .9rem;font-size:clamp(1.55rem,6.2vw,1.95rem);font-weight:900;
+  line-height:1.55;color:var(--primary-deep);letter-spacing:.04em;
+}
+.hero__title em{font-style:normal;color:var(--emphasis);}
+.hero__sub{
+  margin:0;font-size:var(--fs-body);line-height:1.95;font-weight:600;color:var(--primary);
+}
+
+/* Screens */
+.screen{padding:0 0 3.2rem;animation:fadeIn .45s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+@media (prefers-reduced-motion:reduce){.screen{animation:none;}}
+
+.panel{
+  margin:0 var(--wrap-pad);padding:1.35rem 1.2rem;
+  background:linear-gradient(180deg,#fffdf8,#faf4e6);
+  border:1px solid var(--line);border-radius:12px;
+}
+.panel + .panel{margin-top:1rem;}
+.panel p:last-child{margin-bottom:0;}
+
+.scale-note{
+  margin:1.1rem 0 0;padding:1rem 1.05rem;
+  background:rgba(194,162,78,.08);border-radius:10px;
+  font-size:var(--fs-small);line-height:1.85;color:var(--primary-deep);
+}
+.scale-note strong{display:block;margin-bottom:.35rem;color:var(--gold-deep);letter-spacing:.08em;}
+
+/* Buttons */
+.btn{
+  position:relative;display:block;width:100%;max-width:400px;margin:1.4rem auto 0;text-align:center;
+  padding:1.1rem 1rem;border-radius:999px;text-decoration:none;border:1px solid #b59436;
+  background:linear-gradient(135deg,#e3c778 0%,#c2a24e 38%,#a8871f 62%,#dcbe6d 100%);
+  color:#fff;font-size:clamp(1rem,4.2vw,1.15rem);font-weight:900;letter-spacing:.08em;
+  box-shadow:0 8px 22px rgba(150,118,42,.36),inset 0 1px 0 rgba(255,255,255,.55);
+  cursor:pointer;overflow:hidden;-webkit-appearance:none;appearance:none;
+}
+.btn::after{
+  content:"";position:absolute;top:0;left:-60%;width:45%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);
+  animation:shine 3.6s ease-in-out infinite;
+}
+.btn span{position:relative;z-index:1;text-shadow:0 1px 2px rgba(120,90,20,.4);}
+.btn:disabled{opacity:.55;cursor:not-allowed;}
+.btn:disabled::after{animation:none;}
+.btn--ghost{
+  background:transparent;color:var(--gold-deep);border:1px solid rgba(194,162,78,.55);
+  box-shadow:none;font-weight:700;margin-top:.85rem;
+}
+.btn--ghost::after{display:none;}
+.btn--ghost span{text-shadow:none;}
+@keyframes shine{0%{left:-60%;}55%{left:130%;}100%{left:130%;}}
+@media (prefers-reduced-motion:reduce){.btn::after{animation:none;}}
+
+/* Progress */
+.progress-wrap{padding:1.1rem var(--wrap-pad) .4rem;}
+.progress-top{
+  display:flex;justify-content:space-between;align-items:baseline;
+  margin-bottom:.45rem;font-size:var(--fs-small);color:var(--text-soft);font-weight:600;
+}
+.progress-top b{color:var(--gold-deep);font-weight:800;}
+.progress-bar{
+  height:6px;border-radius:999px;background:rgba(194,162,78,.18);overflow:hidden;
+}
+.progress-bar > i{
+  display:block;height:100%;width:0;border-radius:999px;
+  background:linear-gradient(90deg,#e3c778,#c2a24e,#a8871f);
+  transition:width .35s ease;
+}
+
+/* Question */
+.q-screen .q-card{padding:1.5rem var(--wrap-pad) 0;}
+.q-label{
+  display:inline-block;margin:0 0 .7rem;padding:.2rem .7rem;
+  border:1px solid var(--line);border-radius:999px;
+  font-size:.78rem;letter-spacing:.16em;color:var(--gold-deep);font-weight:700;
+}
+.q-text{
+  margin:0 0 1.35rem;font-size:clamp(1.15rem,4.8vw,1.35rem);
+  font-weight:700;line-height:1.8;color:var(--primary-deep);
+}
+.scale{
+  display:grid;gap:.65rem;margin:0;
+}
+.scale label{
+  position:relative;display:flex;align-items:center;gap:.85rem;
+  padding:.95rem 1rem;border-radius:12px;cursor:pointer;
+  background:#fffdf8;border:1.5px solid rgba(194,162,78,.28);
+  transition:border-color .2s,background .2s,transform .15s;
+}
+.scale label:hover{border-color:rgba(194,162,78,.7);background:#fffaf0;}
+.scale input{position:absolute;opacity:0;pointer-events:none;}
+.scale label:has(input:checked),
+.scale label.is-selected{
+  border-color:var(--gold);background:linear-gradient(180deg,#fff8e8,#f7ebd0);
+  box-shadow:0 0 0 3px rgba(194,162,78,.15);
+}
+.scale__num{
+  flex:0 0 2rem;width:2rem;height:2rem;border-radius:50%;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,#e8d5a3,#c2a24e);color:#fff;
+  font-weight:900;font-size:1rem;letter-spacing:0;
+}
+.scale__txt{font-size:var(--fs-small);font-weight:600;line-height:1.45;color:var(--primary-deep);}
+.q-nav{padding:1.2rem var(--wrap-pad) 0;display:flex;gap:.7rem;}
+.q-nav .btn{margin:0;flex:1;}
+
+/* Free / tie */
+.textarea{
+  display:block;width:100%;min-height:8.5rem;resize:vertical;
+  margin:1rem 0 0;padding:1rem;
+  font-family:var(--font-serif);font-size:var(--fs-body);font-weight:500;
+  color:var(--primary-deep);line-height:1.8;letter-spacing:.04em;
+  background:linear-gradient(180deg,#fffdf8,#faf4e6);
+  border:1px solid rgba(194,162,78,.65);border-radius:10px;
+  outline:none;-webkit-appearance:none;appearance:none;
+}
+.textarea:focus{box-shadow:0 0 0 3px rgba(194,162,78,.22);}
+.textarea::placeholder{color:#b5a98c;}
+.tie-choices{display:grid;gap:.7rem;margin-top:1.2rem;}
+.tie-choices button{
+  width:100%;text-align:left;padding:1rem 1.1rem;border-radius:12px;cursor:pointer;
+  background:#fffdf8;border:1.5px solid rgba(194,162,78,.35);
+  color:var(--primary-deep);font-size:var(--fs-body);font-weight:700;line-height:1.6;
+}
+.tie-choices button:hover{border-color:var(--gold);background:#fff8e8;}
+
+/* Analyzing */
+.analyzing{
+  min-height:70vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:3rem var(--wrap-pad);text-align:center;
+}
+.analyzing__orb{
+  width:72px;height:72px;border-radius:50%;margin:0 auto 1.4rem;
+  background:radial-gradient(circle at 35% 30%,#fff8e0,#e3c778 40%,#c2a24e 70%,#8a6e28);
+  box-shadow:0 0 0 8px rgba(194,162,78,.12),0 0 40px rgba(194,162,78,.35);
+  animation:pulseOrb 1.8s ease-in-out infinite;
+}
+@keyframes pulseOrb{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.08);opacity:.85;}}
+.analyzing h2{margin:0 0 .6rem;font-size:var(--fs-title);color:var(--primary-deep);}
+.analyzing p{margin:0;font-size:var(--fs-body);color:var(--text-soft);}
+
+/* Result */
+.result-hero{
+  position:relative;padding:2.4rem var(--wrap-pad) 1.6rem;text-align:center;
+  background:
+    radial-gradient(80% 70% at 50% 0%,rgba(232,213,163,.45) 0%,transparent 70%),
+    linear-gradient(180deg,#f8f2e6 0%,#fdfaf3 100%);
+}
+.result-hero__label{
+  font-family:var(--font-en);letter-spacing:.28em;font-size:.8rem;
+  color:var(--gold-deep);margin:0 0 .8rem;font-weight:600;
+}
+.result-hero__announce{
+  margin:0 0 .35rem;font-size:var(--fs-body);font-weight:600;color:var(--text-soft);
+}
+.result-hero__type{
+  margin:0;font-size:clamp(1.55rem,6.4vw,2rem);font-weight:900;
+  line-height:1.5;color:var(--primary-deep);letter-spacing:.04em;
+}
+.result-hero__type em{font-style:normal;color:var(--emphasis);}
+.result-section{padding:1.8rem var(--wrap-pad) 0;}
+.result-section h3{
+  margin:0 0 .85rem;font-size:clamp(1.15rem,4.6vw,1.3rem);font-weight:800;
+  color:var(--gold-deep);letter-spacing:.06em;
+}
+.result-section .body{color:var(--primary);}
+.talent-list{list-style:none;margin:0;padding:0;}
+.talent-list li{
+  position:relative;padding:.55rem .1rem .55rem 1.7rem;
+  border-bottom:1px dashed rgba(194,162,78,.32);
+  font-size:var(--fs-body);font-weight:600;line-height:1.65;
+}
+.talent-list li:last-child{border-bottom:none;}
+.talent-list li::before{
+  content:"";position:absolute;left:.15rem;top:1.05em;width:.9rem;height:.48rem;
+  border-left:2.5px solid var(--gold);border-bottom:2.5px solid var(--gold);
+  transform:rotate(-45deg) translateY(-50%);
+}
+.quote-box{
+  margin:1rem 0 0;padding:1.1rem 1.15rem;
+  border-left:3px solid var(--gold);
+  background:rgba(194,162,78,.08);border-radius:0 10px 10px 0;
+  font-size:var(--fs-lead);font-weight:700;line-height:1.85;color:var(--primary-deep);
+}
+.divider{
+  display:flex;align-items:center;justify-content:center;gap:.7rem;
+  margin:2rem var(--wrap-pad) .4rem;
+}
+.divider::before,.divider::after{
+  content:"";flex:1;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(194,162,78,.55),transparent);
+}
+.divider span{
+  width:7px;height:7px;transform:rotate(45deg);
+  background:linear-gradient(135deg,#fffdf6,#c2a24e);
+  box-shadow:0 0 6px rgba(194,162,78,.5);
+}
+
+.cta-block{
+  margin:1.6rem var(--wrap-pad) 0;padding:1.5rem 1.2rem 1.6rem;
+  background:linear-gradient(180deg,#f6f0e0,#faf4e6);
+  border:1px solid var(--line);border-radius:14px;text-align:left;
+}
+.cta-block h3{
+  margin:0 0 .8rem;font-size:clamp(1.2rem,4.8vw,1.4rem);font-weight:800;
+  color:var(--primary-deep);line-height:1.65;
+}
+.cta-block .btn{margin-top:1.2rem;}
+.cta-note{margin:.85rem 0 0;font-size:var(--fs-small);color:var(--text-soft);line-height:1.8;}
+
+.footer{
+  margin-top:2.4rem;padding:1.6rem var(--wrap-pad) 2.2rem;
+  background:linear-gradient(180deg,#2c2246,#1f1833);color:#f4ebe0;text-align:center;
+}
+.footer__brand{font-family:var(--font-en);letter-spacing:.28em;font-size:.85rem;margin:0 0 .35rem;color:var(--gold-light);}
+.footer__sub{margin:0 0 1rem;font-size:.9rem;opacity:.85;}
+.footer__links{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:.3rem 1rem;}
+.footer__links a{color:#e8d5a3;text-decoration:none;font-size:.82rem;}
+.footer__copy{margin:1rem 0 0;font-size:.75rem;opacity:.65;}
+
+.restart{padding:0 var(--wrap-pad);margin-top:1rem;}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+
+  <!-- INTRO -->
+  <section class="screen" id="screen-intro">
+    <div class="hero">
+      <img class="hero__img" src="assets/diagnosis-hero.jpg" alt="" width="1200" height="800" loading="eager" fetchpriority="high">
+      <div class="hero__veil"></div>
+      <div class="hero__content">
+        <p class="hero__brand">LUMINA ACADEMY</p>
+        <h1 class="hero__title">あなたの<em>魔法使い</em><br>タイプ診断</h1>
+        <p class="hero__sub">あなたに眠る魔力と、<br>まだ開いていない可能性がわかる！</p>
+      </div>
+    </div>
+    <div class="wrap" style="padding-top:.2rem;">
+      <div class="orn" aria-hidden="true"><i></i></div>
+      <p class="lead">もしあなたが魔法使いだとしたら、<br>どんな魔力を持っていると思いますか？</p>
+      <p class="body">自分では気づいていない、<br>あなただけの魔力が眠っているかもしれません。</p>
+      <div class="panel body">
+        <p>いくつかの質問に答えるだけで、</p>
+        <ul class="talent-list" style="margin-top:.4rem;">
+          <li>あなたがすでに持っている魔力</li>
+          <li>あなたの魔法使いタイプ</li>
+          <li>まだ目覚めていない才能や可能性</li>
+        </ul>
+        <p style="margin-top:1rem;">を読み解きます。</p>
+      </div>
+      <p class="body" style="margin-top:1.2rem;">あなた自身もまだ知らない、<span class="hl">「魔法使いとしてのあなた」</span>に出会ってみませんか？</p>
+      <p class="body" style="font-size:var(--fs-small);color:var(--text-soft);">※これは医学的・心理学的な診断ではなく、自己理解を楽しむためのタイプ診断です。「魔力」「魔法使い」は、この診断内の比喩・世界観としてお楽しみください。</p>
+      <button type="button" class="btn" id="btn-start"><span>診断をはじめる</span></button>
+    </div>
+  </section>
+
+  <!-- INTRO MESSAGE -->
+  <section class="screen hidden" id="screen-howto">
+    <div class="progress-wrap">
+      <div class="progress-top"><span>準備</span><b>START</b></div>
+      <div class="progress-bar"><i style="width:4%"></i></div>
+    </div>
+    <div class="wrap" style="padding-top:1rem;">
+      <p class="eyebrow">Guide</p>
+      <h2 class="sec-title">これから21の質問をします</h2>
+      <p class="body">深く考えすぎず、<span class="hl">“今の自分に近い”</span>と感じる数字を選んでください。</p>
+      <div class="scale-note">
+        <strong>回答の目安</strong>
+        1＝ほとんど当てはまらない<br>
+        2＝あまり当てはまらない<br>
+        3＝どちらともいえない<br>
+        4＝かなり当てはまる<br>
+        5＝とても当てはまる
+      </div>
+      <p class="lead" style="margin-top:1.4rem;">あなたの中にどんな魔力が眠っているのか、<br>一緒に見つけていきましょう。</p>
+      <button type="button" class="btn" id="btn-howto-next"><span>最初の質問へ</span></button>
+    </div>
+  </section>
+
+  <!-- QUESTIONS -->
+  <section class="screen q-screen hidden" id="screen-question">
+    <div class="progress-wrap">
+      <div class="progress-top">
+        <span>質問 <b id="q-current">1</b> / 21</span>
+        <span id="q-percent">0%</span>
+      </div>
+      <div class="progress-bar"><i id="q-progress"></i></div>
+    </div>
+    <div class="q-card">
+      <span class="q-label" id="q-label">Q1</span>
+      <p class="q-text" id="q-text"></p>
+      <div class="scale" id="q-scale" role="radiogroup" aria-labelledby="q-text"></div>
+    </div>
+    <div class="q-nav">
+      <button type="button" class="btn btn--ghost" id="btn-q-back"><span>戻る</span></button>
+      <button type="button" class="btn" id="btn-q-next" disabled><span>次へ</span></button>
+    </div>
+  </section>
+
+  <!-- FREE ANSWER -->
+  <section class="screen hidden" id="screen-free">
+    <div class="progress-wrap">
+      <div class="progress-top"><span>最後の魔法の問い</span><b>BONUS</b></div>
+      <div class="progress-bar"><i style="width:96%"></i></div>
+    </div>
+    <div class="wrap" style="padding-top:1rem;">
+      <p class="eyebrow">Final Question</p>
+      <h2 class="sec-title">最後の魔法の問い</h2>
+      <p class="q-text" style="margin-bottom:.4rem;">自分では当たり前だと思っているけれど、人からよく感謝されたり、褒められたりすることは何ですか？</p>
+      <p class="body" style="font-size:var(--fs-small);color:var(--text-soft);">点数には入りません。診断結果をよりあなたらしくするための問いです。（任意）</p>
+      <textarea class="textarea" id="free-answer" placeholder="例：話を聞いてくれる、とよく言われます"></textarea>
+      <button type="button" class="btn" id="btn-free-next"><span>結果を見る</span></button>
+      <button type="button" class="btn btn--ghost" id="btn-free-skip"><span>スキップして結果へ</span></button>
+    </div>
+  </section>
+
+  <!-- TIE BREAKER -->
+  <section class="screen hidden" id="screen-tie">
+    <div class="wrap" style="padding-top:2rem;">
+      <p class="eyebrow">Tie Breaker</p>
+      <h2 class="sec-title">もうひとつだけ教えてください</h2>
+      <p class="q-text" id="tie-question">時間を忘れるほど自然にできること、または人からよく感謝されることは何ですか？</p>
+      <textarea class="textarea" id="tie-answer" placeholder="自由にお書きください"></textarea>
+      <div class="tie-choices hidden" id="tie-choices"></div>
+      <button type="button" class="btn" id="btn-tie-next"><span>この内容で判定する</span></button>
+    </div>
+  </section>
+
+  <!-- ANALYZING -->
+  <section class="screen analyzing hidden" id="screen-analyzing">
+    <div class="analyzing__orb" aria-hidden="true"></div>
+    <h2>魔力を読み解いています…</h2>
+    <p>あなたの答えのなかから、<br>すでに使っている魔力を探しています。</p>
+  </section>
+
+  <!-- RESULT -->
+  <section class="screen hidden" id="screen-result">
+    <div class="result-hero">
+      <p class="result-hero__label">Your Wizard Type</p>
+      <p class="result-hero__announce">あなたは——</p>
+      <h2 class="result-hero__type">「<em id="result-main-name"></em>」です。</h2>
+    </div>
+
+    <div class="result-section">
+      <div class="orn" aria-hidden="true"><i></i></div>
+      <p class="body" id="result-main-desc"></p>
+      <p class="body" id="result-personal" style="margin-top:.2rem;"></p>
+    </div>
+
+    <div class="divider" aria-hidden="true"><span></span></div>
+
+    <div class="result-section">
+      <h3>あなたの隠れた魔力</h3>
+      <p class="lead" id="result-sub-title" style="margin-bottom:.5rem;"></p>
+      <p class="body" id="result-sub-desc"></p>
+    </div>
+
+    <div class="divider" aria-hidden="true"><span></span></div>
+
+    <div class="result-section">
+      <h3>あなたが気づいていないかもしれない才能</h3>
+      <ul class="talent-list" id="result-talents"></ul>
+    </div>
+
+    <div class="divider" aria-hidden="true"><span></span></div>
+
+    <div class="result-section">
+      <h3>あなたの魔力の影</h3>
+      <p class="body" id="result-shadow"></p>
+      <p class="body" style="margin-top:.6rem;">でも、<span class="hl">その影も、あなたの魔力の一部です</span>。</p>
+      <p class="body" id="result-shadow-advice"></p>
+    </div>
+
+    <div class="divider" aria-hidden="true"><span></span></div>
+
+    <div class="result-section">
+      <h3>まだ眠っている可能性</h3>
+      <p class="lead" id="result-sleep-title" style="margin-bottom:.5rem;"></p>
+      <p class="body" id="result-sleep-desc"></p>
+    </div>
+
+    <div class="divider" aria-hidden="true"><span></span></div>
+
+    <div class="result-section">
+      <h3>今のあなたへの魔法の問い</h3>
+      <div class="quote-box" id="result-question"></div>
+    </div>
+
+    <div class="result-section">
+      <h3>最初の魔法アクション</h3>
+      <p class="body">今日から24時間以内にできること：</p>
+      <div class="panel body" id="result-action"></div>
+    </div>
+
+    <div class="divider" aria-hidden="true"><span></span></div>
+
+    <div class="result-section">
+      <p class="body">あなたの中には、今日見つかった魔力だけではなく、まだたくさんの可能性があります。</p>
+      <p class="body">私たちの人生には、<br>魂・思考・感情・能力・行動・身体・環境という<br>互いにつながる<span class="hl">7つの扉</span>があります。</p>
+      <p class="body">一つの扉だけではなく、7つの扉をつないでいくことで、本来の自分の力が人生全体で使えるようになっていきます。</p>
+    </div>
+
+    <div class="cta-block">
+      <p class="eyebrow">Next Step</p>
+      <h3>もっと自分の可能性を知りたい方へ</h3>
+      <p class="body">忘れていた自分らしさを思い出し、新たな可能性に出会う<br><strong>未来への「7つの扉」を開く3Days無料体験プログラム</strong><br>LUMINA ACADEMY 魔法学校へ、ご招待します。</p>
+      <a class="btn" id="cta-link" href="https://syaga-lumina.syagapro.com/lumina-academy-sp.html?ftid=jwID97qK5upE" target="_blank" rel="noopener noreferrer"><span>3Days無料体験を見る</span></a>
+      <p class="cta-note">売り込みではなく、あなたの可能性をもう少し深く知るためのご案内です。</p>
+    </div>
+
+    <div class="restart">
+      <button type="button" class="btn btn--ghost" id="btn-restart"><span>もう一度診断する</span></button>
+    </div>
+
+    <footer class="footer">
+      <p class="footer__brand">LUMINA ACADEMY</p>
+      <p class="footer__sub">天使と魔王の魔法学校</p>
+      <ul class="footer__links">
+        <li><a href="https://syaga-lumina.syagapro.com/lumina-academy-sp.html" target="_blank" rel="noopener">3Daysプログラム</a></li>
+      </ul>
+      <p class="footer__copy">© LUMINA ACADEMY All Rights Reserved.</p>
+    </footer>
+  </section>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var CTA_URL = "https://syaga-lumina.syagapro.com/lumina-academy-sp.html?ftid=jwID97qK5upE";
+
+  var SCALE_LABELS = [
+    { v: 1, t: "ほとんど当てはまらない" },
+    { v: 2, t: "あまり当てはまらない" },
+    { v: 3, t: "どちらともいえない" },
+    { v: 4, t: "かなり当てはまる" },
+    { v: 5, t: "とても当てはまる" }
+  ];
+
+  var QUESTIONS = [
+    { id: 1, type: "light", text: "人から「あなたには安心して話せる」と言われることがある。" },
+    { id: 2, type: "light", text: "誰かが落ち込んでいるとき、すぐに答えを出すより、まずその人の気持ちを受け止めたいと思う。" },
+    { id: 3, type: "light", text: "人の欠点よりも、「この人にはこんな良さがある」と可能性を見つけることが多い。" },
+    { id: 4, type: "words", text: "人の話を聞いて、「つまり、こういうことだよね」と整理して言葉にするのが得意だ。" },
+    { id: 5, type: "words", text: "同じ出来事でも、言葉や捉え方を変えると意味が変わることに面白さを感じる。" },
+    { id: 6, type: "words", text: "文章を書く、説明する、話すなど、「伝え方がわかりやすい」と言われたことがある。" },
+    { id: 7, type: "future", text: "「こうなったら面白そう」と、まだ実現していない未来を想像することが好きだ。" },
+    { id: 8, type: "future", text: "周りが「難しい」と言うことでも、「別の方法があるかもしれない」と考えることが多い。" },
+    { id: 9, type: "future", text: "今あるものを見るより、「この先どうなるか」「何ができそうか」を考えるとワクワクする。" },
+    { id: 10, type: "heal", text: "相手が「大丈夫」と言っていても、本当は無理をしているのではないかと感じることがある。" },
+    { id: 11, type: "heal", text: "自分自身が悩んだり傷ついた経験によって、人の気持ちが以前よりわかるようになったと思う。" },
+    { id: 12, type: "heal", text: "誰かが自分と話したあと、「気持ちが楽になった」「話せてよかった」と言ってくれることがある。" },
+    { id: 13, type: "door", text: "考え続けるより、「まずやってみよう」と行動に移すことが多い。" },
+    { id: 14, type: "door", text: "人から「あなたのおかげで一歩踏み出せた」「背中を押してもらった」と言われることがある。" },
+    { id: 15, type: "door", text: "難しい状況でも、「今できることは何だろう？」と次の一手を考えられる。" },
+    { id: 16, type: "body", text: "初めて会った人や場所でも、「なんとなく心地いい」「何か違う」と直感的に感じることがある。" },
+    { id: 17, type: "body", text: "頭で考えた答えよりも、「なぜかわからないけれど、こちらだと思う」という感覚に従ってうまくいった経験がある。" },
+    { id: 18, type: "body", text: "呼吸、姿勢、身体の緊張など、自分の身体の変化に気づきやすい方だ。" },
+    { id: 19, type: "world", text: "「この人とこの人を会わせたら面白そう」と、人同士を自然につなぐことがある。" },
+    { id: 20, type: "world", text: "人、情報、場所、アイデアなど、別々のものを組み合わせて新しい流れをつくるのが好きだ。" },
+    { id: 21, type: "world", text: "自分一人で頑張るよりも、良い仲間や環境が整うことで物事が大きく進むと感じる。" }
+  ];
+
+  var TYPES = {
+    light: {
+      id: "light",
+      name: "光を照らす魔法使い",
+      short: "光を照らす魔法",
+      keywords: ["安心", "話", "聞", "受容", "優し", "寄り添", "受け止め", "褒め", "良いところ", "光", "共感", "そば", "支え", "相談"],
+      desc: "あなたの最大の魔力は、人を安心させる力。自分では「ただ話を聞いているだけ」と思っているかもしれません。でも、あなたと話していると、なぜか本音を話してしまう。そんな経験はありませんか？\n\n人を否定せず、良いところを見つけ、その人自身が忘れていた光を思い出させる。それが、あなたがすでに使っている魔力です。",
+      talents: ["人が本音を話せる安心感をつくる", "本人より先に、その人の魅力に気づく", "傷ついた経験を、誰かへの優しさに変えられる"],
+      shadow: "人を大切にできるからこそ、自分のことを後回しにしてしまうことがあります。",
+      shadowAdvice: "これからは、その優しさを自分自身にも向けてみてください。",
+      question: "「誰かのためではなく、私自身が本当に望んでいることは何？」",
+      action: "今日24時間以内に、自分が「本当はやってみたい」と思っていることを一つだけ書き出してください。",
+      subBlurb: "あなたには、人を受け止めるだけではなく、その人の「これから」や可能性を見つける力も眠っています。",
+      sleepBlurb: "あなたには十分な光があります。次に必要なのは、その光を自分の人生でも使うことかもしれません。"
+    },
+    words: {
+      id: "words",
+      name: "言葉を操る魔法使い",
+      short: "言葉を操る魔法",
+      keywords: ["言葉", "伝える", "説明", "整理", "書く", "話す", "言語", "わかりやす", "表現", "まとめ", "リフレーミング", "伝える"],
+      desc: "あなたの最大の魔力は、言葉によって人の見方や気持ちを変える力。\n\n誰かの話を聞いて、「それって、こういうことじゃない？」と整理してあげたり、複雑なことをわかりやすく伝えたり。\n\n自分では普通にやっていることでも、あなたの一言によって、「そう考えればいいんだ」「なんだか気持ちが軽くなった」と感じる人がいるかもしれません。\n\nあなたは、言葉を使って世界の見え方を変える魔法を、すでに使い始めています。",
+      talents: ["人の考えを整理して、本質を言葉にする", "難しいことを、相手に伝わる形へ変換する", "一つの言葉で、相手に新しい視点を届ける"],
+      shadow: "言葉を大切にするからこそ、「もっとちゃんと考えてから」「もっと上手く伝えなければ」と、考えすぎて動けなくなることがあります。",
+      shadowAdvice: "完璧な言葉を探すより、今の自分の言葉を届けることから始めてみてください。",
+      question: "「本当は、誰にどんな言葉を届けたい？」",
+      action: "今日24時間以内に、誰か一人に「今、本当に伝えたい一言」を届けてみてください。",
+      subBlurb: "あなたには、今あるものを説明するだけでなく、「この先どうなるか」「もっと違う可能性はないか」と未来を描く力も眠っています。",
+      sleepBlurb: "次に必要なのは、考えたことを、現実の一歩へ変えていく力かもしれません。"
+    },
+    future: {
+      id: "future",
+      name: "未来を創る魔法使い",
+      short: "未来を創る魔法",
+      keywords: ["未来", "想像", "アイデア", "可能性", "ビジョン", "夢", "発想", "面白い", "新しい", "創造", "描く", "ひらめき"],
+      desc: "あなたの最大の魔力は、まだ誰にも見えていない可能性を見つける力。\n\n「こうなったら面白そう」「こんなこともできるんじゃない？」まだ形になっていないものを思い描き、そこに未来の可能性を見ることができます。\n\n周りが「難しい」と言うことにも、別の道や新しい選択肢を見つけられる。あなたは、まだ存在していない未来に、最初の光を灯せる人です。",
+      talents: ["人が気づいていない可能性を先に見る", "ゼロから新しいアイデアを生み出す", "「無理」を別の角度から考え直す"],
+      shadow: "未来がよく見えるからこそ、今ここにある小さな一歩が物足りなく感じることがあります。アイデアはあるのに、現実に落とし込む前に次の可能性へ心が動いてしまうことも。",
+      shadowAdvice: "大きな未来は、小さな現実の一歩から始まります。",
+      question: "「今描いている未来を、今日1％だけ現実にするとしたら？」",
+      action: "頭の中にあるアイデアを一つ選び、5分以内でできる最初の行動を一つ実行してください。",
+      subBlurb: "あなたには、未来を描くだけでなく、必要な人や場所、情報をつないで、その未来を現実に近づけていく力も眠っています。",
+      sleepBlurb: "あなたが描いた未来を、今日の現実へ降ろす力を育てると、魔力はさらに大きくなります。"
+    },
+    heal: {
+      id: "heal",
+      name: "心を癒す魔法使い",
+      short: "心を癒す魔法",
+      keywords: ["癒", "気持ち", "感情", "痛み", "寄り添", "察し", "わかる", "楽になった", "泣く", "傷", "共感", "心"],
+      desc: "あなたの最大の魔力は、人の気持ちの奥にあるものを感じ取る力。\n\n言葉では「大丈夫」と言っていても、本当は傷ついている。笑っているけれど、どこか無理をしている。そんな小さな変化に気づくことができる人です。\n\nあなた自身が悩んだり、傷ついた経験も、今では誰かの心を理解する力へ変わっているかもしれません。あなたは、心にそっと触れて、安心できる場所をつくる魔法を持っています。",
+      talents: ["人が言葉にできない気持ちを察する", "つらい経験を、深い共感力へ変える", "相手が安心して感情を出せる場をつくる"],
+      shadow: "人の気持ちを感じ取れるからこそ、相手の感情まで自分のもののように抱えてしまうことがあります。誰かを助ける前に、自分が疲れ切ってしまうこともあるかもしれません。",
+      shadowAdvice: "人に向けている優しさを、自分自身にも向けてみてください。",
+      question: "「今、誰かではなく、私自身が一番大切にしたい気持ちは何？」",
+      action: "今日ひとつだけ、誰かのためではなく自分のために時間を使ってください。",
+      subBlurb: "あなたには、相手の痛みに気づくだけでなく、その人の中にある光や可能性を見つける力も眠っています。",
+      sleepBlurb: "人の気持ちだけでなく、「私は本当はどうしたい？」という自分の声につながることで、あなたの魔力はさらに深まります。"
+    },
+    door: {
+      id: "door",
+      name: "扉を開く魔法使い",
+      short: "扉を開く魔法",
+      keywords: ["行動", "一歩", "背中", "挑戦", "動", "やってみ", "突破", "勇気", "進", "押し", "決断", "スタート"],
+      desc: "あなたの最大の魔力は、人や自分を“次の一歩”へ動かす力。\n\n迷っている人に、「まずやってみよう」「大丈夫、行けるよ」と声をかけたり、完璧になる前に動き出したり。停滞している場所に、新しい流れを生み出す人です。\n\nあなたの存在によって、誰かが勇気を出せたり、物事が一気に進み始めることがあります。あなたは、未来への扉に手をかける魔法を持っています。",
+      talents: ["迷っている人の背中を押す", "難しい状況でも、次の一手を見つける", "行動によって、周りに新しい流れをつくる"],
+      shadow: "行動できるからこそ、立ち止まることを「無駄」と感じてしまうことがあります。本当は疲れていても、次へ次へと進もうとしてしまうことも。",
+      shadowAdvice: "立ち止まることは、止まることではなく、次の扉を正しく選ぶ時間です。",
+      question: "「今、私は本当に進みたいのか。それとも、止まるのが怖いだけ？」",
+      action: "今日一度だけ立ち止まり、深く呼吸をしてから、次に進む行動を一つ選んでください。",
+      subBlurb: "あなたには、動くだけでなく、「どの未来へ進むのか」を描く力も眠っています。",
+      sleepBlurb: "頭や勢いだけで進むのではなく、身体の感覚を受け取ることで、より自分に合った扉を選べるようになります。"
+    },
+    body: {
+      id: "body",
+      name: "身体で感じる魔法使い",
+      short: "身体で感じる魔法",
+      keywords: ["直感", "感覚", "身体", "なんとなく", "空気", "呼吸", "緊張", "雰囲気", "感じ", "ボディ", "場"],
+      desc: "あなたの最大の魔力は、言葉になる前の“何か”を感じ取る力。\n\n初めて会った人なのに、「なんとなく安心する」「何か違う気がする」。場所に入った瞬間に、空気感を感じる。頭では説明できなくても、身体が先に答えを知っている。そんな経験が多いかもしれません。\n\nあなたは、目に見えない小さな変化を身体の感覚として受け取る魔法を持っています。",
+      talents: ["人や場所の微妙な変化を感じ取る", "頭ではなく感覚から、必要な方向を察知する", "身体の状態から、自分の本音に気づく"],
+      shadow: "感受性が高いからこそ、周囲の空気や人の状態に影響されやすいことがあります。自分の感情なのか、周りから受け取ったものなのか、わからなくなることもあるかもしれません。",
+      shadowAdvice: "感じ取る力と同時に、自分へ戻る力を育てていきましょう。",
+      question: "「今、私の身体は何をYESと言い、何をNOと言っている？」",
+      action: "今日何かを選ぶ場面で、頭で決める前に10秒だけ身体の感覚を確かめてみてください。",
+      subBlurb: "あなたには、感覚で受け取ったものを、人への共感や優しさに変える力も眠っています。",
+      sleepBlurb: "感覚で受け取ったものを言葉にできるようになると、あなたの直感はさらに使いやすい力になります。"
+    },
+    world: {
+      id: "world",
+      name: "世界をつなぐ魔法使い",
+      short: "世界をつなぐ魔法",
+      keywords: ["つな", "紹介", "会わせ", "仲間", "環境", "ネットワーク", "縁", "橋", "場づくり", "コミュニティ", "つながり", "組み合わせ"],
+      desc: "あなたの最大の魔力は、人・場所・情報・機会の間に、新しい縁を生み出す力。\n\n「この人とこの人、合いそう」「この場所をあの人に紹介したい」「この情報、きっとあの人に役立つ」。そんなふうに、点と点を自然につなぐことができる人です。\n\n自分が主役にならなくても、あなたがいることで、人が出会い、新しい流れや可能性が生まれていきます。あなたは、世界と世界の間に橋をかける魔法を持っています。",
+      talents: ["必要な人同士を自然につなげる", "人が活躍できる場や環境をつくる", "自分一人では生まれない可能性を生み出す"],
+      shadow: "周りの人や環境を見る力が高いからこそ、自分自身の望みが後回しになることがあります。「みんなにとって良いこと」を考えすぎて、「私はどうしたい？」が見えなくなることも。",
+      shadowAdvice: "あなた自身が望む未来も、つなぐ世界の中に入れてあげてください。",
+      question: "「私は、どんな人たちがつながる世界をつくりたい？」",
+      action: "今日一人だけ、「この人とつながってみたい」と感じる人を思い浮かべ、小さなアクションを起こしてみてください。",
+      subBlurb: "あなたには、人をつなぐだけではなく、その人の魅力や可能性を見つける力も眠っています。",
+      sleepBlurb: "自分の軸が明確になると、誰と誰を、何のためにつなぐのかがさらに明確になり、あなたの魔力は大きく広がります。"
+    }
+  };
+
+  var TYPE_ORDER = ["light", "words", "future", "heal", "door", "body", "world"];
+
+  var SUB_INTROS = {
+    light: "あなたには、相手を安心させるだけでなく、その人の中にある光や可能性を見つける力も眠っています。",
+    words: "あなたには、今あるものを整理するだけでなく、言葉で人の見方や可能性を変える力も眠っています。",
+    future: "あなたには、今を受け止めるだけでなく、「この先どうなるか」という未来を描く力も眠っています。",
+    heal: "あなたには、行動や言葉だけではなく、人の気持ちの奥に寄り添う力も眠っています。",
+    door: "あなたには、感じ取るだけでなく、人と自分を“次の一歩”へ動かす力も眠っています。",
+    body: "あなたには、考えるだけでなく、言葉になる前の感覚を受け取る力も眠っています。",
+    world: "あなたには、一人で完結させるだけでなく、人・場所・機会をつないで大きな流れをつくる力も眠っています。"
+  };
+
+  var SLEEP_INTROS = {
+    light: "これから目覚める余白がある魔力は、「光を照らす魔法」。自分自身や周りに安心の場をつくる力が、これからさらに開いていきます。",
+    words: "これから目覚める余白がある魔力は、「言葉を操る魔法」。感じたことや見た可能性を言葉にして届ける力が、これから育っていきます。",
+    future: "これから目覚める余白がある魔力は、「未来を創る魔法」。まだ見ぬ可能性を描く力が、これから静かに開いていきます。",
+    heal: "これから目覚める余白がある魔力は、「心を癒す魔法」。人の気持ちの奥に触れる力が、これからさらに深まっていきます。",
+    door: "これから目覚める余白がある魔力は、「扉を開く魔法」。描いたことや感じたことを、現実の一歩へ変える力がこれから目覚めていきます。",
+    body: "これから目覚める余白がある魔力は、「身体で感じる魔法」。頭だけではなく、身体の感覚から真実を受け取る力がこれから開いていきます。",
+    world: "これから目覚める余白がある魔力は、「世界をつなぐ魔法」。人・場所・機会をつないで新しい流れをつくる力が、これから広がっていきます。"
+  };
+
+  var state = {
+    order: [],
+    index: 0,
+    answers: {},
+    freeAnswer: "",
+    tieAnswer: "",
+    scores: null,
+    mainId: null,
+    subId: null,
+    sleepId: null,
+    pendingTies: null
+  };
+
+  var els = {
+    intro: document.getElementById("screen-intro"),
+    howto: document.getElementById("screen-howto"),
+    question: document.getElementById("screen-question"),
+    free: document.getElementById("screen-free"),
+    tie: document.getElementById("screen-tie"),
+    analyzing: document.getElementById("screen-analyzing"),
+    result: document.getElementById("screen-result"),
+    qCurrent: document.getElementById("q-current"),
+    qPercent: document.getElementById("q-percent"),
+    qProgress: document.getElementById("q-progress"),
+    qLabel: document.getElementById("q-label"),
+    qText: document.getElementById("q-text"),
+    qScale: document.getElementById("q-scale"),
+    btnQBack: document.getElementById("btn-q-back"),
+    btnQNext: document.getElementById("btn-q-next"),
+    freeAnswer: document.getElementById("free-answer"),
+    tieAnswer: document.getElementById("tie-answer"),
+    tieChoices: document.getElementById("tie-choices"),
+    tieQuestion: document.getElementById("tie-question")
+  };
+
+  function show(screen) {
+    [els.intro, els.howto, els.question, els.free, els.tie, els.analyzing, els.result].forEach(function (el) {
+      el.classList.add("hidden");
+    });
+    screen.classList.remove("hidden");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  function currentQuestion() {
+    return state.order[state.index];
+  }
+
+  function renderScale(selected) {
+    els.qScale.innerHTML = "";
+    SCALE_LABELS.forEach(function (item) {
+      var label = document.createElement("label");
+      if (selected === item.v) label.classList.add("is-selected");
+      label.innerHTML =
+        '<input type="radio" name="qscale" value="' + item.v + '"' + (selected === item.v ? " checked" : "") + ">" +
+        '<span class="scale__num">' + item.v + "</span>" +
+        '<span class="scale__txt">' + item.t + "</span>";
+      label.addEventListener("click", function () {
+        var q = currentQuestion();
+        state.answers[q.id] = item.v;
+        Array.prototype.forEach.call(els.qScale.querySelectorAll("label"), function (l) {
+          l.classList.remove("is-selected");
+        });
+        label.classList.add("is-selected");
+        els.btnQNext.disabled = false;
+      });
+      els.qScale.appendChild(label);
+    });
+  }
+
+  function renderQuestion() {
+    var q = currentQuestion();
+    var step = state.index + 1;
+    var pct = Math.round((state.index / QUESTIONS.length) * 100);
+    els.qCurrent.textContent = String(step);
+    els.qPercent.textContent = pct + "%";
+    els.qProgress.style.width = pct + "%";
+    els.qLabel.textContent = "Q" + step;
+    els.qText.textContent = q.text;
+    var selected = state.answers[q.id];
+    renderScale(selected);
+    els.btnQNext.disabled = selected == null;
+    els.btnQBack.style.visibility = state.index === 0 ? "hidden" : "visible";
+    els.btnQNext.querySelector("span").textContent = state.index === QUESTIONS.length - 1 ? "最後の問いへ" : "次へ";
+  }
+
+  function calcScores() {
+    var scores = { light: 0, words: 0, future: 0, heal: 0, door: 0, body: 0, world: 0 };
+    QUESTIONS.forEach(function (q) {
+      scores[q.type] += state.answers[q.id] || 0;
+    });
+    return scores;
+  }
+
+  function rankedTypes(scores) {
+    return TYPE_ORDER.slice().sort(function (a, b) {
+      if (scores[b] !== scores[a]) return scores[b] - scores[a];
+      return TYPE_ORDER.indexOf(a) - TYPE_ORDER.indexOf(b);
+    });
+  }
+
+  function keywordScore(text, typeId) {
+    if (!text) return 0;
+    var keys = TYPES[typeId].keywords;
+    var score = 0;
+    keys.forEach(function (k) {
+      if (text.indexOf(k) !== -1) score += 1;
+    });
+    return score;
+  }
+
+  function pickByText(candidates, text) {
+    var best = candidates[0];
+    var bestScore = -1;
+    candidates.forEach(function (id) {
+      var s = keywordScore(text, id);
+      if (s > bestScore) {
+        bestScore = s;
+        best = id;
+      }
+    });
+    return { id: best, score: bestScore };
+  }
+
+  function resolveRanking() {
+    var scores = calcScores();
+    state.scores = scores;
+    var ranked = rankedTypes(scores);
+    var topScore = scores[ranked[0]];
+    var topTies = ranked.filter(function (id) { return scores[id] === topScore; });
+
+    var combinedText = ((state.freeAnswer || "") + " " + (state.tieAnswer || "")).trim();
+
+    if (topTies.length > 1) {
+      if (!state.tieAnswer && !state.pendingTies) {
+        state.pendingTies = { kind: "main", ids: topTies };
+        return { needTie: true };
+      }
+      var picked = pickByText(topTies, combinedText);
+      if (picked.score <= 0 && state.pendingTies && state.pendingTies.kind === "main" && !state.pendingTies.chose) {
+        state.pendingTies = { kind: "main", ids: topTies, needChoice: true };
+        return { needTie: true, needChoice: true, ids: topTies };
+      }
+      state.mainId = state.pendingTies && state.pendingTies.chose ? state.pendingTies.chose : picked.id;
+    } else {
+      state.mainId = ranked[0];
+    }
+
+    var remaining = ranked.filter(function (id) { return id !== state.mainId; });
+    var secondScore = scores[remaining[0]];
+    var secondTies = remaining.filter(function (id) { return scores[id] === secondScore; });
+    if (secondTies.length > 1) {
+      var subPick = pickByText(secondTies, combinedText);
+      state.subId = subPick.id;
+    } else {
+      state.subId = remaining[0];
+    }
+
+    var sleepRanked = TYPE_ORDER.slice().sort(function (a, b) {
+      if (scores[a] !== scores[b]) return scores[a] - scores[b];
+      return TYPE_ORDER.indexOf(a) - TYPE_ORDER.indexOf(b);
+    }).filter(function (id) { return id !== state.mainId && id !== state.subId; });
+    state.sleepId = sleepRanked[0] || remaining[remaining.length - 1];
+
+    state.pendingTies = null;
+    return { needTie: false };
+  }
+
+  function nl2br(text) {
+    return String(text || "").split("\n").filter(Boolean).map(function (line) {
+      return "<p>" + escapeHtml(line) + "</p>";
+    }).join("");
+  }
+
+  function escapeHtml(s) {
+    return String(s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function renderResult() {
+    var main = TYPES[state.mainId];
+    var sub = TYPES[state.subId];
+    var sleep = TYPES[state.sleepId];
+
+    document.getElementById("result-main-name").textContent = main.name;
+    document.getElementById("result-main-desc").innerHTML = nl2br(main.desc);
+
+    var personal = document.getElementById("result-personal");
+    if (state.freeAnswer.trim()) {
+      personal.innerHTML = "あなたが挙げてくれた「" + escapeHtml(state.freeAnswer.trim()) + "」も、まさにその魔力の現れかもしれません。自分では当たり前でも、周囲にとっては大切なわざです。";
+      personal.classList.remove("hidden");
+    } else {
+      personal.textContent = "";
+    }
+
+    document.getElementById("result-sub-title").textContent = sub.name;
+    document.getElementById("result-sub-desc").textContent = SUB_INTROS[sub.id] || sub.subBlurb;
+
+    var talents = document.getElementById("result-talents");
+    talents.innerHTML = "";
+    main.talents.forEach(function (t) {
+      var li = document.createElement("li");
+      li.textContent = t;
+      talents.appendChild(li);
+    });
+
+    document.getElementById("result-shadow").textContent = main.shadow;
+    document.getElementById("result-shadow-advice").textContent = main.shadowAdvice;
+    document.getElementById("result-sleep-title").textContent = "これから目覚める余白がある魔力：" + sleep.short;
+    document.getElementById("result-sleep-desc").textContent = SLEEP_INTROS[sleep.id] || sleep.sleepBlurb;
+    document.getElementById("result-question").textContent = main.question;
+    document.getElementById("result-action").textContent = main.action;
+    document.getElementById("cta-link").href = CTA_URL;
+  }
+
+  function goToResultFlow() {
+    var resolved = resolveRanking();
+    if (resolved.needTie) {
+      showTie(resolved);
+      return;
+    }
+    show(els.analyzing);
+    setTimeout(function () {
+      renderResult();
+      show(els.result);
+    }, 1600);
+  }
+
+  function showTie(resolved) {
+    show(els.tie);
+    els.tieChoices.classList.add("hidden");
+    els.tieChoices.innerHTML = "";
+    document.getElementById("btn-tie-next").classList.remove("hidden");
+
+    if (resolved.needChoice) {
+      els.tieQuestion.textContent = "どちらの表現が、今のあなたにより近いと感じますか？";
+      document.getElementById("tie-answer").classList.add("hidden");
+      document.getElementById("btn-tie-next").classList.add("hidden");
+      els.tieChoices.classList.remove("hidden");
+      resolved.ids.forEach(function (id) {
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.textContent = TYPES[id].name;
+        btn.addEventListener("click", function () {
+          state.pendingTies.chose = id;
+          state.pendingTies.needChoice = false;
+          goToResultFlow();
+        });
+        els.tieChoices.appendChild(btn);
+      });
+    } else {
+      els.tieQuestion.textContent = "時間を忘れるほど自然にできること、または人からよく感謝されることは何ですか？";
+      document.getElementById("tie-answer").classList.remove("hidden");
+    }
+  }
+
+  function resetAll() {
+    state = {
+      order: shuffle(QUESTIONS),
+      index: 0,
+      answers: {},
+      freeAnswer: "",
+      tieAnswer: "",
+      scores: null,
+      mainId: null,
+      subId: null,
+      sleepId: null,
+      pendingTies: null
+    };
+    els.freeAnswer.value = "";
+    els.tieAnswer.value = "";
+    show(els.intro);
+  }
+
+  document.getElementById("btn-start").addEventListener("click", function () {
+    state.order = shuffle(QUESTIONS);
+    state.index = 0;
+    state.answers = {};
+    show(els.howto);
+  });
+
+  document.getElementById("btn-howto-next").addEventListener("click", function () {
+    show(els.question);
+    renderQuestion();
+  });
+
+  els.btnQBack.addEventListener("click", function () {
+    if (state.index === 0) return;
+    state.index -= 1;
+    renderQuestion();
+  });
+
+  els.btnQNext.addEventListener("click", function () {
+    var q = currentQuestion();
+    if (state.answers[q.id] == null) return;
+    if (state.index < QUESTIONS.length - 1) {
+      state.index += 1;
+      renderQuestion();
+      return;
+    }
+    show(els.free);
+  });
+
+  document.getElementById("btn-free-next").addEventListener("click", function () {
+    state.freeAnswer = els.freeAnswer.value.trim();
+    goToResultFlow();
+  });
+
+  document.getElementById("btn-free-skip").addEventListener("click", function () {
+    state.freeAnswer = "";
+    goToResultFlow();
+  });
+
+  document.getElementById("btn-tie-next").addEventListener("click", function () {
+    state.tieAnswer = els.tieAnswer.value.trim();
+    if (!state.tieAnswer) {
+      els.tieAnswer.focus();
+      return;
+    }
+    goToResultFlow();
+  });
+
+  document.getElementById("btn-restart").addEventListener("click", resetAll);
+})();
+</script>
+</body>
+</html>
