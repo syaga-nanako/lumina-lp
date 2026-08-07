@@ -1013,6 +1013,26 @@ button{font-family:inherit;}
   });
 
   document.getElementById("btn-restart").addEventListener("click", resetAll);
+
+  // Preview helper: ?preview=light|words|future|heal|door|body|world
+  window.__previewType = function (mainId, options) {
+    options = options || {};
+    if (!TYPES[mainId]) return false;
+    var others = TYPE_ORDER.filter(function (id) { return id !== mainId; });
+    state.mainId = mainId;
+    state.subId = options.subId && TYPES[options.subId] ? options.subId : others[0];
+    state.sleepId = options.sleepId && TYPES[options.sleepId] ? options.sleepId : others[others.length - 1];
+    state.freeAnswer = options.freeAnswer != null ? options.freeAnswer : "話を聞いてくれるとよく言われます";
+    renderResult();
+    show(els.result);
+    return true;
+  };
+  (function bootPreview() {
+    var m = /[?&]preview=([a-z]+)/.exec(location.search);
+    if (m && TYPES[m[1]]) {
+      window.__previewType(m[1]);
+    }
+  })();
 })();
 </script>
 </body>
