@@ -402,8 +402,8 @@ button{font-family:inherit;}
   <!-- ANALYZING -->
   <section class="screen analyzing hidden" id="screen-analyzing">
     <div class="analyzing__orb" aria-hidden="true"></div>
-    <h2>魔力を読み解いています…</h2>
-    <p>あなたの答えのなかから、<br>すでに使っている魔力を探しています。</p>
+    <h2 id="analyzing-title">魔力を読み解いています…</h2>
+    <p id="analyzing-text">あなたの答えのなかから、<br>すでに使っている魔力を探しています。</p>
   </section>
 
   <!-- RESULT -->
@@ -499,6 +499,8 @@ button{font-family:inherit;}
   "use strict";
 
   var CTA_URL = "https://syaga-lumina.syagapro.com/lumina-academy-sp.html?ftid=jwID97qK5upE";
+  // Cloudflare Worker（デプロイ後のURL）。空のときは定型文フォールバック
+  var DIAGNOSIS_API_URL = "https://lumina-diagnosis-api.syaga-nanako.workers.dev";
 
   var SCALE_LABELS = [
     { v: 1, t: "ほとんど当てはまらない" },
@@ -831,10 +833,67 @@ button{font-family:inherit;}
       .replace(/"/g, "&quot;");
   }
 
-  function renderResult() {
+  function fallbackDynamicCopy() {
+    var sample = state.useSamplePair ? SAMPLE_PAIR[state.mainId] : null;
+    var sub = TYPES[state.subId];
+    var sleep = TYPES[state.sleepId];
+    return {
+      subDesc: sample ? sample.subText : sub.asHidden,
+      sleepDesc: sample ? sample.sleepText : sleep.asSleep,
+      sleepTitle: (sample && sample.sleepTitle) ? sample.sleepTitle : sleep.short
+    };
+  }
+
+  function fetchAiCopy() {
+    if (!DIAGNOSIS_API_URL || state.useSamplePair) {
+      return Promise.resolve(fallbackDynamicCopy());
+    }
     var main = TYPES[state.mainId];
     var sub = TYPES[state.subId];
     var sleep = TYPES[state.sleepId];
+    var controller = typeof AbortController !== "undefined" ? new AbortController() : null;
+    var timer = controller ? setTimeout(function () { controller.abort(); }, 14000) : null;
+
+    return fetch(DIAGNOSIS_API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        mainId: state.mainId,
+        subId: state.subId,
+        sleepId: state.sleepId,
+        mainName: main.name,
+        subName: sub.name,
+        sleepName: sleep.name,
+        freeAnswer: state.freeAnswer || "",
+        scores: state.scores || {}
+      }),
+      signal: controller ? controller.signal : undefined
+    })
+      .then(function (res) {
+        if (!res.ok) throw new Error("api " + res.status);
+        return res.json();
+      })
+      .then(function (data) {
+        if (!data || !data.subDesc || !data.sleepDesc) throw new Error("empty");
+        return {
+          subDesc: data.subDesc,
+          sleepDesc: data.sleepDesc,
+          sleepTitle: data.sleepTitle || sleep.short
+        };
+      })
+      .catch(function () {
+        return fallbackDynamicCopy();
+      })
+      .finally(function () {
+        if (timer) clearTimeout(timer);
+      });
+  }
+
+  function renderResult(dynamicCopy) {
+    var main = TYPES[state.mainId];
+    var sub = TYPES[state.subId];
+    var sleep = TYPES[state.sleepId];
+    var copy = dynamicCopy || fallbackDynamicCopy();
 
     var heroImg = document.getElementById("result-hero-img");
     heroImg.src = main.image;
@@ -849,13 +908,8 @@ button{font-family:inherit;}
       personal.textContent = "";
     }
 
-    var sample = state.useSamplePair ? SAMPLE_PAIR[state.mainId] : null;
-    var subText = sample ? sample.subText : sub.asHidden;
-    var sleepText = sample ? sample.sleepText : sleep.asSleep;
-    var sleepTitle = (sample && sample.sleepTitle) ? sample.sleepTitle : sleep.short;
-
     document.getElementById("result-sub-title").textContent = "隠れた魔力：" + sub.name;
-    document.getElementById("result-sub-desc").innerHTML = formatText(subText);
+    document.getElementById("result-sub-desc").innerHTML = formatText(copy.subDesc);
 
     var talents = document.getElementById("result-talents");
     talents.innerHTML = "";
@@ -868,8 +922,8 @@ button{font-family:inherit;}
     document.getElementById("result-shadow").innerHTML = formatText(main.shadow);
     document.getElementById("result-shadow-close").innerHTML = "<span class=\"hl\">" + escapeHtml(main.shadowClose) + "</span>";
     document.getElementById("result-shadow-advice").innerHTML = formatText(main.shadowAdvice);
-    document.getElementById("result-sleep-title").textContent = "これから目覚める余白がある魔力：" + sleepTitle;
-    document.getElementById("result-sleep-desc").innerHTML = formatText(sleepText);
+    document.getElementById("result-sleep-title").textContent = "これから目覚める余白がある魔力：" + (copy.sleepTitle || sleep.short);
+    document.getElementById("result-sleep-desc").innerHTML = formatText(copy.sleepDesc);
     document.getElementById("result-question").textContent = main.question;
     document.getElementById("result-action").innerHTML = formatText(main.action);
     document.getElementById("cta-link").href = CTA_URL;
@@ -878,10 +932,15 @@ button{font-family:inherit;}
   function goToResultFlow() {
     resolveRanking();
     show(els.analyzing);
-    setTimeout(function () {
-      renderResult();
+    var titleEl = document.getElementById("analyzing-title");
+    var textEl = document.getElementById("analyzing-text");
+    if (titleEl) titleEl.textContent = "魔力を読み解いています…";
+    if (textEl) textEl.innerHTML = "あなたの答えのなかから、<br>隠れた魔力と、これから目覚める余白を紡いでいます。";
+
+    fetchAiCopy().then(function (copy) {
+      renderResult(copy);
       show(els.result);
-    }, 1600);
+    });
   }
 
   function resetAll() {
