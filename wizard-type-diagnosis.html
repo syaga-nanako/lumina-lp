@@ -233,11 +233,17 @@ button{font-family:inherit;}
 
 /* Result */
 .result-hero{
-  position:relative;padding:2.4rem var(--wrap-pad) 1.6rem;text-align:center;
+  position:relative;padding:0 0 1.6rem;text-align:center;
   background:
     radial-gradient(80% 70% at 50% 0%,rgba(232,213,163,.45) 0%,transparent 70%),
     linear-gradient(180deg,#f8f2e6 0%,#fdfaf3 100%);
 }
+.result-hero__img{
+  width:100%;display:block;
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 82%,transparent 100%);
+  mask-image:linear-gradient(180deg,#000 0%,#000 82%,transparent 100%);
+}
+.result-hero__text{padding:0.4rem var(--wrap-pad) 0;}
 .result-hero__label{
   font-family:var(--font-en);letter-spacing:.28em;font-size:.8rem;
   color:var(--gold-deep);margin:0 0 .8rem;font-weight:600;
@@ -359,7 +365,7 @@ button{font-family:inherit;}
         4＝かなり当てはまる<br>
         5＝とても当てはまる
       </div>
-      <p class="lead" style="margin-top:1.4rem;">あなたの中にどんな魔力が眠っているのか、<br>一緒に見つけていきましょう。</p>
+      <p class="lead" style="margin-top:1.4rem;">あなたの中にどんな魔力が<br>眠っているのか、<br>一緒に見つけていきましょう。</p>
       <button type="button" class="btn" id="btn-howto-next"><span>最初の質問へ</span></button>
     </div>
   </section>
@@ -423,9 +429,12 @@ button{font-family:inherit;}
   <!-- RESULT -->
   <section class="screen hidden" id="screen-result">
     <div class="result-hero">
-      <p class="result-hero__label">Your Wizard Type</p>
-      <p class="result-hero__announce">あなたは——</p>
-      <h2 class="result-hero__type">「<em id="result-main-name"></em>」です。</h2>
+      <img class="result-hero__img" id="result-hero-img" src="assets/result-light.jpg" alt="" width="1024" height="768">
+      <div class="result-hero__text">
+        <p class="result-hero__label">Your Wizard Type</p>
+        <p class="result-hero__announce">あなたは——</p>
+        <h2 class="result-hero__type">「<em id="result-main-name"></em>」です。</h2>
+      </div>
     </div>
 
     <div class="result-section">
@@ -547,6 +556,7 @@ button{font-family:inherit;}
       id: "light",
       name: "光を照らす魔法使い",
       short: "光を照らす魔法",
+      image: "assets/result-light.jpg",
       keywords: ["安心", "話", "聞", "受容", "優し", "寄り添", "受け止め", "褒め", "良いところ", "光", "共感", "そば", "支え", "相談"],
       desc: "あなたの最大の魔力は、人を安心させる力。\n自分では「ただ話を聞いているだけ」と思っているかもしれません。でも、あなたと話していると、なぜか本音を話してしまう。そんな経験はありませんか？\n\n人を否定せず、良いところを見つけ、その人自身が忘れていた光を思い出させる。\nそれが、あなたがすでに使っている魔力です。",
       talents: ["人が本音を話せる安心感をつくる", "本人より先に、その人の魅力に気づく", "傷ついた経験を、誰かへの優しさに変えられる"],
@@ -562,6 +572,7 @@ button{font-family:inherit;}
       id: "words",
       name: "言葉を操る魔法使い",
       short: "言葉を操る魔法",
+      image: "assets/result-words.jpg",
       keywords: ["言葉", "伝える", "説明", "整理", "書く", "話す", "言語", "わかりやす", "表現", "まとめ", "リフレーミング"],
       desc: "あなたの最大の魔力は、言葉によって人の見方や気持ちを変える力。\n\n誰かの話を聞いて、\n「それって、こういうことじゃない？」\nと整理してあげたり、\n複雑なことをわかりやすく伝えたり。\n\n自分では普通にやっていることでも、\nあなたの一言によって、\n「そう考えればいいんだ」\n「なんだか気持ちが軽くなった」\nと感じる人がいるかもしれません。\n\nあなたは、言葉を使って世界の見え方を変える魔法を、すでに使い始めています。",
       talents: ["人の考えを整理して、本質を言葉にする", "難しいことを、相手に伝わる形へ変換する", "一つの言葉で、相手に新しい視点を届ける"],
@@ -577,6 +588,7 @@ button{font-family:inherit;}
       id: "future",
       name: "未来を創る魔法使い",
       short: "未来を創る魔法",
+      image: "assets/result-future.jpg",
       keywords: ["未来", "想像", "アイデア", "可能性", "ビジョン", "夢", "発想", "面白い", "新しい", "創造", "描く", "ひらめき"],
       desc: "あなたの最大の魔力は、\nまだ誰にも見えていない可能性を見つける力。\n\n「こうなったら面白そう」\n「こんなこともできるんじゃない？」\n\nまだ形になっていないものを思い描き、\nそこに未来の可能性を見ることができます。\n\n周りが「難しい」と言うことにも、\n別の道や新しい選択肢を見つけられる。\n\nあなたは、まだ存在していない未来に、\n最初の光を灯せる人です。",
       talents: ["人が気づいていない可能性を先に見る", "ゼロから新しいアイデアを生み出す", "「無理」を別の角度から考え直す"],
@@ -592,6 +604,7 @@ button{font-family:inherit;}
       id: "heal",
       name: "心を癒す魔法使い",
       short: "心を癒す魔法",
+      image: "assets/result-heal.jpg",
       keywords: ["癒", "気持ち", "感情", "痛み", "寄り添", "察し", "わかる", "楽になった", "泣く", "傷", "共感", "心"],
       desc: "あなたの最大の魔力は、\n人の気持ちの奥にあるものを感じ取る力。\n\n言葉では「大丈夫」と言っていても、\n本当は傷ついている。\n\n笑っているけれど、\nどこか無理をしている。\n\nそんな小さな変化に気づくことができる人です。\n\nあなた自身が悩んだり、傷ついた経験も、\n今では誰かの心を理解する力へ変わっているかもしれません。\n\nあなたは、心にそっと触れて、\n安心できる場所をつくる魔法を持っています。",
       talents: ["人が言葉にできない気持ちを察する", "つらい経験を、深い共感力へ変える", "相手が安心して感情を出せる場をつくる"],
@@ -607,6 +620,7 @@ button{font-family:inherit;}
       id: "door",
       name: "扉を開く魔法使い",
       short: "扉を開く魔法",
+      image: "assets/result-door.jpg",
       keywords: ["行動", "一歩", "背中", "挑戦", "動", "やってみ", "突破", "勇気", "進", "押し", "決断", "スタート"],
       desc: "あなたの最大の魔力は、\n人や自分を“次の一歩”へ動かす力。\n\n迷っている人に、\n「まずやってみよう」\n「大丈夫、行けるよ」\nと声をかけたり、\n完璧になる前に動き出したり。\n\n停滞している場所に、\n新しい流れを生み出す人です。\n\nあなたの存在によって、\n誰かが勇気を出せたり、\n物事が一気に進み始めることがあります。\n\nあなたは、未来への扉に手をかける魔法を持っています。",
       talents: ["迷っている人の背中を押す", "難しい状況でも、次の一手を見つける", "行動によって、周りに新しい流れをつくる"],
@@ -622,6 +636,7 @@ button{font-family:inherit;}
       id: "body",
       name: "身体で感じる魔法使い",
       short: "身体で感じる魔法",
+      image: "assets/result-body.jpg",
       keywords: ["直感", "感覚", "身体", "なんとなく", "空気", "呼吸", "緊張", "雰囲気", "感じ", "ボディ", "場"],
       desc: "あなたの最大の魔力は、\n言葉になる前の“何か”を感じ取る力。\n\n初めて会った人なのに、\n「なんとなく安心する」\n「何か違う気がする」\n\n場所に入った瞬間に、\n空気感を感じる。\n\n頭では説明できなくても、\n身体が先に答えを知っている。\n\nそんな経験が多いかもしれません。\n\nあなたは、目に見えない小さな変化を\n身体の感覚として受け取る魔法を持っています。",
       talents: ["人や場所の微妙な変化を感じ取る", "頭ではなく感覚から、必要な方向を察知する", "身体の状態から、自分の本音に気づく"],
@@ -637,6 +652,7 @@ button{font-family:inherit;}
       id: "world",
       name: "世界をつなぐ魔法使い",
       short: "世界をつなぐ魔法",
+      image: "assets/result-world.jpg",
       keywords: ["つな", "紹介", "会わせ", "仲間", "環境", "ネットワーク", "縁", "橋", "場づくり", "コミュニティ", "つながり", "組み合わせ"],
       desc: "あなたの最大の魔力は、\n人・場所・情報・機会の間に、新しい縁を生み出す力。\n\n「この人とこの人、合いそう」\n「この場所をあの人に紹介したい」\n「この情報、きっとあの人に役立つ」\n\nそんなふうに、\n点と点を自然につなぐことができる人です。\n\n自分が主役にならなくても、\nあなたがいることで、人が出会い、\n新しい流れや可能性が生まれていきます。\n\nあなたは、世界と世界の間に橋をかける魔法を持っています。",
       talents: ["必要な人同士を自然につなげる", "人が活躍できる場や環境をつくる", "自分一人では生まれない可能性を生み出す"],
@@ -859,6 +875,9 @@ button{font-family:inherit;}
     var sub = TYPES[state.subId];
     var sleep = TYPES[state.sleepId];
 
+    var heroImg = document.getElementById("result-hero-img");
+    heroImg.src = main.image;
+    heroImg.alt = main.name;
     document.getElementById("result-main-name").textContent = main.name;
     document.getElementById("result-main-desc").innerHTML = formatText(main.desc);
 
