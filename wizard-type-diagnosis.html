@@ -79,25 +79,22 @@ button{font-family:inherit;}
 .hero{position:relative;background:#fdfaf3;}
 .hero__img{
   width:100%;display:block;
-  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 78%,transparent 100%);
-  mask-image:linear-gradient(180deg,#000 0%,#000 78%,transparent 100%);
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 88%,transparent 100%);
+  mask-image:linear-gradient(180deg,#000 0%,#000 88%,transparent 100%);
 }
-.hero__veil{
-  position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(180deg,rgba(44,34,70,.18) 0%,transparent 35%,rgba(253,250,243,.55) 75%,var(--ivory) 100%);
-}
-.hero__content{position:relative;padding:1.2rem var(--wrap-pad) 2rem;margin-top:-4.5rem;}
-.hero__brand{
-  font-family:var(--font-en);font-size:.85rem;letter-spacing:.28em;
-  color:var(--gold-deep);margin:0 0 .7rem;font-weight:600;
-}
-.hero__title{
-  margin:0 0 .9rem;font-size:clamp(1.55rem,6.2vw,1.95rem);font-weight:900;
-  line-height:1.55;color:var(--primary-deep);letter-spacing:.04em;
-}
-.hero__title em{font-style:normal;color:var(--emphasis);}
 .hero__sub{
-  margin:0;font-size:var(--fs-body);line-height:1.95;font-weight:600;color:var(--primary);
+  margin:0 0 1.1rem;font-size:var(--fs-lead);line-height:1.95;font-weight:700;color:var(--primary-deep);
+  text-align:center;
+}
+.message-lead{
+  margin:0 0 1rem;font-size:var(--fs-lead);font-weight:800;line-height:1.85;color:var(--primary-deep);
+}
+.message-quote{
+  margin:1rem 0;font-size:var(--fs-body);font-weight:700;line-height:1.9;color:var(--primary-deep);
+}
+.cta-block a.cta-text-link{
+  display:inline;color:var(--gold-deep);font-weight:700;text-decoration:underline;
+  word-break:break-all;
 }
 
 /* Screens */
@@ -296,12 +293,12 @@ button{font-family:inherit;}
   background:linear-gradient(180deg,#f6f0e0,#faf4e6);
   border:1px solid var(--line);border-radius:14px;text-align:left;
 }
-.cta-block h3{
-  margin:0 0 .8rem;font-size:clamp(1.2rem,4.8vw,1.4rem);font-weight:800;
-  color:var(--primary-deep);line-height:1.65;
-}
 .cta-block .btn{margin-top:1.2rem;}
-.cta-note{margin:.85rem 0 0;font-size:var(--fs-small);color:var(--text-soft);line-height:1.8;}
+.cta-block .body strong{
+  font-weight:800;
+  background:linear-gradient(transparent 87%,rgba(194,162,78,.55) 87%);
+  padding-bottom:.08em;
+}
 
 .footer{
   margin-top:2.4rem;padding:1.6rem var(--wrap-pad) 2.2rem;
@@ -322,15 +319,11 @@ button{font-family:inherit;}
   <!-- INTRO -->
   <section class="screen" id="screen-intro">
     <div class="hero">
-      <img class="hero__img" src="assets/diagnosis-hero.jpg" alt="" width="1200" height="800" loading="eager" fetchpriority="high">
-      <div class="hero__veil"></div>
-      <div class="hero__content">
-        <p class="hero__brand">LUMINA ACADEMY</p>
-        <h1 class="hero__title">あなたの<em>魔法使い</em><br>タイプ診断</h1>
-        <p class="hero__sub">あなたに眠る魔力と、<br>まだ開いていない可能性がわかる！</p>
-      </div>
+      <img class="hero__img" src="assets/diagnosis-hero.jpg" alt="LUMINA ACADEMY あなたの魔法使いタイプ診断" width="1024" height="768" loading="eager" fetchpriority="high">
     </div>
-    <div class="wrap" style="padding-top:.2rem;">
+    <div class="wrap" style="padding-top:.4rem;">
+      <h1 class="hidden">あなたの魔法使いタイプ診断</h1>
+      <p class="hero__sub">あなたに眠る魔力と、<br>まだ開いていない可能性がわかる！</p>
       <div class="orn" aria-hidden="true"><i></i></div>
       <p class="lead">もしあなたが魔法使いだとしたら、<br>どんな魔力を持っていると思いますか？</p>
       <p class="body">自分では気づいていない、<br>あなただけの魔力が眠っているかもしれません。</p>
@@ -343,8 +336,7 @@ button{font-family:inherit;}
         </ul>
         <p style="margin-top:1rem;">を読み解きます。</p>
       </div>
-      <p class="body" style="margin-top:1.2rem;">あなた自身もまだ知らない、<span class="hl">「魔法使いとしてのあなた」</span>に出会ってみませんか？</p>
-      <p class="body" style="font-size:var(--fs-small);color:var(--text-soft);">※これは医学的・心理学的な診断ではなく、自己理解を楽しむためのタイプ診断です。「魔力」「魔法使い」は、この診断内の比喩・世界観としてお楽しみください。</p>
+      <p class="body" style="margin-top:1.2rem;">あなた自身もまだ知らない、<br>「魔法使いとしてのあなた」に出会ってみませんか？</p>
       <button type="button" class="btn" id="btn-start"><span>診断をはじめる</span></button>
     </div>
   </section>
@@ -445,8 +437,7 @@ button{font-family:inherit;}
     <div class="divider" aria-hidden="true"><span></span></div>
 
     <div class="result-section">
-      <h3>あなたの隠れた魔力</h3>
-      <p class="lead" id="result-sub-title" style="margin-bottom:.5rem;"></p>
+      <h3 id="result-sub-title">隠れた魔力</h3>
       <p class="body" id="result-sub-desc"></p>
     </div>
 
@@ -462,45 +453,40 @@ button{font-family:inherit;}
     <div class="result-section">
       <h3>あなたの魔力の影</h3>
       <p class="body" id="result-shadow"></p>
-      <p class="body" style="margin-top:.6rem;">でも、<span class="hl">その影も、あなたの魔力の一部です</span>。</p>
+      <p class="body" id="result-shadow-close" style="margin-top:.6rem;"></p>
       <p class="body" id="result-shadow-advice"></p>
     </div>
 
     <div class="divider" aria-hidden="true"><span></span></div>
 
     <div class="result-section">
-      <h3>まだ眠っている可能性</h3>
-      <p class="lead" id="result-sleep-title" style="margin-bottom:.5rem;"></p>
+      <h3 id="result-sleep-title">これから目覚める余白がある魔力</h3>
       <p class="body" id="result-sleep-desc"></p>
     </div>
 
     <div class="divider" aria-hidden="true"><span></span></div>
 
     <div class="result-section">
-      <h3>今のあなたへの魔法の問い</h3>
+      <h3>今日の魔法の問い</h3>
       <div class="quote-box" id="result-question"></div>
     </div>
 
     <div class="result-section">
       <h3>最初の魔法アクション</h3>
-      <p class="body">今日から24時間以内にできること：</p>
       <div class="panel body" id="result-action"></div>
     </div>
 
     <div class="divider" aria-hidden="true"><span></span></div>
 
-    <div class="result-section">
-      <p class="body">あなたの中には、今日見つかった魔力だけではなく、まだたくさんの可能性があります。</p>
-      <p class="body">私たちの人生には、<br>魂・思考・感情・能力・行動・身体・環境という<br>互いにつながる<span class="hl">7つの扉</span>があります。</p>
-      <p class="body">一つの扉だけではなく、7つの扉をつないでいくことで、本来の自分の力が人生全体で使えるようになっていきます。</p>
-    </div>
-
     <div class="cta-block">
-      <p class="eyebrow">Next Step</p>
-      <h3>もっと自分の可能性を知りたい方へ</h3>
-      <p class="body">忘れていた自分らしさを思い出し、新たな可能性に出会う<br><strong>未来への「7つの扉」を開く3Days無料体験プログラム</strong><br>LUMINA ACADEMY 魔法学校へ、ご招待します。</p>
-      <a class="btn" id="cta-link" href="https://syaga-lumina.syagapro.com/lumina-academy-sp.html?ftid=jwID97qK5upE" target="_blank" rel="noopener noreferrer"><span>3Days無料体験を見る</span></a>
-      <p class="cta-note">売り込みではなく、あなたの可能性をもう少し深く知るためのご案内です。</p>
+      <p class="eyebrow">Message</p>
+      <p class="message-lead">あなたの魔力は、一つだけではありません。</p>
+      <p class="body">環境・身体・行動・能力・感情・思考・魂——<br>あなたの中には、まだ開いていない「7つの扉」があります。</p>
+      <p class="message-quote">「これからの人生、私は何をして生きていこう」</p>
+      <p class="body">そんな想いが少しでもある方へ。<br>忘れていた自分らしさを思い出し、新たな可能性に出会う<br><strong>未来への「7つの扉」を開く3Days無料体験プログラム</strong><br>へ無料ご招待します。</p>
+      <p class="body" style="margin-bottom:.4rem;">こちらからご参加ください。</p>
+      <p class="body"><a class="cta-text-link" id="cta-link" href="https://syaga-lumina.syagapro.com/lumina-academy-sp.html?ftid=jwID97qK5upE" target="_blank" rel="noopener noreferrer">https://syaga-lumina.syagapro.com/lumina-academy-sp.html?ftid=jwID97qK5upE</a></p>
+      <a class="btn" href="https://syaga-lumina.syagapro.com/lumina-academy-sp.html?ftid=jwID97qK5upE" target="_blank" rel="noopener noreferrer"><span>こちらからご参加ください</span></a>
     </div>
 
     <div class="restart">
@@ -562,122 +548,120 @@ button{font-family:inherit;}
       name: "光を照らす魔法使い",
       short: "光を照らす魔法",
       keywords: ["安心", "話", "聞", "受容", "優し", "寄り添", "受け止め", "褒め", "良いところ", "光", "共感", "そば", "支え", "相談"],
-      desc: "あなたの最大の魔力は、人を安心させる力。自分では「ただ話を聞いているだけ」と思っているかもしれません。でも、あなたと話していると、なぜか本音を話してしまう。そんな経験はありませんか？\n\n人を否定せず、良いところを見つけ、その人自身が忘れていた光を思い出させる。それが、あなたがすでに使っている魔力です。",
+      desc: "あなたの最大の魔力は、人を安心させる力。\n自分では「ただ話を聞いているだけ」と思っているかもしれません。でも、あなたと話していると、なぜか本音を話してしまう。そんな経験はありませんか？\n\n人を否定せず、良いところを見つけ、その人自身が忘れていた光を思い出させる。\nそれが、あなたがすでに使っている魔力です。",
       talents: ["人が本音を話せる安心感をつくる", "本人より先に、その人の魅力に気づく", "傷ついた経験を、誰かへの優しさに変えられる"],
       shadow: "人を大切にできるからこそ、自分のことを後回しにしてしまうことがあります。",
+      shadowClose: "でも、その影もあなたの魔力の一部。",
       shadowAdvice: "これからは、その優しさを自分自身にも向けてみてください。",
       question: "「誰かのためではなく、私自身が本当に望んでいることは何？」",
       action: "今日24時間以内に、自分が「本当はやってみたい」と思っていることを一つだけ書き出してください。",
-      subBlurb: "あなたには、人を受け止めるだけではなく、その人の「これから」や可能性を見つける力も眠っています。",
-      sleepBlurb: "あなたには十分な光があります。次に必要なのは、その光を自分の人生でも使うことかもしれません。"
+      asHidden: "あなたには、人を安心させ、その人の中にある光や可能性を見つける力も眠っています。",
+      asSleep: "自分自身の中にある光や、「私は本当はどうしたい？」という声につながることで、あなたの魔力はさらに深まります。"
     },
     words: {
       id: "words",
       name: "言葉を操る魔法使い",
       short: "言葉を操る魔法",
-      keywords: ["言葉", "伝える", "説明", "整理", "書く", "話す", "言語", "わかりやす", "表現", "まとめ", "リフレーミング", "伝える"],
-      desc: "あなたの最大の魔力は、言葉によって人の見方や気持ちを変える力。\n\n誰かの話を聞いて、「それって、こういうことじゃない？」と整理してあげたり、複雑なことをわかりやすく伝えたり。\n\n自分では普通にやっていることでも、あなたの一言によって、「そう考えればいいんだ」「なんだか気持ちが軽くなった」と感じる人がいるかもしれません。\n\nあなたは、言葉を使って世界の見え方を変える魔法を、すでに使い始めています。",
+      keywords: ["言葉", "伝える", "説明", "整理", "書く", "話す", "言語", "わかりやす", "表現", "まとめ", "リフレーミング"],
+      desc: "あなたの最大の魔力は、言葉によって人の見方や気持ちを変える力。\n\n誰かの話を聞いて、\n「それって、こういうことじゃない？」\nと整理してあげたり、\n複雑なことをわかりやすく伝えたり。\n\n自分では普通にやっていることでも、\nあなたの一言によって、\n「そう考えればいいんだ」\n「なんだか気持ちが軽くなった」\nと感じる人がいるかもしれません。\n\nあなたは、言葉を使って世界の見え方を変える魔法を、すでに使い始めています。",
       talents: ["人の考えを整理して、本質を言葉にする", "難しいことを、相手に伝わる形へ変換する", "一つの言葉で、相手に新しい視点を届ける"],
-      shadow: "言葉を大切にするからこそ、「もっとちゃんと考えてから」「もっと上手く伝えなければ」と、考えすぎて動けなくなることがあります。",
-      shadowAdvice: "完璧な言葉を探すより、今の自分の言葉を届けることから始めてみてください。",
+      shadow: "言葉を大切にするからこそ、\n「もっとちゃんと考えてから」\n「もっと上手く伝えなければ」\nと、考えすぎて動けなくなることがあります。",
+      shadowClose: "でも、その影もあなたの魔力の一部です。",
+      shadowAdvice: "完璧な言葉を探すより、\n今の自分の言葉を届けることから始めてみてください。",
       question: "「本当は、誰にどんな言葉を届けたい？」",
-      action: "今日24時間以内に、誰か一人に「今、本当に伝えたい一言」を届けてみてください。",
-      subBlurb: "あなたには、今あるものを説明するだけでなく、「この先どうなるか」「もっと違う可能性はないか」と未来を描く力も眠っています。",
-      sleepBlurb: "次に必要なのは、考えたことを、現実の一歩へ変えていく力かもしれません。"
+      action: "今日24時間以内に、\n誰か一人に「今、本当に伝えたい一言」を届けてみてください。",
+      asHidden: "あなたには、言葉によって人の見方や気持ちを変える力も眠っています。",
+      asSleep: "感覚や想いを言葉にできるようになると、\nあなたの力はさらに使いやすくなります。"
     },
     future: {
       id: "future",
       name: "未来を創る魔法使い",
       short: "未来を創る魔法",
       keywords: ["未来", "想像", "アイデア", "可能性", "ビジョン", "夢", "発想", "面白い", "新しい", "創造", "描く", "ひらめき"],
-      desc: "あなたの最大の魔力は、まだ誰にも見えていない可能性を見つける力。\n\n「こうなったら面白そう」「こんなこともできるんじゃない？」まだ形になっていないものを思い描き、そこに未来の可能性を見ることができます。\n\n周りが「難しい」と言うことにも、別の道や新しい選択肢を見つけられる。あなたは、まだ存在していない未来に、最初の光を灯せる人です。",
+      desc: "あなたの最大の魔力は、\nまだ誰にも見えていない可能性を見つける力。\n\n「こうなったら面白そう」\n「こんなこともできるんじゃない？」\n\nまだ形になっていないものを思い描き、\nそこに未来の可能性を見ることができます。\n\n周りが「難しい」と言うことにも、\n別の道や新しい選択肢を見つけられる。\n\nあなたは、まだ存在していない未来に、\n最初の光を灯せる人です。",
       talents: ["人が気づいていない可能性を先に見る", "ゼロから新しいアイデアを生み出す", "「無理」を別の角度から考え直す"],
-      shadow: "未来がよく見えるからこそ、今ここにある小さな一歩が物足りなく感じることがあります。アイデアはあるのに、現実に落とし込む前に次の可能性へ心が動いてしまうことも。",
+      shadow: "未来がよく見えるからこそ、\n今ここにある小さな一歩が物足りなく感じることがあります。\n\nアイデアはあるのに、\n現実に落とし込む前に次の可能性へ心が動いてしまうことも。",
+      shadowClose: "でも、その影もあなたの魔力の一部です。",
       shadowAdvice: "大きな未来は、小さな現実の一歩から始まります。",
       question: "「今描いている未来を、今日1％だけ現実にするとしたら？」",
-      action: "頭の中にあるアイデアを一つ選び、5分以内でできる最初の行動を一つ実行してください。",
-      subBlurb: "あなたには、未来を描くだけでなく、必要な人や場所、情報をつないで、その未来を現実に近づけていく力も眠っています。",
-      sleepBlurb: "あなたが描いた未来を、今日の現実へ降ろす力を育てると、魔力はさらに大きくなります。"
+      action: "頭の中にあるアイデアを一つ選び、\n5分以内でできる最初の行動を一つ実行してください。",
+      asHidden: "あなたには、「この先どうなるか」「もっと違う可能性はないか」と未来を描く力も眠っています。",
+      asSleep: "まだ見ぬ可能性を描く力が、これから静かに開いていきます。"
     },
     heal: {
       id: "heal",
       name: "心を癒す魔法使い",
       short: "心を癒す魔法",
       keywords: ["癒", "気持ち", "感情", "痛み", "寄り添", "察し", "わかる", "楽になった", "泣く", "傷", "共感", "心"],
-      desc: "あなたの最大の魔力は、人の気持ちの奥にあるものを感じ取る力。\n\n言葉では「大丈夫」と言っていても、本当は傷ついている。笑っているけれど、どこか無理をしている。そんな小さな変化に気づくことができる人です。\n\nあなた自身が悩んだり、傷ついた経験も、今では誰かの心を理解する力へ変わっているかもしれません。あなたは、心にそっと触れて、安心できる場所をつくる魔法を持っています。",
+      desc: "あなたの最大の魔力は、\n人の気持ちの奥にあるものを感じ取る力。\n\n言葉では「大丈夫」と言っていても、\n本当は傷ついている。\n\n笑っているけれど、\nどこか無理をしている。\n\nそんな小さな変化に気づくことができる人です。\n\nあなた自身が悩んだり、傷ついた経験も、\n今では誰かの心を理解する力へ変わっているかもしれません。\n\nあなたは、心にそっと触れて、\n安心できる場所をつくる魔法を持っています。",
       talents: ["人が言葉にできない気持ちを察する", "つらい経験を、深い共感力へ変える", "相手が安心して感情を出せる場をつくる"],
-      shadow: "人の気持ちを感じ取れるからこそ、相手の感情まで自分のもののように抱えてしまうことがあります。誰かを助ける前に、自分が疲れ切ってしまうこともあるかもしれません。",
-      shadowAdvice: "人に向けている優しさを、自分自身にも向けてみてください。",
+      shadow: "人の気持ちを感じ取れるからこそ、\n相手の感情まで自分のもののように抱えてしまうことがあります。\n\n誰かを助ける前に、\n自分が疲れ切ってしまうこともあるかもしれません。",
+      shadowClose: "でも、その影もあなたの魔力の一部です。",
+      shadowAdvice: "人に向けている優しさを、\n自分自身にも向けてみてください。",
       question: "「今、誰かではなく、私自身が一番大切にしたい気持ちは何？」",
-      action: "今日ひとつだけ、誰かのためではなく自分のために時間を使ってください。",
-      subBlurb: "あなたには、相手の痛みに気づくだけでなく、その人の中にある光や可能性を見つける力も眠っています。",
-      sleepBlurb: "人の気持ちだけでなく、「私は本当はどうしたい？」という自分の声につながることで、あなたの魔力はさらに深まります。"
+      action: "今日ひとつだけ、\n誰かのためではなく自分のために時間を使ってください。",
+      asHidden: "あなたには、人の気持ちの奥に寄り添い、安心できる場所をつくる力も眠っています。",
+      asSleep: "人の気持ちの奥に寄り添う力が、これからさらに深まっていきます。"
     },
     door: {
       id: "door",
       name: "扉を開く魔法使い",
       short: "扉を開く魔法",
       keywords: ["行動", "一歩", "背中", "挑戦", "動", "やってみ", "突破", "勇気", "進", "押し", "決断", "スタート"],
-      desc: "あなたの最大の魔力は、人や自分を“次の一歩”へ動かす力。\n\n迷っている人に、「まずやってみよう」「大丈夫、行けるよ」と声をかけたり、完璧になる前に動き出したり。停滞している場所に、新しい流れを生み出す人です。\n\nあなたの存在によって、誰かが勇気を出せたり、物事が一気に進み始めることがあります。あなたは、未来への扉に手をかける魔法を持っています。",
+      desc: "あなたの最大の魔力は、\n人や自分を“次の一歩”へ動かす力。\n\n迷っている人に、\n「まずやってみよう」\n「大丈夫、行けるよ」\nと声をかけたり、\n完璧になる前に動き出したり。\n\n停滞している場所に、\n新しい流れを生み出す人です。\n\nあなたの存在によって、\n誰かが勇気を出せたり、\n物事が一気に進み始めることがあります。\n\nあなたは、未来への扉に手をかける魔法を持っています。",
       talents: ["迷っている人の背中を押す", "難しい状況でも、次の一手を見つける", "行動によって、周りに新しい流れをつくる"],
-      shadow: "行動できるからこそ、立ち止まることを「無駄」と感じてしまうことがあります。本当は疲れていても、次へ次へと進もうとしてしまうことも。",
-      shadowAdvice: "立ち止まることは、止まることではなく、次の扉を正しく選ぶ時間です。",
+      shadow: "行動できるからこそ、\n立ち止まることを「無駄」と感じてしまうことがあります。\n\n本当は疲れていても、\n次へ次へと進もうとしてしまうことも。",
+      shadowClose: "でも、その影もあなたの魔力の一部です。",
+      shadowAdvice: "立ち止まることは、止まることではなく、\n次の扉を正しく選ぶ時間です。",
       question: "「今、私は本当に進みたいのか。それとも、止まるのが怖いだけ？」",
-      action: "今日一度だけ立ち止まり、深く呼吸をしてから、次に進む行動を一つ選んでください。",
-      subBlurb: "あなたには、動くだけでなく、「どの未来へ進むのか」を描く力も眠っています。",
-      sleepBlurb: "頭や勢いだけで進むのではなく、身体の感覚を受け取ることで、より自分に合った扉を選べるようになります。"
+      action: "今日一度だけ立ち止まり、\n深く呼吸をしてから、次に進む行動を一つ選んでください。",
+      asHidden: "あなたには、人と自分を“次の一歩”へ動かす力も眠っています。",
+      asSleep: "次に必要なのは、\n考えたことや感じていることを、現実の一歩へ変えていく力かもしれません。"
     },
     body: {
       id: "body",
       name: "身体で感じる魔法使い",
       short: "身体で感じる魔法",
       keywords: ["直感", "感覚", "身体", "なんとなく", "空気", "呼吸", "緊張", "雰囲気", "感じ", "ボディ", "場"],
-      desc: "あなたの最大の魔力は、言葉になる前の“何か”を感じ取る力。\n\n初めて会った人なのに、「なんとなく安心する」「何か違う気がする」。場所に入った瞬間に、空気感を感じる。頭では説明できなくても、身体が先に答えを知っている。そんな経験が多いかもしれません。\n\nあなたは、目に見えない小さな変化を身体の感覚として受け取る魔法を持っています。",
+      desc: "あなたの最大の魔力は、\n言葉になる前の“何か”を感じ取る力。\n\n初めて会った人なのに、\n「なんとなく安心する」\n「何か違う気がする」\n\n場所に入った瞬間に、\n空気感を感じる。\n\n頭では説明できなくても、\n身体が先に答えを知っている。\n\nそんな経験が多いかもしれません。\n\nあなたは、目に見えない小さな変化を\n身体の感覚として受け取る魔法を持っています。",
       talents: ["人や場所の微妙な変化を感じ取る", "頭ではなく感覚から、必要な方向を察知する", "身体の状態から、自分の本音に気づく"],
-      shadow: "感受性が高いからこそ、周囲の空気や人の状態に影響されやすいことがあります。自分の感情なのか、周りから受け取ったものなのか、わからなくなることもあるかもしれません。",
-      shadowAdvice: "感じ取る力と同時に、自分へ戻る力を育てていきましょう。",
+      shadow: "感受性が高いからこそ、\n周囲の空気や人の状態に影響されやすいことがあります。\n\n自分の感情なのか、\n周りから受け取ったものなのか、\nわからなくなることもあるかもしれません。",
+      shadowClose: "でも、その影もあなたの魔力の一部です。",
+      shadowAdvice: "感じ取る力と同時に、\n自分へ戻る力を育てていきましょう。",
       question: "「今、私の身体は何をYESと言い、何をNOと言っている？」",
-      action: "今日何かを選ぶ場面で、頭で決める前に10秒だけ身体の感覚を確かめてみてください。",
-      subBlurb: "あなたには、感覚で受け取ったものを、人への共感や優しさに変える力も眠っています。",
-      sleepBlurb: "感覚で受け取ったものを言葉にできるようになると、あなたの直感はさらに使いやすい力になります。"
+      action: "今日何かを選ぶ場面で、\n頭で決める前に10秒だけ身体の感覚を確かめてみてください。",
+      asHidden: "あなたには、言葉になる前の感覚を受け取る力も眠っています。",
+      asSleep: "頭や勢いだけで進むのではなく、\n身体の感覚を受け取ることで、\nより自分に合った扉を選べるようになります。"
     },
     world: {
       id: "world",
       name: "世界をつなぐ魔法使い",
       short: "世界をつなぐ魔法",
       keywords: ["つな", "紹介", "会わせ", "仲間", "環境", "ネットワーク", "縁", "橋", "場づくり", "コミュニティ", "つながり", "組み合わせ"],
-      desc: "あなたの最大の魔力は、人・場所・情報・機会の間に、新しい縁を生み出す力。\n\n「この人とこの人、合いそう」「この場所をあの人に紹介したい」「この情報、きっとあの人に役立つ」。そんなふうに、点と点を自然につなぐことができる人です。\n\n自分が主役にならなくても、あなたがいることで、人が出会い、新しい流れや可能性が生まれていきます。あなたは、世界と世界の間に橋をかける魔法を持っています。",
+      desc: "あなたの最大の魔力は、\n人・場所・情報・機会の間に、新しい縁を生み出す力。\n\n「この人とこの人、合いそう」\n「この場所をあの人に紹介したい」\n「この情報、きっとあの人に役立つ」\n\nそんなふうに、\n点と点を自然につなぐことができる人です。\n\n自分が主役にならなくても、\nあなたがいることで、人が出会い、\n新しい流れや可能性が生まれていきます。\n\nあなたは、世界と世界の間に橋をかける魔法を持っています。",
       talents: ["必要な人同士を自然につなげる", "人が活躍できる場や環境をつくる", "自分一人では生まれない可能性を生み出す"],
-      shadow: "周りの人や環境を見る力が高いからこそ、自分自身の望みが後回しになることがあります。「みんなにとって良いこと」を考えすぎて、「私はどうしたい？」が見えなくなることも。",
-      shadowAdvice: "あなた自身が望む未来も、つなぐ世界の中に入れてあげてください。",
+      shadow: "周りの人や環境を見る力が高いからこそ、\n自分自身の望みが後回しになることがあります。\n\n「みんなにとって良いこと」を考えすぎて、\n「私はどうしたい？」が見えなくなることも。",
+      shadowClose: "でも、その影もあなたの魔力の一部です。",
+      shadowAdvice: "あなた自身が望む未来も、\nつなぐ世界の中に入れてあげてください。",
       question: "「私は、どんな人たちがつながる世界をつくりたい？」",
-      action: "今日一人だけ、「この人とつながってみたい」と感じる人を思い浮かべ、小さなアクションを起こしてみてください。",
-      subBlurb: "あなたには、人をつなぐだけではなく、その人の魅力や可能性を見つける力も眠っています。",
-      sleepBlurb: "自分の軸が明確になると、誰と誰を、何のためにつなぐのかがさらに明確になり、あなたの魔力は大きく広がります。"
+      action: "今日一人だけ、\n「この人とつながってみたい」と感じる人を思い浮かべ、\n小さなアクションを起こしてみてください。",
+      asHidden: "あなたには、人・場所・情報・機会をつないで、新しい流れをつくる力も眠っています。",
+      asSleep: "自分の軸が明確になると、\n誰と誰を、何のためにつなぐのかがさらに明確になり、\nあなたの魔力は大きく広がります。"
     }
   };
 
+  // 完成イメージmdの固定組み合わせ（プレビュー／サンプル再現用）
+  var SAMPLE_PAIR = {
+    light: { subId: "future", sleepId: "door", subText: "あなたには、人を受け止めるだけではなく、その人の「これから」を見つける力も眠っています。", sleepText: "あなたには十分な光があります。\n次に必要なのは、その光を自分の人生でも使うことかもしれません。" },
+    words: { subId: "future", sleepId: "door", subText: "あなたには、今あるものを説明するだけでなく、\n「この先どうなるか」\n「もっと違う可能性はないか」\nと未来を描く力も眠っています。", sleepText: "次に必要なのは、\n考えたことを、現実の一歩へ変えていく力かもしれません。" },
+    future: { subId: "world", sleepId: "door", subText: "あなたには、未来を描くだけでなく、\n必要な人や場所、情報をつないで、\nその未来を現実に近づけていく力も眠っています。", sleepText: "あなたが描いた未来を、\n今日の現実へ降ろす力を育てると、\n魔力はさらに大きくなります。", sleepTitle: "行動の魔法" },
+    heal: { subId: "light", sleepId: "light", subText: "あなたには、\n相手の痛みに気づくだけでなく、\nその人の中にある光や可能性を見つける力も眠っています。", sleepText: "人の気持ちだけでなく、\n「私は本当はどうしたい？」\nという自分の声につながることで、\nあなたの魔力はさらに深まります。", sleepTitle: "魂の魔法" },
+    door: { subId: "future", sleepId: "body", subText: "あなたには、\n動くだけでなく、\n「どの未来へ進むのか」\nを描く力も眠っています。", sleepText: "頭や勢いだけで進むのではなく、\n身体の感覚を受け取ることで、\nより自分に合った扉を選べるようになります。", sleepTitle: "身体の魔法" },
+    body: { subId: "heal", sleepId: "words", subText: "あなたには、\n感覚で受け取ったものを、\n人への共感や優しさに変える力も眠っています。", sleepText: "感覚で受け取ったものを言葉にできるようになると、\nあなたの直感はさらに使いやすい力になります。", sleepTitle: "思考の魔法" },
+    world: { subId: "light", sleepId: "light", subText: "あなたには、\n人をつなぐだけではなく、\nその人の魅力や可能性を見つける力も眠っています。", sleepText: "自分の軸が明確になると、\n誰と誰を、何のためにつなぐのかがさらに明確になり、\nあなたの魔力は大きく広がります。", sleepTitle: "魂の魔法" }
+  };
+
   var TYPE_ORDER = ["light", "words", "future", "heal", "door", "body", "world"];
-
-  var SUB_INTROS = {
-    light: "あなたには、相手を安心させるだけでなく、その人の中にある光や可能性を見つける力も眠っています。",
-    words: "あなたには、今あるものを整理するだけでなく、言葉で人の見方や可能性を変える力も眠っています。",
-    future: "あなたには、今を受け止めるだけでなく、「この先どうなるか」という未来を描く力も眠っています。",
-    heal: "あなたには、行動や言葉だけではなく、人の気持ちの奥に寄り添う力も眠っています。",
-    door: "あなたには、感じ取るだけでなく、人と自分を“次の一歩”へ動かす力も眠っています。",
-    body: "あなたには、考えるだけでなく、言葉になる前の感覚を受け取る力も眠っています。",
-    world: "あなたには、一人で完結させるだけでなく、人・場所・機会をつないで大きな流れをつくる力も眠っています。"
-  };
-
-  var SLEEP_INTROS = {
-    light: "これから目覚める余白がある魔力は、「光を照らす魔法」。自分自身や周りに安心の場をつくる力が、これからさらに開いていきます。",
-    words: "これから目覚める余白がある魔力は、「言葉を操る魔法」。感じたことや見た可能性を言葉にして届ける力が、これから育っていきます。",
-    future: "これから目覚める余白がある魔力は、「未来を創る魔法」。まだ見ぬ可能性を描く力が、これから静かに開いていきます。",
-    heal: "これから目覚める余白がある魔力は、「心を癒す魔法」。人の気持ちの奥に触れる力が、これからさらに深まっていきます。",
-    door: "これから目覚める余白がある魔力は、「扉を開く魔法」。描いたことや感じたことを、現実の一歩へ変える力がこれから目覚めていきます。",
-    body: "これから目覚める余白がある魔力は、「身体で感じる魔法」。頭だけではなく、身体の感覚から真実を受け取る力がこれから開いていきます。",
-    world: "これから目覚める余白がある魔力は、「世界をつなぐ魔法」。人・場所・機会をつないで新しい流れをつくる力が、これから広がっていきます。"
-  };
 
   var state = {
     order: [],
@@ -689,7 +673,8 @@ button{font-family:inherit;}
     mainId: null,
     subId: null,
     sleepId: null,
-    pendingTies: null
+    pendingTies: null,
+    useSamplePair: false
   };
 
   var els = {
@@ -855,9 +840,9 @@ button{font-family:inherit;}
     return { needTie: false };
   }
 
-  function nl2br(text) {
-    return String(text || "").split("\n").filter(Boolean).map(function (line) {
-      return "<p>" + escapeHtml(line) + "</p>";
+  function formatText(text) {
+    return String(text || "").split(/\n\n+/).map(function (block) {
+      return "<p>" + escapeHtml(block).replace(/\n/g, "<br>") + "</p>";
     }).join("");
   }
 
@@ -875,18 +860,22 @@ button{font-family:inherit;}
     var sleep = TYPES[state.sleepId];
 
     document.getElementById("result-main-name").textContent = main.name;
-    document.getElementById("result-main-desc").innerHTML = nl2br(main.desc);
+    document.getElementById("result-main-desc").innerHTML = formatText(main.desc);
 
     var personal = document.getElementById("result-personal");
     if (state.freeAnswer.trim()) {
-      personal.innerHTML = "あなたが挙げてくれた「" + escapeHtml(state.freeAnswer.trim()) + "」も、まさにその魔力の現れかもしれません。自分では当たり前でも、周囲にとっては大切なわざです。";
-      personal.classList.remove("hidden");
+      personal.innerHTML = "あなたが挙げてくれた「" + escapeHtml(state.freeAnswer.trim()) + "」も、まさにその魔力の現れかもしれません。";
     } else {
       personal.textContent = "";
     }
 
-    document.getElementById("result-sub-title").textContent = sub.name;
-    document.getElementById("result-sub-desc").textContent = SUB_INTROS[sub.id] || sub.subBlurb;
+    var sample = state.useSamplePair ? SAMPLE_PAIR[state.mainId] : null;
+    var subText = sample ? sample.subText : sub.asHidden;
+    var sleepText = sample ? sample.sleepText : sleep.asSleep;
+    var sleepTitle = (sample && sample.sleepTitle) ? sample.sleepTitle : sleep.short;
+
+    document.getElementById("result-sub-title").textContent = "隠れた魔力：" + sub.name;
+    document.getElementById("result-sub-desc").innerHTML = formatText(subText);
 
     var talents = document.getElementById("result-talents");
     talents.innerHTML = "";
@@ -896,12 +885,13 @@ button{font-family:inherit;}
       talents.appendChild(li);
     });
 
-    document.getElementById("result-shadow").textContent = main.shadow;
-    document.getElementById("result-shadow-advice").textContent = main.shadowAdvice;
-    document.getElementById("result-sleep-title").textContent = "これから目覚める余白がある魔力：" + sleep.short;
-    document.getElementById("result-sleep-desc").textContent = SLEEP_INTROS[sleep.id] || sleep.sleepBlurb;
+    document.getElementById("result-shadow").innerHTML = formatText(main.shadow);
+    document.getElementById("result-shadow-close").innerHTML = "<span class=\"hl\">" + escapeHtml(main.shadowClose) + "</span>";
+    document.getElementById("result-shadow-advice").innerHTML = formatText(main.shadowAdvice);
+    document.getElementById("result-sleep-title").textContent = "これから目覚める余白がある魔力：" + sleepTitle;
+    document.getElementById("result-sleep-desc").innerHTML = formatText(sleepText);
     document.getElementById("result-question").textContent = main.question;
-    document.getElementById("result-action").textContent = main.action;
+    document.getElementById("result-action").innerHTML = formatText(main.action);
     document.getElementById("cta-link").href = CTA_URL;
   }
 
@@ -957,7 +947,8 @@ button{font-family:inherit;}
       mainId: null,
       subId: null,
       sleepId: null,
-      pendingTies: null
+      pendingTies: null,
+      useSamplePair: false
     };
     els.freeAnswer.value = "";
     els.tieAnswer.value = "";
@@ -968,6 +959,7 @@ button{font-family:inherit;}
     state.order = shuffle(QUESTIONS);
     state.index = 0;
     state.answers = {};
+    state.useSamplePair = false;
     show(els.howto);
   });
 
@@ -1018,11 +1010,18 @@ button{font-family:inherit;}
   window.__previewType = function (mainId, options) {
     options = options || {};
     if (!TYPES[mainId]) return false;
+    var sample = SAMPLE_PAIR[mainId];
     var others = TYPE_ORDER.filter(function (id) { return id !== mainId; });
     state.mainId = mainId;
-    state.subId = options.subId && TYPES[options.subId] ? options.subId : others[0];
-    state.sleepId = options.sleepId && TYPES[options.sleepId] ? options.sleepId : others[others.length - 1];
-    state.freeAnswer = options.freeAnswer != null ? options.freeAnswer : "話を聞いてくれるとよく言われます";
+    state.useSamplePair = !options.dynamic && !!sample;
+    if (state.useSamplePair) {
+      state.subId = sample.subId;
+      state.sleepId = sample.sleepId;
+    } else {
+      state.subId = options.subId && TYPES[options.subId] ? options.subId : others[0];
+      state.sleepId = options.sleepId && TYPES[options.sleepId] ? options.sleepId : others[others.length - 1];
+    }
+    state.freeAnswer = options.freeAnswer != null ? options.freeAnswer : "";
     renderResult();
     show(els.result);
     return true;
