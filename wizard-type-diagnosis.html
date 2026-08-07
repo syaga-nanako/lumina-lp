@@ -208,14 +208,6 @@ button{font-family:inherit;}
 }
 .textarea:focus{box-shadow:0 0 0 3px rgba(194,162,78,.22);}
 .textarea::placeholder{color:#b5a98c;}
-.tie-choices{display:grid;gap:.7rem;margin-top:1.2rem;}
-.tie-choices button{
-  width:100%;text-align:left;padding:1rem 1.1rem;border-radius:12px;cursor:pointer;
-  background:#fffdf8;border:1.5px solid rgba(194,162,78,.35);
-  color:var(--primary-deep);font-size:var(--fs-body);font-weight:700;line-height:1.6;
-}
-.tie-choices button:hover{border-color:var(--gold);background:#fff8e8;}
-
 /* Analyzing */
 .analyzing{
   min-height:70vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -405,22 +397,10 @@ button{font-family:inherit;}
       <p class="eyebrow">Final Question</p>
       <h2 class="sec-title">最後の魔法の問い</h2>
       <p class="q-text" style="margin-bottom:.4rem;">自分では当たり前だと思っているけれど、人からよく感謝されたり、褒められたりすることは何ですか？</p>
-      <p class="body" style="font-size:var(--fs-small);color:var(--text-soft);">点数には入りません。診断結果をよりあなたらしくするための問いです。（任意）</p>
+      <p class="body" style="font-size:var(--fs-small);color:var(--text-soft);">点数には入りません。より精度を上げるための自由回答です。（任意）</p>
       <textarea class="textarea" id="free-answer" placeholder="例：話を聞いてくれる、とよく言われます"></textarea>
       <button type="button" class="btn" id="btn-free-next"><span>結果を見る</span></button>
       <button type="button" class="btn btn--ghost" id="btn-free-skip"><span>スキップして結果へ</span></button>
-    </div>
-  </section>
-
-  <!-- TIE BREAKER -->
-  <section class="screen hidden" id="screen-tie">
-    <div class="wrap" style="padding-top:2rem;">
-      <p class="eyebrow">Tie Breaker</p>
-      <h2 class="sec-title">もうひとつだけ教えてください</h2>
-      <p class="q-text" id="tie-question">時間を忘れるほど自然にできること、または人からよく感謝されることは何ですか？</p>
-      <textarea class="textarea" id="tie-answer" placeholder="自由にお書きください"></textarea>
-      <div class="tie-choices hidden" id="tie-choices"></div>
-      <button type="button" class="btn" id="btn-tie-next"><span>この内容で判定する</span></button>
     </div>
   </section>
 
@@ -692,12 +672,10 @@ button{font-family:inherit;}
     index: 0,
     answers: {},
     freeAnswer: "",
-    tieAnswer: "",
     scores: null,
     mainId: null,
     subId: null,
     sleepId: null,
-    pendingTies: null,
     useSamplePair: false
   };
 
@@ -706,7 +684,6 @@ button{font-family:inherit;}
     howto: document.getElementById("screen-howto"),
     question: document.getElementById("screen-question"),
     free: document.getElementById("screen-free"),
-    tie: document.getElementById("screen-tie"),
     analyzing: document.getElementById("screen-analyzing"),
     result: document.getElementById("screen-result"),
     qCurrent: document.getElementById("q-current"),
@@ -717,14 +694,11 @@ button{font-family:inherit;}
     qScale: document.getElementById("q-scale"),
     btnQBack: document.getElementById("btn-q-back"),
     btnQNext: document.getElementById("btn-q-next"),
-    freeAnswer: document.getElementById("free-answer"),
-    tieAnswer: document.getElementById("tie-answer"),
-    tieChoices: document.getElementById("tie-choices"),
-    tieQuestion: document.getElementById("tie-question")
+    freeAnswer: document.getElementById("free-answer")
   };
 
   function show(screen) {
-    [els.intro, els.howto, els.question, els.free, els.tie, els.analyzing, els.result].forEach(function (el) {
+    [els.intro, els.howto, els.question, els.free, els.analyzing, els.result].forEach(function (el) {
       el.classList.add("hidden");
     });
     screen.classList.remove("hidden");
@@ -824,22 +798,12 @@ button{font-family:inherit;}
     var scores = calcScores();
     state.scores = scores;
     var ranked = rankedTypes(scores);
+    var freeText = (state.freeAnswer || "").trim();
+
     var topScore = scores[ranked[0]];
     var topTies = ranked.filter(function (id) { return scores[id] === topScore; });
-
-    var combinedText = ((state.freeAnswer || "") + " " + (state.tieAnswer || "")).trim();
-
-    if (topTies.length > 1) {
-      if (!state.tieAnswer && !state.pendingTies) {
-        state.pendingTies = { kind: "main", ids: topTies };
-        return { needTie: true };
-      }
-      var picked = pickByText(topTies, combinedText);
-      if (picked.score <= 0 && state.pendingTies && state.pendingTies.kind === "main" && !state.pendingTies.chose) {
-        state.pendingTies = { kind: "main", ids: topTies, needChoice: true };
-        return { needTie: true, needChoice: true, ids: topTies };
-      }
-      state.mainId = state.pendingTies && state.pendingTies.chose ? state.pendingTies.chose : picked.id;
+    if (topTies.length > 1 && freeText) {
+      state.mainId = pickByText(topTies, freeText).id;
     } else {
       state.mainId = ranked[0];
     }
@@ -847,9 +811,8 @@ button{font-family:inherit;}
     var remaining = ranked.filter(function (id) { return id !== state.mainId; });
     var secondScore = scores[remaining[0]];
     var secondTies = remaining.filter(function (id) { return scores[id] === secondScore; });
-    if (secondTies.length > 1) {
-      var subPick = pickByText(secondTies, combinedText);
-      state.subId = subPick.id;
+    if (secondTies.length > 1 && freeText) {
+      state.subId = pickByText(secondTies, freeText).id;
     } else {
       state.subId = remaining[0];
     }
@@ -859,9 +822,6 @@ button{font-family:inherit;}
       return TYPE_ORDER.indexOf(a) - TYPE_ORDER.indexOf(b);
     }).filter(function (id) { return id !== state.mainId && id !== state.subId; });
     state.sleepId = sleepRanked[0] || remaining[remaining.length - 1];
-
-    state.pendingTies = null;
-    return { needTie: false };
   }
 
   function formatText(text) {
@@ -923,44 +883,12 @@ button{font-family:inherit;}
   }
 
   function goToResultFlow() {
-    var resolved = resolveRanking();
-    if (resolved.needTie) {
-      showTie(resolved);
-      return;
-    }
+    resolveRanking();
     show(els.analyzing);
     setTimeout(function () {
       renderResult();
       show(els.result);
     }, 1600);
-  }
-
-  function showTie(resolved) {
-    show(els.tie);
-    els.tieChoices.classList.add("hidden");
-    els.tieChoices.innerHTML = "";
-    document.getElementById("btn-tie-next").classList.remove("hidden");
-
-    if (resolved.needChoice) {
-      els.tieQuestion.textContent = "どちらの表現が、今のあなたにより近いと感じますか？";
-      document.getElementById("tie-answer").classList.add("hidden");
-      document.getElementById("btn-tie-next").classList.add("hidden");
-      els.tieChoices.classList.remove("hidden");
-      resolved.ids.forEach(function (id) {
-        var btn = document.createElement("button");
-        btn.type = "button";
-        btn.textContent = TYPES[id].name;
-        btn.addEventListener("click", function () {
-          state.pendingTies.chose = id;
-          state.pendingTies.needChoice = false;
-          goToResultFlow();
-        });
-        els.tieChoices.appendChild(btn);
-      });
-    } else {
-      els.tieQuestion.textContent = "時間を忘れるほど自然にできること、または人からよく感謝されることは何ですか？";
-      document.getElementById("tie-answer").classList.remove("hidden");
-    }
   }
 
   function resetAll() {
@@ -969,16 +897,13 @@ button{font-family:inherit;}
       index: 0,
       answers: {},
       freeAnswer: "",
-      tieAnswer: "",
       scores: null,
       mainId: null,
       subId: null,
       sleepId: null,
-      pendingTies: null,
       useSamplePair: false
     };
     els.freeAnswer.value = "";
-    els.tieAnswer.value = "";
     show(els.intro);
   }
 
@@ -1019,15 +944,6 @@ button{font-family:inherit;}
 
   document.getElementById("btn-free-skip").addEventListener("click", function () {
     state.freeAnswer = "";
-    goToResultFlow();
-  });
-
-  document.getElementById("btn-tie-next").addEventListener("click", function () {
-    state.tieAnswer = els.tieAnswer.value.trim();
-    if (!state.tieAnswer) {
-      els.tieAnswer.focus();
-      return;
-    }
     goToResultFlow();
   });
 
