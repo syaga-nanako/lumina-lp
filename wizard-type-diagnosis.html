@@ -501,6 +501,70 @@ button{font-family:inherit;}
   var CTA_URL = "https://lumina.syagapro.com/p/3days_lp_fes?ftid=jwID97qK5upE";
   // Cloudflare Worker（デプロイ後のURL）。空のときは定型文フォールバック
   var DIAGNOSIS_API_URL = "https://lumina-diagnosis-api.syaga-nanako.workers.dev";
+  var TRACK_VARIANT = "cta";
+  var SESSION_KEY = "lumina_diag_sid_v1";
+
+  function getSessionId() {
+    try {
+      var sid = sessionStorage.getItem(SESSION_KEY);
+      if (sid) return sid;
+      sid = (crypto.randomUUID && crypto.randomUUID()) ||
+        ("d" + Date.now().toString(36) + Math.random().toString(36).slice(2, 10));
+      sessionStorage.setItem(SESSION_KEY, sid);
+      return sid;
+    } catch (e) {
+      return "d" + Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
+    }
+  }
+
+  function withDiagSid(url, sid) {
+    try {
+      var u = new URL(url, location.href);
+      u.searchParams.set("diag_sid", sid);
+      return u.toString();
+    } catch (e) {
+      var sep = url.indexOf("?") >= 0 ? "&" : "?";
+      return url + sep + "diag_sid=" + encodeURIComponent(sid);
+    }
+  }
+
+  function trackEvent(eventName, extra) {
+    if (!DIAGNOSIS_API_URL) return;
+    var payload = {
+      sessionId: getSessionId(),
+      variant: TRACK_VARIANT,
+      event: eventName,
+      pageUrl: location.href,
+      referrer: document.referrer || "",
+      userAgent: navigator.userAgent || ""
+    };
+    if (extra) {
+      Object.keys(extra).forEach(function (k) {
+        payload[k] = extra[k];
+      });
+    }
+    try {
+      fetch(DIAGNOSIS_API_URL.replace(/\/$/, "") + "/track", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+        keepalive: true
+      }).catch(function () {});
+    } catch (e) {}
+  }
+
+  function resultTrackPayload() {
+    var main = state.mainId && TYPES[state.mainId] ? TYPES[state.mainId].name : "";
+    var sub = state.subId && TYPES[state.subId] ? TYPES[state.subId].name : "";
+    var sleep = state.sleepId && TYPES[state.sleepId] ? TYPES[state.sleepId].name : "";
+    return {
+      mainType: main,
+      subType: sub,
+      sleepType: sleep,
+      scores: state.scores || {},
+      freeAnswer: state.freeAnswer || ""
+    };
+  }
 
   var SCALE_LABELS = [
     { v: 1, t: "ほとんど当てはまらない" },
@@ -926,7 +990,7 @@ button{font-family:inherit;}
     document.getElementById("result-sleep-desc").innerHTML = formatText(copy.sleepDesc);
     document.getElementById("result-question").textContent = main.question;
     document.getElementById("result-action").innerHTML = formatText(main.action);
-    document.getElementById("cta-link").href = CTA_URL;
+    document.getElementById("cta-link").href = withDiagSid(CTA_URL, getSessionId());
   }
 
   function goToResultFlow() {
@@ -940,6 +1004,7 @@ button{font-family:inherit;}
     fetchAiCopy().then(function (copy) {
       renderResult(copy);
       show(els.result);
+      trackEvent("result_viewed", resultTrackPayload());
     });
   }
 
@@ -964,7 +1029,12 @@ button{font-family:inherit;}
     state.index = 0;
     state.answers = {};
     state.useSamplePair = false;
+    trackEvent("started");
     show(els.howto);
+  });
+
+  document.getElementById("cta-link").addEventListener("click", function () {
+    trackEvent("cta_clicked", resultTrackPayload());
   });
 
   document.getElementById("btn-howto-next").addEventListener("click", function () {
