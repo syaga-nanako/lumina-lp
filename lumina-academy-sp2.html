@@ -657,7 +657,7 @@ p{margin:0 0 1.1em;}
         <input class="cta-form__input js-cta-email" id="email-fv" type="email" name="mail" placeholder="メールアドレス" autocomplete="email" inputmode="email" required>
         <input type="hidden" name="rid" value="">
         <button class="cta__btn js-cta-submit" type="submit" aria-disabled="true"><span>無料で3Daysに参加する</span></button>
-        <p class="cta__note">登録後、LINEオープンチャットへご参加ください。</p>
+        <p class="cta__note">ボタン押下後の画面で登録を完了してください。登録後、LINEオープンチャットへご参加ください。</p>
         <div class="cta__legal-wrap">
           <div class="cta__legal" tabindex="0" role="region" aria-label="確認事項">
             <b>【確認事項】</b>
@@ -839,7 +839,7 @@ p{margin:0 0 1.1em;}
           <input class="cta-form__input js-cta-email" id="email-duo" type="email" name="mail" placeholder="メールアドレス" autocomplete="email" inputmode="email" required>
           <input type="hidden" name="rid" value="">
           <button class="cta__btn js-cta-submit" type="submit" aria-disabled="true"><span>無料で3Daysに参加する</span></button>
-          <p class="cta__note">登録後、LINEオープンチャットへご参加ください。</p>
+          <p class="cta__note">ボタン押下後の画面で登録を完了してください。登録後、LINEオープンチャットへご参加ください。</p>
         </form>
       </div>
     </section>
@@ -932,7 +932,7 @@ p{margin:0 0 1.1em;}
             <input class="cta-form__input js-cta-email" id="email-outline" type="email" name="mail" placeholder="メールアドレス" autocomplete="email" inputmode="email" required>
             <input type="hidden" name="rid" value="">
             <button class="cta__btn js-cta-submit" type="submit" aria-disabled="true"><span>無料で3Daysに参加する</span></button>
-            <p class="cta__note">登録後、LINEオープンチャットへご参加ください。</p>
+            <p class="cta__note">ボタン押下後の画面で登録を完了してください。登録後、LINEオープンチャットへご参加ください。</p>
           </form>
         </div>
       </div>
@@ -954,22 +954,17 @@ p{margin:0 0 1.1em;}
 <script>
 (function () {
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-  /* シナリオ登録経路: 入口ftid → store
-     LP2は経路タグ（LP_ad2等）をftidで付与するため、LP1のmtidは流用しない */
+  /* LP2: 入口ftid → 登録register+mtid（タグはmtid。register経由が確実） */
   var ROUTES = {
-    /* LP1（互換） */
-    Z6aDFQonxTcg: { store: 'https://lumina.syagapro.com/r/sczoIzEaObQi/store', mtid: 'CM5KiqgkM8I3' }, /* Y */
-    R1rAY7dt1Q6Y: { store: 'https://lumina.syagapro.com/r/sczoIzEaObQi/store', mtid: 'BTBdh7vdf5YC' }, /* S */
-    jwID97qK5upE: { store: 'https://lumina.syagapro.com/r/sczoIzEaObQi/store', mtid: 'iCqWC0tdSs8l' }, /* fes */
-    '9DnfkFBN8Cuz': { store: 'https://lumina.syagapro.com/r/4buw4uhLgecz/store', mtid: 'fOBHzapwlyL6' }, /* ad */
-    /* LP2: 新mtidで LP_ad2 / LP_Yurina2 / LP_Seiryu2 / LP_Fes2 を付与 */
-    yoKLTe3j7N9T: { store: 'https://lumina.syagapro.com/r/4buw4uhLgecz/store', mtid: 'J7gOusBl8S9J' }, /* ad2 */
-    smMnRc69nKhg: { store: 'https://lumina.syagapro.com/r/sczoIzEaObQi/store', mtid: 'EFAcLPuo2vHQ' }, /* Y2 */
-    '6yZEbkmfdPXf': { store: 'https://lumina.syagapro.com/r/sczoIzEaObQi/store', mtid: 'sZdnA1RgVCqD' }, /* S2 */
-    '2NLe3EcXAIR6': { store: 'https://lumina.syagapro.com/r/sczoIzEaObQi/store', mtid: 'SQOloSVK3SSv' } /* fes2 */
+    Z6aDFQonxTcg: { register: 'https://lumina.syagapro.com/r/sczoIzEaObQi/register', mtid: 'CM5KiqgkM8I3' },
+    R1rAY7dt1Q6Y: { register: 'https://lumina.syagapro.com/r/sczoIzEaObQi/register', mtid: 'BTBdh7vdf5YC' },
+    jwID97qK5upE: { register: 'https://lumina.syagapro.com/r/sczoIzEaObQi/register', mtid: 'iCqWC0tdSs8l' },
+    '9DnfkFBN8Cuz': { register: 'https://lumina.syagapro.com/r/4buw4uhLgecz/register', mtid: 'fOBHzapwlyL6' },
+    yoKLTe3j7N9T: { register: 'https://lumina.syagapro.com/r/4buw4uhLgecz/register', mtid: 'J7gOusBl8S9J' }, /* LP_ad2 */
+    smMnRc69nKhg: { register: 'https://lumina.syagapro.com/r/sczoIzEaObQi/register', mtid: 'EFAcLPuo2vHQ' }, /* LP_Yurina2 */
+    '6yZEbkmfdPXf': { register: 'https://lumina.syagapro.com/r/sczoIzEaObQi/register', mtid: 'sZdnA1RgVCqD' }, /* LP_Seiryu2 */
+    '2NLe3EcXAIR6': { register: 'https://lumina.syagapro.com/r/sczoIzEaObQi/register', mtid: 'SQOloSVK3SSv' } /* LP_Fes2 */
   };
-  var STORE_DEFAULT = 'https://lumina.syagapro.com/r/4buw4uhLgecz/store';
-  var MTID_DEFAULT = 'J7gOusBl8S9J';
   var FTID_DEFAULT = 'yoKLTe3j7N9T';
 
   function isValidEmail(value) {
@@ -983,59 +978,47 @@ p{margin:0 0 1.1em;}
     btn.disabled = false;
     btn.setAttribute('aria-disabled', ok ? 'false' : 'true');
   }
-  function ensureHidden(form, name, value) {
-    var el = form.querySelector('input[name="' + name + '"]');
-    if (!el) {
-      el = document.createElement('input');
-      el.type = 'hidden';
-      el.name = name;
-      form.appendChild(el);
-    }
-    el.value = value;
-  }
 
   var params = new URLSearchParams(window.location.search);
   var ftid = params.get('ftid') || '';
   var route = ROUTES[ftid] || null;
-  /* entry=ad / ad2、またはftidなし（LP2既定）でも広告経路へ */
   if (!route && (params.get('entry') === 'ad' || params.get('entry') === 'ad2' || !ftid)) {
     route = ROUTES[FTID_DEFAULT];
     ftid = ftid || FTID_DEFAULT;
   }
-  var storeUrl = route ? route.store : 'https://lumina.syagapro.com/r/sczoIzEaObQi/store';
-  var mtid = route ? (route.mtid || '') : (params.get('mtid') || '');
+  if (!route) route = ROUTES[FTID_DEFAULT];
+
+  var registerUrl = route.register;
+  var mtid = route.mtid || '';
 
   document.querySelectorAll('.cta-form').forEach(function (form) {
     var input = form.querySelector('.js-cta-email');
     var btn = form.querySelector('.js-cta-submit');
     if (!input || !btn) return;
 
-    try {
-      var u = new URL(storeUrl, window.location.href);
-      // ftid + 経路ごとのmtidを付与（LP2は新mtid）
-      if (mtid) u.searchParams.set('mtid', mtid);
-      if (ftid) u.searchParams.set('ftid', ftid);
-      form.setAttribute('action', u.toString());
-    } catch (err) {
-      form.setAttribute('action', storeUrl);
-    }
-
-    if (mtid) ensureHidden(form, 'mtid', mtid);
-    else {
-      var oldMtid = form.querySelector('input[name="mtid"]');
-      if (oldMtid) oldMtid.parentNode.removeChild(oldMtid);
-    }
-    if (ftid) ensureHidden(form, 'ftid', ftid);
-
     syncForm(form);
     input.addEventListener('input', function () { syncForm(form); });
     input.addEventListener('change', function () { syncForm(form); });
+
     form.addEventListener('submit', function (e) {
+      e.preventDefault();
       if (!isValidEmail(input.value) || btn.getAttribute('aria-disabled') === 'true') {
-        e.preventDefault();
         syncForm(form);
         input.focus();
+        return;
       }
+
+      /*
+        直store投稿では新mtidのタグが付かない。
+        動作確認済みの /register?mtid=... へ遷移し、UTAGE側で登録する。
+        メールはクエリで渡し、可能なら登録画面で使う。
+      */
+      var email = String(input.value || '').trim();
+      var u = new URL(registerUrl);
+      u.searchParams.set('mtid', mtid);
+      u.searchParams.set('mail', email);
+      u.searchParams.set('email', email);
+      window.location.href = u.toString();
     });
   });
 })();
