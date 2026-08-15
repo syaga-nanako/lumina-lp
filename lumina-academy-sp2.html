@@ -954,22 +954,21 @@ p{margin:0 0 1.1em;}
 <script>
 (function () {
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-  /* シナリオ登録経路: 入口ftid → store?mtid=...
-     LP2入口: ad2 / Y2 / S2 / fes2 */
+  /* シナリオ登録経路: 入口ftid → store
+     LP2は経路タグ（LP_ad2等）をftidで付与するため、LP1のmtidは流用しない */
   var ROUTES = {
-    /* LP1 */
+    /* LP1（互換） */
     Z6aDFQonxTcg: { store: 'https://lumina.syagapro.com/r/sczoIzEaObQi/store', mtid: 'CM5KiqgkM8I3' }, /* Y */
     R1rAY7dt1Q6Y: { store: 'https://lumina.syagapro.com/r/sczoIzEaObQi/store', mtid: 'BTBdh7vdf5YC' }, /* S */
     jwID97qK5upE: { store: 'https://lumina.syagapro.com/r/sczoIzEaObQi/store', mtid: 'iCqWC0tdSs8l' }, /* fes */
     '9DnfkFBN8Cuz': { store: 'https://lumina.syagapro.com/r/4buw4uhLgecz/store', mtid: 'fOBHzapwlyL6' }, /* ad */
-    /* LP2 */
-    yoKLTe3j7N9T: { store: 'https://lumina.syagapro.com/r/4buw4uhLgecz/store', mtid: 'fOBHzapwlyL6' }, /* ad2 */
-    smMnRc69nKhg: { store: 'https://lumina.syagapro.com/r/sczoIzEaObQi/store', mtid: 'CM5KiqgkM8I3' }, /* Y2 */
-    '6yZEbkmfdPXf': { store: 'https://lumina.syagapro.com/r/sczoIzEaObQi/store', mtid: 'BTBdh7vdf5YC' }, /* S2 */
-    '2NLe3EcXAIR6': { store: 'https://lumina.syagapro.com/r/sczoIzEaObQi/store', mtid: 'iCqWC0tdSs8l' } /* fes2 */
+    /* LP2: ftidのみ（LP_ad2 / LP_Yurina2 / LP_Seiryu2 / LP_Fes2） */
+    yoKLTe3j7N9T: { store: 'https://lumina.syagapro.com/r/4buw4uhLgecz/store', mtid: '' }, /* ad2 → LP_ad2 */
+    smMnRc69nKhg: { store: 'https://lumina.syagapro.com/r/sczoIzEaObQi/store', mtid: '' }, /* Y2 → LP_Yurina2 */
+    '6yZEbkmfdPXf': { store: 'https://lumina.syagapro.com/r/sczoIzEaObQi/store', mtid: '' }, /* S2 → LP_Seiryu2 */
+    '2NLe3EcXAIR6': { store: 'https://lumina.syagapro.com/r/sczoIzEaObQi/store', mtid: '' } /* fes2 → LP_Fes2 */
   };
   var STORE_DEFAULT = 'https://lumina.syagapro.com/r/4buw4uhLgecz/store';
-  var MTID_DEFAULT = 'fOBHzapwlyL6';
   var FTID_DEFAULT = 'yoKLTe3j7N9T';
 
   function isValidEmail(value) {
@@ -1003,7 +1002,8 @@ p{margin:0 0 1.1em;}
     ftid = ftid || FTID_DEFAULT;
   }
   var storeUrl = route ? route.store : 'https://lumina.syagapro.com/r/sczoIzEaObQi/store';
-  var mtid = route ? route.mtid : (params.get('mtid') || '');
+  var mtid = route ? (route.mtid || '') : (params.get('mtid') || '');
+  var tag = route && route.tag ? route.tag : '';
 
   document.querySelectorAll('.cta-form').forEach(function (form) {
     var input = form.querySelector('.js-cta-email');
@@ -1012,6 +1012,7 @@ p{margin:0 0 1.1em;}
 
     try {
       var u = new URL(storeUrl, window.location.href);
+      // LP2経路では旧mtidを付けない（LP_ad 等の旧タグ付与を防ぐ）
       if (mtid) u.searchParams.set('mtid', mtid);
       if (ftid) u.searchParams.set('ftid', ftid);
       form.setAttribute('action', u.toString());
@@ -1020,7 +1021,16 @@ p{margin:0 0 1.1em;}
     }
 
     if (mtid) ensureHidden(form, 'mtid', mtid);
+    else {
+      var oldMtid = form.querySelector('input[name="mtid"]');
+      if (oldMtid) oldMtid.parentNode.removeChild(oldMtid);
+    }
     if (ftid) ensureHidden(form, 'ftid', ftid);
+    // UTAGE側でカスタム項目名が tag / tags の場合に備える
+    if (tag) {
+      ensureHidden(form, 'tag', tag);
+      ensureHidden(form, 'tags', tag);
+    }
 
     syncForm(form);
     input.addEventListener('input', function () { syncForm(form); });
