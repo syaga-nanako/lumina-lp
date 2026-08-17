@@ -984,7 +984,12 @@ p{margin:0 0 1.1em;}
 <script>
 (function () {
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-  /* シナリオ登録経路: 入口ftid → store?mtid=...（LP1と同じ方式） */
+  /*
+   * 登録経路タグは UTAGE の /register?mtid= 訪問でセッションに載る。
+   * 別ドメインLPから /store 直POSTだと SameSite で付かないため、
+   * 同ドメインのブリッジ（lp_optin_bridge）経由で register温存→store する。
+   */
+  var OPTIN_BRIDGE = 'https://lumina.syagapro.com/p/lp_optin_bridge';
   var ROUTES = {
     /* LP1互換 */
     Z6aDFQonxTcg: { store: 'https://lumina.syagapro.com/r/sczoIzEaObQi/store', mtid: 'CM5KiqgkM8I3' }, /* Y */
@@ -1021,6 +1026,9 @@ p{margin:0 0 1.1em;}
     }
     el.value = value;
   }
+  function toRegisterUrl(storeUrl) {
+    return String(storeUrl || '').replace(/\/store\/?$/, '/register');
+  }
 
   var params = new URLSearchParams(window.location.search);
   var ftid = params.get('ftid') || '';
@@ -1031,7 +1039,8 @@ p{margin:0 0 1.1em;}
     ftid = ftid || FTID_DEFAULT;
   }
   var storeUrl = route ? route.store : STORE_DEFAULT;
-  var mtid = route ? route.mtid : (params.get('mtid') || '');
+  var mtid = route ? route.mtid : (params.get('mtid') || ROUTES[FTID_DEFAULT].mtid);
+  var registerUrl = toRegisterUrl(storeUrl);
 
   document.querySelectorAll('.cta-form').forEach(function (form) {
     var input = form.querySelector('.js-cta-email');
@@ -1046,7 +1055,6 @@ p{margin:0 0 1.1em;}
     } catch (err) {
       form.setAttribute('action', storeUrl);
     }
-
     if (mtid) ensureHidden(form, 'mtid', mtid);
     if (ftid) ensureHidden(form, 'ftid', ftid);
 
@@ -1058,6 +1066,17 @@ p{margin:0 0 1.1em;}
         e.preventDefault();
         syncForm(form);
         input.focus();
+        return;
+      }
+      if (mtid && OPTIN_BRIDGE) {
+        e.preventDefault();
+        var bridge = new URL(OPTIN_BRIDGE);
+        bridge.searchParams.set('mail', String(input.value || '').trim());
+        bridge.searchParams.set('mtid', mtid);
+        bridge.searchParams.set('store', storeUrl);
+        bridge.searchParams.set('register', registerUrl);
+        if (ftid) bridge.searchParams.set('ftid', ftid);
+        window.location.href = bridge.toString();
       }
     });
   });

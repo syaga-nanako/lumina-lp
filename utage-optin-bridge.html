@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>登録処理中…</title>
+<style>
+  body{margin:0;min-height:100vh;display:grid;place-items:center;font-family:sans-serif;background:#fdfaf3;color:#2c2246;}
+  p{margin:0;letter-spacing:.08em;}
+</style>
+</head>
+<body>
+<p>登録処理中です…</p>
+<iframe id="warm" title="route" style="position:absolute;width:0;height:0;border:0;opacity:0"></iframe>
+<form id="go" method="post" action="">
+  <input type="hidden" name="mail" id="mail" value="">
+  <input type="hidden" name="rid" value="">
+</form>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  var mail = String(q.get('mail') || '').trim();
+  var mtid = String(q.get('mtid') || '').trim();
+  var store = String(q.get('store') || '').trim();
+  var register = String(q.get('register') || '').trim();
+
+  if (!mail || !store) {
+    document.querySelector('p').textContent = '登録情報が不足しています。LPからやり直してください。';
+    return;
+  }
+  if (!register && /\/store\/?$/.test(store)) {
+    register = store.replace(/\/store\/?$/, '/register');
+  }
+
+  var form = document.getElementById('go');
+  var warm = document.getElementById('warm');
+  document.getElementById('mail').value = mail;
+  form.action = store;
+
+  var submitted = false;
+  function submitStore() {
+    if (submitted) return;
+    submitted = true;
+    form.submit();
+  }
+
+  if (register && mtid) {
+    var warmUrl = new URL(register, location.href);
+    warmUrl.searchParams.set('mtid', mtid);
+    warm.onload = function () { setTimeout(submitStore, 350); };
+    warm.src = warmUrl.toString();
+    setTimeout(submitStore, 2200);
+  } else {
+    submitStore();
+  }
+})();
+</script>
+</body>
+</html>
