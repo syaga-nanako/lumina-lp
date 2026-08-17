@@ -172,29 +172,44 @@ p{margin:0 0 1.1em;}
 .doors-figure__rule--top{top:2.8%;}
 .doors-figure__rule--bot{bottom:2.8%;}
 
-/* FV */
-.fv{background:#fdfaf3;padding-bottom:var(--band);}
-.fv__img{width:100%;}
-.fv__meta{padding:var(--gap) var(--wrap-pad) 0;text-align:left;}
-.badges{
-  display:flex;justify-content:center;align-items:center;
-  margin:-.55rem auto .55rem;text-align:center;
+/* FV — 初回表示で画像〜CTAボタンまで収める */
+.fv{
+  background:#fdfaf3;
+  padding-bottom:.55rem;
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+  box-sizing:border-box;
 }
-.badge-pair{
-  display:block;width:min(100%,25.5rem);height:auto;margin:0 auto;
-  aspect-ratio:1004/220;object-fit:contain;
-  background:transparent;
-  filter:drop-shadow(0 3px 10px rgba(150,118,42,.18));
+.fv__img{
+  width:100%;
+  max-height:min(52svh,28rem);
+  height:auto;
+  object-fit:contain;
+  object-position:center top;
+  flex:0 1 auto;
+  background:#fdfaf3;
 }
+.fv__meta{padding:.55rem var(--wrap-pad) 0;text-align:center;}
 .schedule{
   border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-  padding:1.15rem 0;margin:0;font-size:clamp(1.05rem,4.4vw,1.22rem);letter-spacing:.08em;
-  line-height:2.2;font-weight:700;text-align:left;
+  padding:.7rem .1rem;margin:0;font-size:clamp(.95rem,3.9vw,1.1rem);letter-spacing:.06em;
+  line-height:1.65;font-weight:700;text-align:center;
 }
-.schedule b{color:var(--gold-deep);font-weight:800;margin-right:.5em;}
+.schedule__title{
+  display:block;margin:0 0 .25rem;color:var(--gold-deep);font-weight:800;letter-spacing:.04em;
+}
+.schedule__body{display:block;font-weight:700;color:var(--primary-deep);}
 
 /* CTA — メールフォーム＋送信ボタン（ボタン内文字のみ中央） */
-.cta{margin-top:var(--gap);padding:0 var(--wrap-pad);text-align:left;}
+.cta{margin-top:.7rem;padding:0 var(--wrap-pad);text-align:left;}
+.fv > .cta{margin-top:.55rem;flex:0 0 auto;}
+.fv .cta-form__label{margin:0 0 .25rem;font-size:.82rem;}
+.fv .cta-form__input{margin:0 0 .55rem;padding:.65rem .85rem;font-size:clamp(.98rem,4vw,1.12rem);}
+.fv .cta__btn{padding:.85rem .85rem;font-size:clamp(.95rem,4vw,1.08rem);}
+.fv .cta__note{margin:.55rem 0 0;font-size:.82rem;line-height:1.55;}
+.fv .cta__legal-wrap{margin:.45rem 0 0;}
+.fv .cta__legal{max-height:4.2em;font-size:.72rem;line-height:1.45;padding:.45rem .55rem;}
 .cta--tight{margin-top:1.15rem;padding:0;}
 .cta-form{margin:0;padding:0;text-align:left;width:100%;max-width:400px;margin-inline:auto;}
 .cta-form__label{
@@ -648,13 +663,9 @@ p{margin:0 0 1.1em;}
   <header class="fv">
     <img class="fv__img" src="assets/fv-main-2.jpg" alt="もう、学ぶだけの人生を終わりにしませんか？今までの学びや経験を、7つの魔法で“人生を動かす力”に変える！天使と魔王の LUMINA ACADEMY 魔法学校／まだ知らない可能性をひらく 3Days無料体験プログラム" width="766" height="1024" fetchpriority="high">
     <div class="fv__meta">
-      <div class="badges">
-        <img class="badge-pair" src="assets/badge-pair.png" alt="参加費無料／オンライン開催" width="1004" height="220" decoding="async">
-      </div>
       <p class="schedule">
-        <b>講義①</b>8月27日（木）21時〜<br>
-        <b>講義②</b>8月29日（土）21時〜<br>
-        <b>講義③</b>8月31日（月）21時〜
+        <span class="schedule__title">◆オンラインプログラム開催スケジュール◆</span>
+        <span class="schedule__body">8/27(木)～8/31(月)の中で3回開催</span>
       </p>
     </div>
     <div class="cta">
