@@ -11,48 +11,36 @@
 </head>
 <body>
 <p>登録処理中です…</p>
-<iframe id="warm" title="route" style="position:absolute;width:0;height:0;border:0;opacity:0"></iframe>
 <form id="go" method="post" action="">
   <input type="hidden" name="mail" id="mail" value="">
   <input type="hidden" name="rid" value="">
 </form>
 <script>
 (function () {
+  /* UTAGE同ドメイン上なので store?mtid= だけで経路が付く。
+     register 温存を重ねると LP_ad2/LP_ad2 のように二重になるため使わない。 */
   var q = new URLSearchParams(location.search);
   var mail = String(q.get('mail') || '').trim();
   var mtid = String(q.get('mtid') || '').trim();
   var store = String(q.get('store') || '').trim();
-  var register = String(q.get('register') || '').trim();
 
   if (!mail || !store) {
     document.querySelector('p').textContent = '登録情報が不足しています。LPからやり直してください。';
     return;
   }
-  if (!register && /\/store\/?$/.test(store)) {
-    register = store.replace(/\/store\/?$/, '/register');
-  }
 
   var form = document.getElementById('go');
-  var warm = document.getElementById('warm');
   document.getElementById('mail').value = mail;
-  form.action = store;
 
-  var submitted = false;
-  function submitStore() {
-    if (submitted) return;
-    submitted = true;
-    form.submit();
+  try {
+    var u = new URL(store, location.href);
+    if (mtid) u.searchParams.set('mtid', mtid);
+    form.action = u.toString();
+  } catch (err) {
+    form.action = store;
   }
 
-  if (register && mtid) {
-    var warmUrl = new URL(register, location.href);
-    warmUrl.searchParams.set('mtid', mtid);
-    warm.onload = function () { setTimeout(submitStore, 350); };
-    warm.src = warmUrl.toString();
-    setTimeout(submitStore, 2200);
-  } else {
-    submitStore();
-  }
+  form.submit();
 })();
 </script>
 </body>
