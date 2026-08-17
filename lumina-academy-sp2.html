@@ -990,6 +990,8 @@ p{margin:0 0 1.1em;}
    * 同ドメインのブリッジ（lp_optin_bridge）経由で register温存→store する。
    */
   var OPTIN_BRIDGE = 'https://lumina.syagapro.com/p/lp_optin_bridge';
+  /* UTAGEに lp_optin_bridge を置いたら true にする（未配置のままだと登録が404になる） */
+  var USE_OPTIN_BRIDGE = false;
   var ROUTES = {
     /* LP1互換 */
     Z6aDFQonxTcg: { store: 'https://lumina.syagapro.com/r/sczoIzEaObQi/store', mtid: 'CM5KiqgkM8I3' }, /* Y */
@@ -1068,7 +1070,7 @@ p{margin:0 0 1.1em;}
         input.focus();
         return;
       }
-      if (mtid && OPTIN_BRIDGE) {
+      if (USE_OPTIN_BRIDGE && mtid && OPTIN_BRIDGE) {
         e.preventDefault();
         var bridge = new URL(OPTIN_BRIDGE);
         bridge.searchParams.set('mail', String(input.value || '').trim());
