@@ -210,10 +210,10 @@ p{margin:0 0 1.1em;}
 .cta__btn{
   position:relative;display:block;width:100%;max-width:400px;margin:0 auto;text-align:center;
   padding:1.15rem 1rem;border-radius:999px;text-decoration:none;
-  background:linear-gradient(135deg,#e3c778 0%,#c2a24e 38%,#a8871f 62%,#dcbe6d 100%);
-  color:#fff;font-family:var(--font-serif);font-size:clamp(1.02rem,4.35vw,1.2rem);font-weight:900;letter-spacing:.09em;
-  box-shadow:0 8px 22px rgba(150,118,42,.36),inset 0 1px 0 rgba(255,255,255,.55);
-  border:1px solid #b59436;animation:pulse 2.6s ease-in-out infinite;overflow:hidden;
+  background:linear-gradient(135deg,#fff59a 0%,#ffe566 35%,#f5e74a 65%,#ffe566 100%);
+  color:#1a1520;font-family:var(--font-serif);font-size:clamp(1.02rem,4.35vw,1.2rem);font-weight:900;letter-spacing:.09em;
+  box-shadow:0 8px 22px rgba(180,160,40,.28),inset 0 1px 0 rgba(255,255,255,.7);
+  border:1px solid #e0c84a;animation:pulse 2.6s ease-in-out infinite;overflow:hidden;
   cursor:pointer;-webkit-appearance:none;appearance:none;
 }
 .cta__btn::after{
@@ -221,15 +221,15 @@ p{margin:0 0 1.1em;}
   background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);
   animation:shine 3.6s ease-in-out infinite;
 }
-.cta__btn span{position:relative;z-index:1;text-shadow:0 1px 2px rgba(120,90,20,.4);}
+.cta__btn span{position:relative;z-index:1;color:#1a1520;text-shadow:none;}
 /* 未入力でも色・パルス・shineは有効時と同じ。submitのみ不可 */
 .cta__btn:disabled,
 .cta__btn[aria-disabled="true"]{
   opacity:1;filter:none;cursor:not-allowed;
-  color:#fff;
-  background:linear-gradient(135deg,#e3c778 0%,#c2a24e 38%,#a8871f 62%,#dcbe6d 100%);
-  box-shadow:0 8px 22px rgba(150,118,42,.36),inset 0 1px 0 rgba(255,255,255,.55);
-  border:1px solid #b59436;
+  color:#1a1520;
+  background:linear-gradient(135deg,#fff59a 0%,#ffe566 35%,#f5e74a 65%,#ffe566 100%);
+  box-shadow:0 8px 22px rgba(180,160,40,.28),inset 0 1px 0 rgba(255,255,255,.7);
+  border:1px solid #e0c84a;
   animation:pulse 2.6s ease-in-out infinite;
 }
 .cta__btn:disabled::after,
