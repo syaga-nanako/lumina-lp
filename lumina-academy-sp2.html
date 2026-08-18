@@ -985,13 +985,12 @@ p{margin:0 0 1.1em;}
 (function () {
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   /*
-   * 登録経路タグは UTAGE の /register?mtid= 訪問でセッションに載る。
-   * 別ドメインLPから /store 直POSTだと SameSite で付かないため、
-   * 同ドメインのブリッジ（lp_optin_bridge）経由で register温存→store する。
+   * 広告経路のみブリッジ経由（タグ安定化）。
+   * Y2 / S2 / fes2 など紹介・フェスは従来どおり store 直POST。
    */
   var OPTIN_BRIDGE = 'https://lumina.syagapro.com/p/lp_optin_bridge';
-  /* UTAGEに lp_optin_bridge を置いたら true にする（未配置のままだと登録が404になる） */
   var USE_OPTIN_BRIDGE = true;
+  var AD_STORE_ID = '4buw4uhLgecz';
   var ROUTES = {
     /* LP1互換 */
     Z6aDFQonxTcg: { store: 'https://lumina.syagapro.com/r/sczoIzEaObQi/store', mtid: 'CM5KiqgkM8I3' }, /* Y */
@@ -1031,6 +1030,9 @@ p{margin:0 0 1.1em;}
   function toRegisterUrl(storeUrl) {
     return String(storeUrl || '').replace(/\/store\/?$/, '/register');
   }
+  function isAdStore(url) {
+    return String(url || '').indexOf('/r/' + AD_STORE_ID + '/') !== -1;
+  }
 
   var params = new URLSearchParams(window.location.search);
   var ftid = params.get('ftid') || '';
@@ -1043,6 +1045,7 @@ p{margin:0 0 1.1em;}
   var storeUrl = route ? route.store : STORE_DEFAULT;
   var mtid = route ? route.mtid : (params.get('mtid') || ROUTES[FTID_DEFAULT].mtid);
   var registerUrl = toRegisterUrl(storeUrl);
+  var useBridge = USE_OPTIN_BRIDGE && isAdStore(storeUrl) && !!mtid;
 
   document.querySelectorAll('.cta-form').forEach(function (form) {
     var input = form.querySelector('.js-cta-email');
@@ -1070,7 +1073,8 @@ p{margin:0 0 1.1em;}
         input.focus();
         return;
       }
-      if (USE_OPTIN_BRIDGE && mtid && OPTIN_BRIDGE) {
+      /* 広告のみブリッジ。紹介・フェスは store 直 */
+      if (useBridge && OPTIN_BRIDGE) {
         e.preventDefault();
         var bridge = new URL(OPTIN_BRIDGE);
         bridge.searchParams.set('mail', String(input.value || '').trim());
