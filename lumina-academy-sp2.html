@@ -172,7 +172,8 @@ p{margin:0 0 1.1em;}
 .doors-figure__rule--top{top:2.8%;}
 .doors-figure__rule--bot{bottom:2.8%;}
 
-/* FV — 画像1枚全体＋日程＋入力＋ボタンを初回画面に。登録後〜はスクロール */
+/* FV — 画像＋日程＋入力＋ボタンを初回画面に。登録後〜はスクロール
+   横幅優先で足りない分は下部を切る（上部キャッチは残す） */
 .fv{
   background:#fdfaf3;
   min-height:100svh;
@@ -188,7 +189,7 @@ p{margin:0 0 1.1em;}
   flex:1 1 0;
   min-height:0;
   object-fit:cover;
-  object-position:center bottom;
+  object-position:center top;
   display:block;
   background:#fdfaf3;
 }
@@ -663,6 +664,18 @@ p{margin:0 0 1.1em;}
 @media (min-width:481px){
   body{padding:0 0 2.2rem;}
   .lp{border-radius:4px;}
+  /* PC: 画面高さで上部文字が欠けないよう、FV画像は全体表示 */
+  .fv{
+    min-height:0;
+    max-height:none;
+    overflow:visible;
+  }
+  .fv__img{
+    flex:0 0 auto;
+    height:auto;
+    object-fit:unset;
+    object-position:center top;
+  }
 }
 </style>
 </head>
