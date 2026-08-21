@@ -1052,7 +1052,7 @@ p{margin:0 0 1.1em;}
   var params = new URLSearchParams(window.location.search);
   var ftid = params.get('ftid') || '';
   var route = ROUTES[ftid] || null;
-  /* entry=ad / ad2、またはftidなし（LP2既定）でも広告経路へ */
+  /* entry=ad / ad2、またはftidなし（LP3既定）でも広告経路へ */
   if (!route && (params.get('entry') === 'ad' || params.get('entry') === 'ad2' || !ftid)) {
     route = ROUTES[FTID_DEFAULT];
     ftid = ftid || FTID_DEFAULT;
