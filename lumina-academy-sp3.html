@@ -172,7 +172,8 @@ p{margin:0 0 1.1em;}
 .doors-figure__rule--top{top:2.8%;}
 .doors-figure__rule--bot{bottom:2.8%;}
 
-/* FV — 画像1枚全体を画面内に表示（切り抜きなし）＋日程・入力・ボタン */
+/* FV — 画像1枚全体を画面内に表示（切り抜きなし）＋日程・入力・ボタン
+   左右余白は同一画像の拡張（bleed）で埋める */
 .fv{
   background:#fdfaf3;
   min-height:100svh;
@@ -183,14 +184,36 @@ p{margin:0 0 1.1em;}
   padding-bottom:.35rem;
   overflow:hidden;
 }
-.fv__img{
-  width:100%;
+.fv__stage{
+  position:relative;
   flex:1 1 0;
   min-height:0;
+  width:100%;
+  overflow:hidden;
+  background:#fdfaf3;
+}
+.fv__stage::before{
+  content:"";
+  position:absolute;
+  inset:-8%;
+  background:center top / cover no-repeat;
+  background-image:inherit;
+  filter:blur(18px) saturate(1.05);
+  transform:scale(1.08);
+  opacity:.98;
+  pointer-events:none;
+}
+.fv__stage{
+  background-image:url("assets/fv-main-3.jpg");
+}
+.fv__img{
+  position:relative;
+  z-index:1;
+  width:100%;
+  height:100%;
   object-fit:contain;
   object-position:center top;
   display:block;
-  background:#fdfaf3;
 }
 .fv__meta{padding:.3rem var(--wrap-pad) 0;text-align:center;flex:0 0 auto;}
 .schedule{
@@ -663,11 +686,6 @@ p{margin:0 0 1.1em;}
 @media (min-width:481px){
   body{padding:0 0 2.2rem;}
   .lp{border-radius:4px;}
-  /* PCも同様：FV画像は切り抜きなしで全体表示 */
-  .fv__img{
-    object-fit:contain;
-    object-position:center top;
-  }
 }
 </style>
 </head>
@@ -676,7 +694,9 @@ p{margin:0 0 1.1em;}
 
   <!-- 1. FV（LP3: fv-main-3.jpg） -->
   <header class="fv">
-    <img class="fv__img" src="assets/fv-main-3.jpg" alt="大人になった今だからこそ使える魔法があります。人生を縛る“見えない呪縛”を解き、眠っていた魔力を目覚めさせる「7つの魔法」。60秒で呪縛をほどく魔法体験／天使と魔王の LUMINA ACADEMY 魔法学校／3日間無料体験プログラム" width="766" height="1024" fetchpriority="high">
+    <div class="fv__stage">
+      <img class="fv__img" src="assets/fv-main-3.jpg" alt="大人になった今だからこそ使える魔法があります。人生を縛る“見えない呪縛”を解き、眠っていた魔力を目覚めさせる「7つの魔法」。60秒で呪縛をほどく魔法体験／天使と魔王の LUMINA ACADEMY 魔法学校／3日間無料体験プログラム" width="766" height="1024" fetchpriority="high">
+    </div>
     <div class="fv__meta">
       <p class="schedule">
         <span class="schedule__title">◆オンラインプログラム開催スケジュール◆</span>
