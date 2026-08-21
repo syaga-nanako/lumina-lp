@@ -1049,13 +1049,13 @@ p{margin:0 0 1.1em;}
     try {
       var u = new URL(storeUrl, window.location.href);
       if (mtid) u.searchParams.set('mtid', mtid);
-      if (ftid) u.searchParams.set('ftid', ftid);
+      if (ftid && !useBridge) u.searchParams.set('ftid', ftid);
       form.setAttribute('action', u.toString());
     } catch (err) {
       form.setAttribute('action', storeUrl);
     }
     if (mtid) ensureHidden(form, 'mtid', mtid);
-    if (ftid) ensureHidden(form, 'ftid', ftid);
+    if (ftid && !useBridge) ensureHidden(form, 'ftid', ftid);
 
     syncForm(form);
     input.addEventListener('input', function () { syncForm(form); });
@@ -1067,15 +1067,13 @@ p{margin:0 0 1.1em;}
         input.focus();
         return;
       }
-      /* 広告のみブリッジ。紹介・フェスは store 直 */
+      /* 広告のみブリッジ。経路タグは mtid のみ（ftid と二重付与しない） */
       if (useBridge && OPTIN_BRIDGE) {
         e.preventDefault();
         var bridge = new URL(OPTIN_BRIDGE);
         bridge.searchParams.set('mail', String(input.value || '').trim());
         bridge.searchParams.set('mtid', mtid);
         bridge.searchParams.set('store', storeUrl);
-        bridge.searchParams.set('register', registerUrl);
-        if (ftid) bridge.searchParams.set('ftid', ftid);
         window.location.href = bridge.toString();
       }
     });
