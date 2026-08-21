@@ -172,7 +172,7 @@ p{margin:0 0 1.1em;}
 .doors-figure__rule--top{top:2.8%;}
 .doors-figure__rule--bot{bottom:2.8%;}
 
-/* FV — 画像を領域いっぱいに表示（下の無駄余白なし）＋日程・入力・ボタン */
+/* FV — 画像・文字を切らず全体表示。下の空きはPCで発生しやすいのでPCは自然高に */
 .fv{
   background:#fdfaf3;
   min-height:100svh;
@@ -190,12 +190,12 @@ p{margin:0 0 1.1em;}
   width:100%;
   overflow:hidden;
   line-height:0;
-  background:#f7f0e0;
+  background:#f3e6cc;
 }
 .fv__img{
   width:100%;
   height:100%;
-  object-fit:cover;
+  object-fit:contain;
   object-position:center top;
   display:block;
 }
@@ -670,6 +670,19 @@ p{margin:0 0 1.1em;}
 @media (min-width:481px){
   body{padding:0 0 2.2rem;}
   .lp{border-radius:4px;}
+  /* PC: 縦に余白が空きすぎないよう、画像は自然な高さで全体表示 */
+  .fv{
+    min-height:0;
+    max-height:none;
+    overflow:visible;
+  }
+  .fv__stage{
+    flex:0 0 auto;
+  }
+  .fv__img{
+    height:auto;
+    object-fit:unset;
+  }
 }
 </style>
 </head>
@@ -679,7 +692,7 @@ p{margin:0 0 1.1em;}
   <!-- 1. FV（LP3: fv-main-3.jpg） -->
   <header class="fv">
     <div class="fv__stage">
-      <img class="fv__img" src="assets/fv-main-3.jpg" alt="大人になった今だからこそ使える魔法があります。人生を縛る“見えない呪縛”を解き、眠っていた魔力を目覚めさせる「7つの魔法」。60秒で呪縛をほどく魔法体験／天使と魔王の LUMINA ACADEMY 魔法学校／3日間無料体験プログラム" width="766" height="1024" fetchpriority="high">
+      <img class="fv__img" src="assets/fv-main-3.jpg" alt="大人になった今だからこそ使える魔法があります。人生を縛る“見えない呪縛”を解き、眠っていた魔力を目覚めさせる「7つの魔法」。60秒で呪縛をほどく魔法体験／天使と魔王の LUMINA ACADEMY 魔法学校／3日間無料体験プログラム" width="768" height="1024" fetchpriority="high">
     </div>
     <div class="fv__meta">
       <p class="schedule">
