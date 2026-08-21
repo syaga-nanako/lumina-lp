@@ -1006,12 +1006,12 @@ p{margin:0 0 1.1em;}
 (function () {
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   /*
-   * 広告経路のみブリッジ経由（タグ安定化）。
+   * ブリッジは使わない（中間ページ経由だと経路タグが二重になるため）。
+   * 全経路とも store 直POST。広告は mtid のみ付与（ftid は付けない）。
    * LP3広告: ftid=wX4F928f1IJa / mtid=eKz6KK9ASSSV
-   * Y2 / S2 / fes2 など紹介・フェスは従来どおり store 直POST。
    */
   var OPTIN_BRIDGE = 'https://lumina.syagapro.com/p/lp_optin_bridge';
-  var USE_OPTIN_BRIDGE = true;
+  var USE_OPTIN_BRIDGE = false;
   var AD_STORE_ID = '4buw4uhLgecz';
   var ROUTES = {
     /* LP1互換 */
@@ -1079,14 +1079,13 @@ p{margin:0 0 1.1em;}
     try {
       var u = new URL(storeUrl, window.location.href);
       if (mtid) u.searchParams.set('mtid', mtid);
-      /* 広告ブリッジ時は ftid を付けない（mtid と登録経路が二重になるため） */
-      if (ftid && !useBridge) u.searchParams.set('ftid', ftid);
+      if (ftid && !isAdStore(storeUrl)) u.searchParams.set('ftid', ftid);
       form.setAttribute('action', u.toString());
     } catch (err) {
       form.setAttribute('action', storeUrl);
     }
     if (mtid) ensureHidden(form, 'mtid', mtid);
-    if (ftid && !useBridge) ensureHidden(form, 'ftid', ftid);
+    if (ftid && !isAdStore(storeUrl)) ensureHidden(form, 'ftid', ftid);
 
     syncForm(form);
     input.addEventListener('input', function () { syncForm(form); });
@@ -1098,7 +1097,6 @@ p{margin:0 0 1.1em;}
         input.focus();
         return;
       }
-      /* 広告のみブリッジ。経路タグは mtid のみ（ftid と二重付与しない） */
       if (useBridge && OPTIN_BRIDGE) {
         e.preventDefault();
         var bridge = new URL(OPTIN_BRIDGE);
