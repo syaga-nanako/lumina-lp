@@ -172,10 +172,10 @@ p{margin:0 0 1.1em;}
 .doors-figure__rule--top{top:2.8%;}
 .doors-figure__rule--bot{bottom:2.8%;}
 
-/* FV — 画像・文字を切らず全体表示。下の空きはPCで発生しやすいのでPCは自然高に */
+/* FV — 画像は切らず縮小して全体表示＋日程・入力・ボタンを同一画面に確保 */
 .fv{
   background:#fdfaf3;
-  min-height:100svh;
+  height:100svh;
   max-height:100svh;
   display:flex;
   flex-direction:column;
@@ -188,16 +188,21 @@ p{margin:0 0 1.1em;}
   flex:1 1 0;
   min-height:0;
   width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   overflow:hidden;
   line-height:0;
   background:#f3e6cc;
 }
 .fv__img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  object-position:center top;
   display:block;
+  max-width:100%;
+  max-height:100%;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  object-position:center center;
 }
 .fv__meta{padding:.3rem var(--wrap-pad) 0;text-align:center;flex:0 0 auto;}
 .schedule{
@@ -670,18 +675,22 @@ p{margin:0 0 1.1em;}
 @media (min-width:481px){
   body{padding:0 0 2.2rem;}
   .lp{border-radius:4px;}
-  /* PC: 縦に余白が空きすぎないよう、画像は自然な高さで全体表示 */
+  /* PCも同じ：切らず縮小＋ボタンを同一画面 */
   .fv{
-    min-height:0;
-    max-height:none;
-    overflow:visible;
+    height:100svh;
+    max-height:100svh;
+    overflow:hidden;
   }
   .fv__stage{
-    flex:0 0 auto;
+    flex:1 1 0;
+    min-height:0;
   }
   .fv__img{
+    max-width:100%;
+    max-height:100%;
+    width:auto;
     height:auto;
-    object-fit:unset;
+    object-fit:contain;
   }
 }
 </style>
