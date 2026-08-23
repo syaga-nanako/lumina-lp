@@ -1000,7 +1000,7 @@ p{margin:0 0 1.1em;}
   /*
    * ブリッジは使わない（中間ページ経由だと経路タグが二重になるため）。
    * 全経路とも store 直POST。広告は mtid のみ付与（ftid は付けない）。
-   * LP4広告: ftid/mtid 未設定のため暫定で ad3 を既定にする（UTAGE用意後に差替）。
+   * LP4広告: ftid=kQBe2lGyeLB8 / mtid=jTQnfpqiZGDG
    */
   var OPTIN_BRIDGE = 'https://lumina.syagapro.com/p/lp_optin_bridge';
   var USE_OPTIN_BRIDGE = false;
@@ -1017,10 +1017,12 @@ p{margin:0 0 1.1em;}
     '6yZEbkmfdPXf': { store: 'https://lumina.syagapro.com/r/sczoIzEaObQi/store', mtid: 'sZdnA1RgVCqD' }, /* S2 */
     '2NLe3EcXAIR6': { store: 'https://lumina.syagapro.com/r/sczoIzEaObQi/store', mtid: 'SQOloSVK3SSv' }, /* fes2 */
     /* LP3 */
-    wX4F928f1IJa: { store: 'https://lumina.syagapro.com/r/4buw4uhLgecz/store', mtid: 'eKz6KK9ASSSV' } /* ad3 */
+    wX4F928f1IJa: { store: 'https://lumina.syagapro.com/r/4buw4uhLgecz/store', mtid: 'eKz6KK9ASSSV' }, /* ad3 */
+    /* LP4 */
+    kQBe2lGyeLB8: { store: 'https://lumina.syagapro.com/r/4buw4uhLgecz/store', mtid: 'jTQnfpqiZGDG' } /* ad4 */
   };
   var STORE_DEFAULT = 'https://lumina.syagapro.com/r/4buw4uhLgecz/store';
-  var FTID_DEFAULT = 'wX4F928f1IJa';
+  var FTID_DEFAULT = 'kQBe2lGyeLB8';
 
   function isValidEmail(value) {
     return EMAIL_RE.test(String(value || '').trim());
