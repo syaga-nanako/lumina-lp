@@ -172,11 +172,10 @@ p{margin:0 0 1.1em;}
 .doors-figure__rule--top{top:2.8%;}
 .doors-figure__rule--bot{bottom:2.8%;}
 
-/* FV — 画像＋日程＋入力＋ボタンを初回画面に。登録後〜はスクロール
-   横幅優先で足りない分は下部を切る（上部キャッチは残す） */
+/* FV — 横拡張した実画像で領域を埋め、文字は切れない縮尺＋ボタン同一画面 */
 .fv{
   background:#fdfaf3;
-  min-height:100svh;
+  height:100svh;
   max-height:100svh;
   display:flex;
   flex-direction:column;
@@ -184,16 +183,23 @@ p{margin:0 0 1.1em;}
   padding-bottom:.35rem;
   overflow:hidden;
 }
-.fv__img{
-  width:100%;
+.fv__stage{
+  position:relative;
   flex:1 1 0;
   min-height:0;
-  object-fit:cover;
-  object-position:center top;
-  display:block;
-  background:#fdfaf3;
+  width:100%;
+  overflow:hidden;
+  line-height:0;
+  background:#0a1a3a;
 }
-.fv__meta{padding:.35rem var(--wrap-pad) 0;text-align:center;flex:0 0 auto;}
+.fv__img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center center;
+}
+.fv__meta{padding:.3rem var(--wrap-pad) 0;text-align:center;flex:0 0 auto;}
 .schedule{
   border-top:1px solid var(--line);border-bottom:1px solid var(--line);
   padding:.45rem .1rem;margin:0;font-size:clamp(.86rem,3.5vw,1rem);letter-spacing:.05em;
@@ -664,17 +670,17 @@ p{margin:0 0 1.1em;}
 @media (min-width:481px){
   body{padding:0 0 2.2rem;}
   .lp{border-radius:4px;}
-  /* PC: 画面高さで上部文字が欠けないよう、FV画像は全体表示 */
   .fv{
-    min-height:0;
-    max-height:none;
-    overflow:visible;
+    height:100svh;
+    max-height:100svh;
+    overflow:hidden;
   }
+  .fv__stage{flex:1 1 0;min-height:0;}
   .fv__img{
-    flex:0 0 auto;
-    height:auto;
-    object-fit:unset;
-    object-position:center top;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center center;
   }
 }
 </style>
@@ -682,9 +688,11 @@ p{margin:0 0 1.1em;}
 <body>
 <div class="lp">
 
-  <!-- 1. FV（LP4: fv-main-4.jpg） -->
+  <!-- 1. FV（LP4: fv-main-4.jpg 横拡張） -->
   <header class="fv">
-    <img class="fv__img" src="assets/fv-main-4.jpg" alt="大人になった今だからこそ使える魔法があります。人生を縛る“見えない呪縛”を解き、眠っていた魔力を目覚めさせる「7つの魔法」。60秒で呪縛をほどく魔法体験／天使と魔王の LUMINA ACADEMY 魔法学校／3日間無料体験プログラム" width="768" height="1024" fetchpriority="high">
+    <div class="fv__stage">
+      <img class="fv__img" src="assets/fv-main-4.jpg" alt="大人になった今だからこそ使える魔法があります。人生を縛る“見えない呪縛”を解き、眠っていた魔力を目覚めさせる「7つの魔法」。60秒で呪縛をほどく魔法体験／天使と魔王の LUMINA ACADEMY 魔法学校／3日間無料体験プログラム" width="1536" height="1024" fetchpriority="high">
+    </div>
     <div class="fv__meta">
       <p class="schedule">
         <span class="schedule__title">◆オンラインプログラム開催スケジュール◆</span>
