@@ -1007,9 +1007,9 @@ p{margin:0 0 1.1em;}
 (function () {
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   /*
-   * ブリッジは使わない（中間ページ経由だと経路タグが二重になるため）。
-   * 全経路とも store 直POST。広告は mtid のみ付与（ftid は付けない）。
-   * LP4広告: ftid=kQBe2lGyeLB8 / mtid=jTQnfpqiZGDG
+   * store 直POSTでオプトインし、完了後はオープンチャット誘導へ遷移。
+   * 広告LP → opcha_ad / それ以外 → opcha_all
+   * 広告は mtid のみ付与（ftid は付けない）。
    */
   var OPTIN_BRIDGE = 'https://lumina.syagapro.com/p/lp_optin_bridge';
   var USE_OPTIN_BRIDGE = false;
@@ -1061,6 +1061,31 @@ p{margin:0 0 1.1em;}
     return String(url || '').indexOf('/r/' + AD_STORE_ID + '/') !== -1;
   }
 
+  function thanksUrlFor(store) {
+    return isAdStore(store)
+      ? 'https://lumina.syagapro.com/p/opcha_ad'
+      : 'https://lumina.syagapro.com/p/opcha_all';
+  }
+  function buildThanksUrl(store, mtidVal) {
+    var u = new URL(thanksUrlFor(store));
+    if (mtidVal) u.searchParams.set('mtid', mtidVal);
+    return u.toString();
+  }
+  function postOptinThenThanks(form, storeAction, thanks) {
+    var iframeName = 'optin_frame_' + String(Date.now());
+    var iframe = document.createElement('iframe');
+    iframe.name = iframeName;
+    iframe.setAttribute('title', 'optin');
+    iframe.style.cssText = 'position:absolute;width:0;height:0;border:0;visibility:hidden';
+    document.body.appendChild(iframe);
+    form.setAttribute('target', iframeName);
+    form.setAttribute('action', storeAction);
+    form.submit();
+    window.setTimeout(function () {
+      window.location.href = thanks;
+    }, 900);
+  }
+
   var params = new URLSearchParams(window.location.search);
   var ftid = params.get('ftid') || '';
   var route = ROUTES[ftid] || null;
@@ -1072,7 +1097,8 @@ p{margin:0 0 1.1em;}
   var storeUrl = route ? route.store : STORE_DEFAULT;
   var mtid = route ? route.mtid : (params.get('mtid') || ROUTES[FTID_DEFAULT].mtid);
   var registerUrl = toRegisterUrl(storeUrl);
-  var useBridge = USE_OPTIN_BRIDGE && isAdStore(storeUrl) && !!mtid;
+  var thanksUrl = buildThanksUrl(storeUrl, mtid);
+  var useBridge = false;
 
   document.querySelectorAll('.cta-form').forEach(function (form) {
     var input = form.querySelector('.js-cta-email');
@@ -1094,20 +1120,14 @@ p{margin:0 0 1.1em;}
     input.addEventListener('input', function () { syncForm(form); });
     input.addEventListener('change', function () { syncForm(form); });
     form.addEventListener('submit', function (e) {
+      e.preventDefault();
       if (!isValidEmail(input.value) || btn.getAttribute('aria-disabled') === 'true') {
-        e.preventDefault();
         syncForm(form);
         input.focus();
         return;
       }
-      if (useBridge && OPTIN_BRIDGE) {
-        e.preventDefault();
-        var bridge = new URL(OPTIN_BRIDGE);
-        bridge.searchParams.set('mail', String(input.value || '').trim());
-        bridge.searchParams.set('mtid', mtid);
-        bridge.searchParams.set('store', storeUrl);
-        window.location.href = bridge.toString();
-      }
+      var storeAction = form.getAttribute('action') || storeUrl;
+      postOptinThenThanks(form, storeAction, thanksUrl);
     });
   });
 })();
