@@ -191,14 +191,15 @@ p{margin:0 0 1.1em;}
   width:100%;
   overflow:hidden;
   line-height:0;
-  background:#f3eaf8; /* FV余白を画像トーンに合わせる */
+  background:#f3eaf8; /* 万一の端を画像トーンに合わせる */
 }
 .fv__img{
   display:block;
   width:100%;
   height:100%;
-  object-fit:contain; /* 縦長FV：文字・人物の見切れを優先して回避 */
-  object-position:center center;
+  /* 上下余白なし。左右だけトリミングし、顔と中央文言を残す */
+  object-fit:cover;
+  object-position:54% 47%;
 }
 .fv__meta{padding:.3rem var(--wrap-pad) 0;text-align:center;flex:0 0 auto;}
 .schedule{
@@ -680,8 +681,8 @@ p{margin:0 0 1.1em;}
   .fv__img{
     width:100%;
     height:100%;
-    object-fit:contain;
-    object-position:center center;
+    object-fit:cover;
+    object-position:54% 47%;
   }
 }
 </style>
