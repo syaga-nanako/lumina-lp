@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="description" content="TimeWaverセラピー｜心・身体・現実を情報フィールドから整える">
+  <title>TimeWaverセラピー｜心・身体・現実を情報フィールドから整える</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{--ink:#17213d;--navy:#101936;--violet:#7569a8;--lav:#eeeaf8;--mist:#f8f6fb;--gold:#c8a86b;--line:#ded9eb;--white:#fff;--shadow:0 18px 52px rgba(31,27,74,.11)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:#fff;font-family:"Noto Sans JP",sans-serif;line-height:1.9;letter-spacing:.025em}img{display:block;max-width:100%;height:auto}a{color:inherit}.wrap{width:min(1080px,calc(100% - 40px));margin-inline:auto}.narrow{width:min(820px,calc(100% - 40px));margin-inline:auto}.serif{font-family:"Noto Serif JP",serif}.en{font-family:"Cormorant Garamond",serif;letter-spacing:.13em}.eyebrow{margin:0 0 9px;color:var(--violet);font-size:14px;font-weight:700;letter-spacing:.18em;text-transform:uppercase}.section{padding:104px 0}.section:nth-of-type(even){background:var(--mist)}.section-head{text-align:center;margin-bottom:52px}.section-head h2{font:600 clamp(27px,4.2vw,42px)/1.55 "Noto Serif JP",serif;margin:0}.section-head h2:after{content:"";display:block;width:52px;height:1px;margin:24px auto 0;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+    .hero{position:relative;min-height:860px;overflow:hidden;background:#f6f3fb}.hero:before{content:"";position:absolute;inset:0;background:url("../../assets/timewaver/hero-field.png") center top/cover no-repeat}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,20,51,.06) 0,rgba(255,255,255,.05) 34%,rgba(250,248,252,.38) 100%)}.hero-inner{position:relative;z-index:1;min-height:860px;display:flex;align-items:flex-end;justify-content:center;text-align:center;padding:150px 20px 88px}.hero-copy{max-width:820px;padding:44px 54px;background:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.9);box-shadow:0 24px 80px rgba(17,24,57,.14);backdrop-filter:blur(10px)}.hero-kicker{font-size:13px;font-weight:700;letter-spacing:.17em;color:#6c6198}.hero h1{font:600 clamp(31px,5.4vw,58px)/1.45 "Noto Serif JP",serif;margin:15px 0 22px}.hero h1 small{display:block;font:500 .42em/1.7 "Noto Sans JP",sans-serif;letter-spacing:.1em}.hero-lead{font-size:clamp(16px,2vw,20px);margin:0 auto 30px}.button{display:inline-flex;align-items:center;justify-content:center;min-width:300px;padding:18px 28px;border-radius:999px;color:#fff;text-decoration:none;font-weight:700;background:linear-gradient(135deg,#71649c,#192342);box-shadow:0 13px 30px rgba(31,27,74,.24);transition:.25s}.button:hover{transform:translateY(-2px);box-shadow:0 17px 38px rgba(31,27,74,.3)}
+    .check-list{display:grid;gap:14px;max-width:760px;margin:0 auto;padding:0;list-style:none}.check-list li{position:relative;padding:20px 24px 20px 58px;background:#fff;border:1px solid var(--line);box-shadow:0 8px 24px rgba(52,43,91,.05)}.check-list li:before{content:"✓";position:absolute;left:23px;color:var(--gold);font-weight:700}.intro-card{padding:55px clamp(24px,6vw,68px);background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)}.intro-card .lead{text-align:center;font:600 24px/1.7 "Noto Serif JP",serif}.feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}.feature{position:relative;padding:38px;background:#fff;border-top:3px solid var(--violet);box-shadow:var(--shadow)}.feature .num{font:600 54px/1 "Cormorant Garamond",serif;color:#d9d3e9}.feature h3{font:600 23px/1.55 "Noto Serif JP",serif;margin:8px 0 6px}.feature .sub{color:var(--violet);font-weight:700}.feature ul{padding-left:1.4em}.image-pair{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:34px}.image-pair figure,.media-card{margin:0;padding:14px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)}.image-pair figcaption{padding:10px 4px 2px;text-align:center;font-size:13px;color:#666}.recommend{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}.recommend div{padding:20px 22px;background:rgba(255,255,255,.78);border:1px solid var(--line)}.recommend div:before{content:"✦";color:var(--gold);margin-right:10px}.layer-copy{margin-bottom:34px}.layer-image{display:grid;gap:22px}.layer-image img{margin:auto;background:#fff;padding:10px;border:1px solid var(--line);box-shadow:var(--shadow)}
+    .offer{background:linear-gradient(155deg,#111936,#2b2450)!important;color:#fff}.offer .section-head .eyebrow{color:#d9c79a}.offer .section-head h2:after{background:linear-gradient(90deg,transparent,#d9c79a,transparent)}.limited-label{display:inline-block;padding:8px 20px;border:1px solid rgba(218,199,154,.65);color:#e4d5b2;font-weight:700;letter-spacing:.08em}.countdown-wrap{text-align:center;margin:0 auto 45px}.countdown-title{font:600 clamp(22px,4vw,34px)/1.5 "Noto Serif JP",serif;margin:18px 0}.countdown{display:flex;justify-content:center;gap:9px}.count-box{min-width:88px;padding:14px 8px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18)}.count-box b{display:block;font:600 36px/1.1 "Cormorant Garamond",serif}.count-box span{font-size:11px;color:#d8d4e4}.plans{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:900px;margin:auto}.plan{display:flex;flex-direction:column;padding:40px;background:#fff;color:var(--ink);box-shadow:0 22px 55px rgba(0,0,0,.23)}.plan h3{font:600 27px/1.5 "Noto Serif JP",serif;margin:0}.plan-meta{color:#7569a8;font-weight:700}.price{margin:22px 0}.price s{display:block;color:#888;font-size:18px}.price strong{font-size:38px;color:#8e6131}.plan ul{flex:1;padding-left:1.25em}.plan-note{text-align:center;margin-top:30px;color:#d8d4e4}.plan .button{width:100%;min-width:0}
+    .voice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}.voice{padding:34px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)}.voice.featured{grid-column:1/-1;background:#f7f3fb}.voice h3{font:600 18px/1.6 "Noto Serif JP",serif;color:var(--violet);margin-top:0}.voice ul{padding-left:1.3em}.faq{border-top:1px solid var(--line)}.faq details{border-bottom:1px solid var(--line);padding:0 8px}.faq summary{cursor:pointer;list-style:none;padding:25px 45px 25px 0;font-weight:700;position:relative}.faq summary:after{content:"＋";position:absolute;right:4px;color:var(--violet)}.faq details[open] summary:after{content:"−"}.faq p{margin:0;padding:0 0 27px}.profile{display:grid;grid-template-columns:320px 1fr;gap:54px;align-items:start}.profile-photo{position:relative}.profile-photo:after{content:"";position:absolute;z-index:-1;inset:18px -18px -18px 18px;border:1px solid var(--gold)}.profile h2{font:600 34px/1.5 "Noto Serif JP",serif;margin:0 0 20px}.credentials{padding:0;list-style:none;color:#655a8d;font-weight:700}.closing{text-align:center;padding:105px 20px;color:#fff;background:linear-gradient(rgba(13,20,47,.84),rgba(13,20,47,.94)),url("../../assets/timewaver/hero-field.png") center/cover}.closing h2{font:600 clamp(27px,4.5vw,43px)/1.55 "Noto Serif JP",serif}.closing .button{background:linear-gradient(135deg,#d2b576,#a67f3f);color:#171a2c}.disclaimer{font-size:12px;max-width:820px;margin:35px auto 0;color:#cbc9d2}.footer{text-align:center;padding:28px;background:#0b1128;color:#b9b8c3;font-size:12px}.sticky{display:none}
+    @media(max-width:760px){body{font-size:15px;line-height:1.85}.wrap,.narrow{width:min(100% - 28px,680px)}.section{padding:76px 0}.section-head{margin-bottom:38px}.hero,.hero-inner{min-height:760px}.hero:before{background-position:50% top}.hero-inner{padding:125px 14px 45px}.hero-copy{padding:30px 19px}.hero h1{font-size:32px}.hero-lead{font-size:15px}.button{min-width:0;width:100%;padding:17px 20px}.feature-grid,.recommend,.image-pair,.plans,.voice-grid,.profile{grid-template-columns:1fr}.feature,.plan,.voice{padding:28px 22px}.voice.featured{grid-column:auto}.profile{gap:38px}.profile-photo{max-width:290px;margin:auto}.count-box{min-width:65px}.count-box b{font-size:30px}.countdown{gap:5px}.sticky{display:block;position:fixed;z-index:30;bottom:0;left:0;right:0;padding:9px 12px calc(9px + env(safe-area-inset-bottom));background:rgba(10,16,39,.93);backdrop-filter:blur(7px)}.sticky .button{padding:13px 15px;font-size:14px}.footer{padding-bottom:92px}}
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner"><div class="hero-copy">
+      <p class="hero-kicker">TIMEWAVER THERAPY</p>
+      <h1><small>心・身体・現実に現れる問題を</small>「周波数と情報フィールド」から<br>読み解き、整える</h1>
+      <p class="hero-lead">情報フィールドにアクセスすると、現実は驚くほどスムーズに動き出します。</p>
+      <a class="button" href="#menu">セッションメニューを見る</a>
+    </div></div>
+  </header>
+
+  <main>
+    <section class="section"><div class="narrow">
+      <div class="section-head"><p class="eyebrow en">HAVE YOU EVER FELT</p><h2>こんなことはありませんか？</h2></div>
+      <ul class="check-list"><li>頑張っているのに、なぜか結果が出ない</li><li>同じ問題が何度も繰り返される</li><li>人間関係やお金の流れが滞っている</li><li>心や身体の不調の原因がよく分からない</li><li>自分の可能性をもっと発揮したいのにブレーキがかかる</li></ul>
+    </div></section>
+
+    <section class="section"><div class="narrow">
+      <div class="section-head"><p class="eyebrow en">INFORMATION FIELD</p><h2>情報フィールドを整え、<br>望む現実を創造する</h2></div>
+      <div class="intro-card"><p class="lead">あなたは、人生のハンドルを握っていますか？</p><p>もし、「情報フィールド」が整っていないとしたら、いくら頑張っても、現実はあなたの望む方向になかなか動いてくれません。</p><p>その原因は、「タイムウェーバー」が読み解く「目に見えない情報」にあるかもしれません。</p><p>ドイツで開発された最先端の波動調整機器「タイムウェーバー」を使用し、あなたの人生、心身、現実を形作っている「情報フィールド」に直接アクセスし、分析・調整を行います。</p></div>
+    </div></section>
+
+    <section class="section"><div class="wrap">
+      <div class="section-head"><p class="eyebrow en">WHAT TIMEWAVER CAN DO</p><h2>タイムウェーバーでできること</h2></div>
+      <div class="feature-grid">
+        <article class="feature"><div class="num">01</div><h3>現状の根本原因を特定</h3><p class="sub">目に見えない情報を、周波数レベルで洗い出す</p><ul><li><b>目に見えない情報の分析：</b>潜在意識、過去のトラウマ、家系のパターン、エネルギー的なブロックなど、顕在意識では気づけない「問題の根源」を周波数レベルで洗い出します。</li><li><b>人生のあらゆる側面を網羅：</b>健康、仕事、人間関係、経済状況、精神性など、多岐にわたるデータベースから、あなたの現状に影響を与えている情報を特定します。</li></ul></article>
+        <article class="feature"><div class="num">02</div><h3>最適な情報の調整・注入</h3><p class="sub">情報フィールドのバランスを整え、現実化をサポート</p><ul><li><b>周波数の最適化：</b>特定されたマイナスの情報やブロックに対し、望む現実を創造するための最適な周波数（情報）を遠隔で送信し、情報フィールドのバランスを整えます。</li><li><b>現実化のサポート：</b>調整された情報フィールドは、あなた自身や環境に影響を与え、現実がスムーズに動き出すのをサポートします。</li></ul></article>
+      </div>
+      <div class="image-pair"><figure><img src="../../assets/timewaver/analysis-family.png" alt="家族関係やカルマパターンの分析画面"><figcaption>家族関係やカルマパターンの分析画面</figcaption></figure><figure><img src="../../assets/timewaver/analysis-chakra.png" alt="チャクラコヒーレンスの調整画面"><figcaption>チャクラコヒーレンスの調整画面</figcaption></figure></div>
+    </div></section>
+
+    <section class="section"><div class="narrow">
+      <div class="section-head"><p class="eyebrow en">FOR YOU, IF...</p><h2>こんな方におすすめします</h2></div>
+      <div class="recommend"><div>長年の課題や繰り返される問題から根本的に解放されたい方</div><div>目標達成のブレーキとなっている見えない要因を取り除きたい方</div><div>心身のバランスを整え、本来の健康と活力を取り戻したい方</div><div>自分の才能や可能性を最大限に発揮し、人生を加速させたい方</div><div>周波数やエネルギーといった、新しい視点からのアプローチに関心がある方</div></div>
+    </div></section>
+
+    <section class="section"><div class="narrow">
+      <div class="section-head"><h2>人生には「見えない原因の階層」があります</h2></div>
+      <div class="layer-copy"><p>私たちは何か問題が起きると、「気持ちの問題」「身体の問題」だけだと思いがちです。しかし実際には、その原因はもっと深いところにあることが少なくありません。</p><p>なかなか行動できない、人間関係がうまくいかない、同じパターンを何度も繰り返す、原因が分からない不調が続く、やる気が出ない、望む未来に進めない――こうした事象は、一つの原因ではなく、いくつもの階層が影響し合っていることがあります。</p><p>TimeWaverでは、その人全体を7つの階層から立体的に分析し、現在どこにバランスの乱れがあるのかを読み解いていきます。</p></div>
+      <div class="layer-image"><img src="../../assets/timewaver/layers-structure.jpg" alt="タイムウェーバーの階層構造"><img src="../../assets/timewaver/seven-layers.jpg" alt="7つの階層図"></div>
+    </div></section>
+
+    <section class="section offer" id="menu"><div class="wrap">
+      <div class="section-head"><p class="eyebrow en">LIMITED TIME OFFER</p><h2>ルミナ・アカデミー<br>体験プログラム参加者限定企画</h2></div>
+      <div class="countdown-wrap"><span class="limited-label">本日より3日間の特別価格</span><p class="countdown-title">特別価格終了まで</p><div class="countdown" role="timer" aria-live="polite"><div class="count-box"><b id="cd-day">03</b><span>日</span></div><div class="count-box"><b id="cd-hour">00</b><span>時間</span></div><div class="count-box"><b id="cd-min">00</b><span>分</span></div><div class="count-box"><b id="cd-sec">00</b><span>秒</span></div></div></div>
+      <div class="plans">
+        <article class="plan"><h3>認定セラピー</h3><p class="plan-meta">1時間 ／ 4週間調整付き</p><div class="price"><s>55,000円</s><strong>38,500円</strong></div><ul><li>お名前・生年月日・お写真に基づき、事前分析をします。</li><li>チャクラ調整（7つのチャクラの状態を見て、バランスを整えます）</li><li>経絡解析（感情と深く関わる経絡の状態を解析し調整します）</li><li>環境・物質・エネルギー・精神・カルマ・意識の6階層にわたり分析し調整します。</li><li>テーマに合わせて向き合うべき事を知り、全体のバランスを図ります。</li></ul><a class="button" href="https://ws.formzu.net/dist/S903347297/">セッションを申し込む</a></article>
+        <article class="plan"><h3>統合セラピー</h3><p class="plan-meta">1時間半 ／ 4週間調整付き</p><div class="price"><s>75,000円</s><strong>55,000円</strong></div><ul><li>現在のテーマについてコーチングをしつつ、TimeWaverにて課題を特定します。</li><li>NLP（神経言語プログラミング）を活用しながら、望む状態へと導きます。</li><li>テーマに合わせて、TimeWaverでさらなる解析を行います。（例：人間関係・先祖の調整・タイムライン・コーチング・メンタルブロック等）</li><li>TimeWaver QI — ChatGPTなどのAIも活用</li></ul><a class="button" href="https://ws.formzu.net/dist/S903347297/">セッションを申し込む</a></article>
+      </div>
+      <p class="plan-note">※いずれも何度か継続して受けることが推奨されています。</p>
+    </div></section>
+
+    <section class="section"><div class="wrap">
+      <div class="section-head"><p class="eyebrow en">CLIENT STORIES</p><h2>受けた方のお声</h2></div>
+      <div class="voice-grid">
+        <article class="voice featured"><h3>40代　男性　会社経営</h3><p>TimeWaverを使って実際にこのような結果が出ています。</p><ul><li>年商1.5億円から10億円以上になった</li><li>広告の費用対効果が３倍以上になった</li><li>新規集客が３倍になった</li><li>沖縄移住の物件がありえない条件でOKになった</li><li>6000万円の補助金が通った</li><li>毎回キャンペーンの目標額を達成できるようになった</li><li>求人で素晴らしい人が来るようになった</li></ul></article>
+        <article class="voice"><h3>50代　女性　セラピスト</h3><p>最初はオンラインで本当に分かるのか半信半疑でしたが、体調や心の状態、環境まで的確に言い当てられ、とても驚きました。</p><p>長年感じていた「理由の分からない悲しみ」も、過去からの影響だと分かり、大きな安心につながりました。原因が分かることで、対処できるようになったことがとても嬉しかったです。</p><p>また、体に合わない食材（青魚）も見抜かれ、日常の不調とのつながりに気づくことができました。セッション中はチャクラやエネルギーの変化が数値で見え、整っていく感覚を実感でき、心と時間の安定を感じられました。</p><p>心の健康診断として、定期的に受ける価値があると感じました。</p></article>
+        <article class="voice"><h3>40代　女性　セラピスト</h3><p>安心できるやわらかな雰囲気の中で、タイムウェーバーによる明晰な解析を受けることができ、とても贅沢なセッションでした。チャクラの活性度や目標設定のレベルが、色や数値で見える化され、とても興味深く感じました。さらに、16タイプの分析からは、今後の人生やお仕事の方向性について大きなヒントをいただき、深い納得感がありました。</p><p>タイムウェーバーから提案されたアファメーションの言葉や、不思議なシンボルのイメージ、バッチフラワーや食事のアドバイスもとても印象的で、早速日常に取り入れています。</p><p>セッション後もしばらく続くエネルギーのサポートと、勧めていただいたバッチフラワーとの相乗効果もあり、この数日で情熱に火が灯ったように、ひらめきや行動力が高まってきました。なぜか翌日には道端で蛇に遭遇し、自分の転機を感じる出来事にもなりました。</p><p>タイムウェーバーのセッションは、自分の意識を超えた本来の自分に出会える特別な体験だと感じています。由利奈先生からのアドバイスも温かく愛に満ちていて、とても満たされた時間でした。心より感謝しております。ぜひ多くの方におすすめしたいセッションです。</p></article>
+        <article class="voice"><h3>60代　男性　会社経営</h3><p>気づけば、もう4回目？5回目？の継続セッションになります。正直に言うと――毎回、驚きの連続です。「そんなことまで分かるの？」という体験が、自然と起きていきます。</p><p>今回、セッション中に出てきたメッセージは、「左手の窓が汚れていませんか？ 拭いてあげてください。」一瞬、ドキッとしました。乱れた波動の部位を適切な時間設定でTimeWaverから調整してくれる。これ、本当に"機械"なのでしょうか？</p><p>私の実感としては、派手な奇跡ではなく、「生活の中のズレ」をそっと整えてくれる。小さな調整が積み重なって、気づけば心も空間も軽くなっている。これが、私が継続している理由です。</p></article>
+        <article class="voice"><h3>50代　男性　コーチ</h3><p>タイムウェーバーという桁外れな機械の性能はもとより、本当に大切なことはそれを扱いお伝えしてくれる人の方だと気付かせてくれるような貴重な体験でした。診断結果もドンピシャな内容でしたが、自分のことだけに気付けてはいるものの活かせていない…そんな気付きも改めてありました。</p><p>また一方で知らずの内に自分の宿命に沿った人生を歩んでいたと感じる面もあり、本当に経験してみて良かったと思います。他の波動体験に比べれば少しお高めの価格に見えますがコスパは最高に良い内容です。ご興味があることなら信じて経験してみる道を強くオススメ致します。</p></article>
+        <article class="voice"><h3>50代　女性　看護師</h3><p>私は、タイムウェーバーを通して、本来の自分と再会することができました。これまで私は、不安や恐怖に包まれ、自分を見失い、何をしたいのかも分からない苦しい状態にいました。</p><p>しかしセッションを受けて、「自分は本来こういう存在だった」と深く腑に落ち、進むべき道が明確になりました。まるで自分の取扱説明書を受け取ったような感覚です。受けてから数ヶ月、恐怖や不安は小さくなり、日々に振り回されなくなりました。</p><p>今では、毎日が楽しく、人生が明るく変わっています。自分に優しくできるようになり、家族や周りの人との関係も自然と良いものへと変化しました。悪循環が好循環へと変わり、幸せと希望を感じながら生きられています。心から感謝しています。</p></article>
+      </div>
+    </div></section>
+
+    <section class="section"><div class="narrow">
+      <div class="section-head"><p class="eyebrow en">QUESTIONS & ANSWERS</p><h2>よく聞かれる質問</h2></div>
+      <div class="faq"><details><summary>どんな仕組みなのですか？</summary><p>人の状態は、思考・感情・身体・環境などが相互に影響し合う「情報のパターン」として捉えられます。TimeWaverでは、そのパターンを分析し、バランスや偏りを可視化することで、全体の状態を把握していきます。ラジオニクスの考え方に基づき、情報の共鳴や相関をもとに読み取るアプローチです。（ラジオニクスとは、人や物が持つ見えない「情報（パターンや周波数）」を読み取り、バランスを整えるという考え方です）</p></details><details><summary>なぜ、いろいろなことがわかり、変化が起こるのでしょうか？</summary><p>無意識にある思考や感情のパターンは、自分では気づきにくいものです。それが整理されて明確になることで、認識や選択が変わり、行動が変化します。また、情報のバランスが整うことで、全体の調和がとれ、結果として現実の変化につながりやすくなります。</p></details><details><summary>定期的に受ける必要がありますか？</summary><p>必須ではありませんが、状態のメンテナンス、変化の定着、次のステップへの進展などの目的で、少なくとも3回以上受けることをお勧めしています。定期的に受ける方達も多くいらっしゃいます。</p></details></div>
+    </div></section>
+
+    <section class="section"><div class="wrap profile">
+      <div class="profile-photo"><img src="../../assets/timewaver/yurina-profile.jpg" alt="白石由利奈"></div>
+      <div><p class="eyebrow en">THERAPIST PROFILE</p><h2>白石 由利奈</h2><p>神奈川県逗子市生まれ。東京都世田谷区在住。</p><p>1990年代よりNLP（神経言語プログラミング）やバッチ博士のフラワーレメディの国内での普及と教育、セラピストやトレーナーの養成等に従事。</p><p>バッチフラワーやNLP、心理に関連する分野で、講演、各種セミナーや、コーチング、コンサルティング、薬に頼らない心療内科クリニックでのセラピーなどを30年にわたって1万人以上に実践。</p><p>NLP共同創始者よりNLPマスタートレーナーの認定を受けているアジア唯一の女性である。</p><ul class="credentials"><li>TimeWaverセラピスト®・トレーナー</li><li>公認心理師</li><li>株式会社SEEDS OF LIGHT代表取締役</li><li>日本フラワーレメディセンター代表</li></ul><a href="mailto:yurinash@happy-sol.com">yurinash@happy-sol.com</a></div>
+    </div></section>
+
+    <section class="closing"><p class="eyebrow en">BEGIN YOUR SESSION</p><h2>情報フィールドを整え、<br>本来の自分と現実を取り戻す一歩を</h2><p>ルミナ・アカデミー 体験プログラム参加者限定企画<br>本日より3日間の特別価格</p><a class="button" href="https://ws.formzu.net/dist/S903347297/">セッションを申し込む</a><p class="disclaimer">※本サービスは医療行為、診断、治療を目的としたものではありません。心身の状態や人生の方向性に関する気づきやサポートを提供するものであり、医療機関の代替とはなりません。体調に不安がある場合は、医師など専門機関へご相談ください。</p></section>
+  </main>
+  <div class="sticky"><a class="button" href="#menu">3日間の特別価格を見る</a></div>
+  <footer class="footer">© SEEDS OF LIGHT — TimeWaver Therapy by Yurina Shiraishi</footer>
+  <script>
+    (()=>{const KEY='lumina_timewaver_offer_started_v1',SPAN=72*60*60*1000;let start=Number(localStorage.getItem(KEY));if(!start||start>Date.now()){start=Date.now();localStorage.setItem(KEY,String(start))}const end=start+SPAN,$=id=>document.getElementById(id),pad=n=>String(n).padStart(2,'0');function tick(){const left=Math.max(0,end-Date.now()),days=Math.floor(left/86400000),hours=Math.floor(left%86400000/3600000),mins=Math.floor(left%3600000/60000),secs=Math.floor(left%60000/1000);$('cd-day').textContent=pad(days);$('cd-hour').textContent=pad(hours);$('cd-min').textContent=pad(mins);$('cd-sec').textContent=pad(secs)}tick();setInterval(tick,1000)})();
+  </script>
+</body>
+</html>
