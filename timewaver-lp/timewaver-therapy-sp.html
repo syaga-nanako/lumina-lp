@@ -786,7 +786,7 @@
 
         <div class="countdown" aria-live="polite">
           <p class="countdown__label">特別価格終了まで</p>
-          <p class="countdown__timer js-countdown">00日 00時間 00分 00秒</p>
+          <p class="countdown__timer js-countdown">0日 00時間 00分 00秒</p>
         </div>
 
         <article class="plan">
@@ -890,7 +890,7 @@
         <p class="body-text">ルミナ・アカデミー体験プログラム参加者限定企画。<br />本日より3日間の特別価格でご案内しています。</p>
         <div class="countdown" aria-live="polite">
           <p class="countdown__label">特別価格終了まで</p>
-          <p class="countdown__timer js-countdown">00日 00時間 00分 00秒</p>
+          <p class="countdown__timer js-countdown">0日 00時間 00分 00秒</p>
         </div>
         <a class="cta cta--block" href="https://lumina.syagapro.com/p/timewaver">セッションを申し込む</a>
       </div>
@@ -936,7 +936,7 @@
         var hours = Math.floor((totalSec % 86400) / 3600);
         var minutes = Math.floor((totalSec % 3600) / 60);
         var seconds = totalSec % 60;
-        var text = pad(days) + "日 " + pad(hours) + "時間 " + pad(minutes) + "分 " + pad(seconds) + "秒";
+        var text = days + "日 " + pad(hours) + "時間 " + pad(minutes) + "分 " + pad(seconds) + "秒";
         for (var i = 0; i < nodes.length; i++) nodes[i].textContent = text;
       }
 
