@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">TimeWaverが読み解く7つの階層</title>
+  <desc id="desc">意識、カルマ、メンタル、感情、エネルギー、物質・身体、環境の7階層を示す図</desc>
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fffefb"/>
+      <stop offset="0.55" stop-color="#f7f4ed"/>
+      <stop offset="1" stop-color="#eef4f5"/>
+    </linearGradient>
+    <radialGradient id="core">
+      <stop offset="0" stop-color="#fffef7"/>
+      <stop offset="0.56" stop-color="#ead29a"/>
+      <stop offset="1" stop-color="#b78b43"/>
+    </radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#14263a" flood-opacity="0.12"/>
+    </filter>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+    <style>
+      .jp{font-family:"Noto Sans JP","Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif;fill:#17243b}
+      .sans{font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;fill:#425268}
+      .en{font-family:"Cormorant Garamond",Georgia,serif;fill:#9a7438;letter-spacing:2px}
+      .num{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;fill:#b28a46}
+    </style>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#paper)"/>
+  <circle cx="946" cy="162" r="165" fill="#ffffff" opacity="0.62" filter="url(#glow)"/>
+  <circle cx="85" cy="1040" r="190" fill="#dcebed" opacity="0.5" filter="url(#glow)"/>
+  <path d="M70 160H1130" stroke="#c8a86b" stroke-width="1" opacity="0.55"/>
+
+  <text x="70" y="82" class="en" font-size="24">SEVEN INFORMATION LAYERS</text>
+  <text x="70" y="132" class="jp" font-size="38" font-weight="600">TimeWaverが読み解く7つの階層</text>
+
+  <g transform="translate(850 575)" filter="url(#shadow)">
+    <circle r="330" fill="#edf3f4" stroke="#a9c0c4" stroke-width="2"/>
+    <circle r="280" fill="#f4ede4" stroke="#d1bfa0" stroke-width="2"/>
+    <circle r="230" fill="#edf3ed" stroke="#aac3ab" stroke-width="2"/>
+    <circle r="180" fill="#f4ede5" stroke="#d1b79d" stroke-width="2"/>
+    <circle r="130" fill="#eef0f5" stroke="#aeb8cc" stroke-width="2"/>
+    <circle r="80" fill="#f7f1df" stroke="#cbaa5d" stroke-width="2"/>
+    <circle r="36" fill="url(#core)" stroke="#fff8df" stroke-width="3"/>
+    <circle r="13" fill="#fffdf5" opacity="0.9"/>
+    <g stroke="#c8a86b" stroke-width="1.5" opacity="0.65">
+      <path d="M0-365V-336"/><path d="M0 336V365"/><path d="M-365 0H-336"/><path d="M336 0H365"/>
+    </g>
+  </g>
+
+  <g>
+    <g transform="translate(70 238)">
+      <circle cx="15" cy="15" r="15" fill="#edf3f4" stroke="#a9c0c4"/>
+      <text x="50" y="25" class="num" font-size="29">06</text>
+      <text x="108" y="24" class="jp" font-size="24" font-weight="600">環境</text>
+      <text x="108" y="53" class="sans" font-size="17">土地・建物・住環境・人間関係</text>
+    </g>
+    <g transform="translate(70 318)">
+      <circle cx="15" cy="15" r="15" fill="#f4ede4" stroke="#d1bfa0"/>
+      <text x="50" y="25" class="num" font-size="29">05</text>
+      <text x="108" y="24" class="jp" font-size="24" font-weight="600">物質・身体</text>
+      <text x="108" y="53" class="sans" font-size="17">身体・栄養・物質</text>
+    </g>
+    <g transform="translate(70 398)">
+      <circle cx="15" cy="15" r="15" fill="#edf3ed" stroke="#aac3ab"/>
+      <text x="50" y="25" class="num" font-size="29">04</text>
+      <text x="108" y="24" class="jp" font-size="24" font-weight="600">エネルギー</text>
+      <text x="108" y="53" class="sans" font-size="17">気・プラーナ・生命エネルギー</text>
+    </g>
+    <g transform="translate(70 478)">
+      <circle cx="15" cy="15" r="15" fill="#f4ede5" stroke="#d1b79d"/>
+      <text x="50" y="25" class="num" font-size="29">03</text>
+      <text x="108" y="24" class="jp" font-size="24" font-weight="600">感情</text>
+      <text x="108" y="53" class="sans" font-size="17">感情・思考の影響</text>
+    </g>
+    <g transform="translate(70 558)">
+      <circle cx="15" cy="15" r="15" fill="#eef0f5" stroke="#aeb8cc"/>
+      <text x="50" y="25" class="num" font-size="29">02</text>
+      <text x="108" y="24" class="jp" font-size="24" font-weight="600">メンタル</text>
+      <text x="108" y="53" class="sans" font-size="17">無意識の思考・信念・記憶</text>
+    </g>
+    <g transform="translate(70 638)">
+      <circle cx="15" cy="15" r="15" fill="#f7f1df" stroke="#cbaa5d"/>
+      <text x="50" y="25" class="num" font-size="29">01</text>
+      <text x="108" y="24" class="jp" font-size="24" font-weight="600">カルマ</text>
+      <text x="108" y="53" class="sans" font-size="17">先祖・過去世・胎内の影響</text>
+    </g>
+    <g transform="translate(70 718)">
+      <circle cx="15" cy="15" r="15" fill="url(#core)" stroke="#cbaa5d"/>
+      <text x="50" y="25" class="num" font-size="29">00</text>
+      <text x="108" y="24" class="jp" font-size="24" font-weight="600">意識</text>
+      <text x="108" y="53" class="sans" font-size="17">集合意識・魂・人生の目的</text>
+    </g>
+  </g>
+
+  <g transform="translate(70 950)">
+    <rect width="1060" height="125" rx="4" fill="#ffffff" stroke="#e0d4be"/>
+    <text x="530" y="48" text-anchor="middle" class="jp" font-size="23" font-weight="600">一つの原因ではなく、複数の階層が影響し合うことがあります。</text>
+    <text x="530" y="86" text-anchor="middle" class="sans" font-size="18">その人全体を立体的に分析し、現在どこに乱れがあるのかを読み解きます。</text>
+  </g>
+
+  <path d="M70 1128H1130" stroke="#c8a86b" stroke-width="1" opacity="0.55"/>
+  <text x="1130" y="1162" text-anchor="end" class="en" font-size="17">LUMINA ACADEMY × TIMEWAVER</text>
+</svg>

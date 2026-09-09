@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TimeWaverセラピー｜心・身体・現実を情報フィールドから整える</title>
+  <meta name="description" content="心・身体・現実に現れる問題を「周波数と情報フィールド」から読み解き、整える。ルミナ・アカデミー体験プログラム参加者限定のTimeWaverセッション。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Zen+Old+Mincho:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      /* Colors */
+      --ink: #142033;
+      --ink-soft: #2f3d52;
+      --muted: #5c697a;
+      --paper: #fffefb;
+      --ivory: #f7f4ed;
+      --ice: #eef4f5;
+      --gold: #b28a46;
+      --gold-deep: #8f6a2f;
+      --gold-soft: #ead29a;
+      --white: #ffffff;
+      --line: rgba(23, 36, 59, 0.12);
+
+      /* Type roles — title / subtitle / body */
+      --font-jp: "Zen Old Mincho", "Hiragino Mincho ProN", serif;
+      --font-en: "Cormorant Garamond", Georgia, serif;
+      --fs-title: clamp(1.45rem, 4.6vw, 1.75rem);
+      --fs-subtitle: clamp(1.2rem, 3.8vw, 1.35rem);
+      --fs-body: clamp(1.125rem, 3.4vw, 1.25rem);
+      --fs-caption: 0.9rem;
+      --fw-title: 700;
+      --fw-subtitle: 700;
+      --fw-body: 700;
+      --lh-title: 1.45;
+      --lh-body: 1.8;
+      --c-title: var(--ink);
+      --c-subtitle: var(--gold-deep);
+      --c-body: var(--ink-soft);
+
+      /* Layout — keep readable on both SP/PC (not too wide) */
+      --wrap: 1.1rem;
+      --max: 36rem;
+      --sp: 2.25rem;
+      --sp-lg: 2.85rem;
+      --radius: 6px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font-jp);
+      color: var(--c-body);
+      background: var(--paper);
+      font-size: var(--fs-body);
+      font-weight: var(--fw-body);
+      line-height: var(--lh-body);
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; }
+    .wrap {
+      width: min(100%, var(--max));
+      margin: 0 auto;
+      padding: 0 var(--wrap);
+    }
+
+    .type-title {
+      font-size: var(--fs-title);
+      font-weight: var(--fw-title);
+      color: var(--c-title);
+      line-height: var(--lh-title);
+      letter-spacing: 0.04em;
+    }
+    .type-subtitle {
+      font-size: var(--fs-subtitle);
+      font-weight: var(--fw-subtitle);
+      color: var(--c-subtitle);
+      line-height: 1.55;
+      letter-spacing: 0.06em;
+    }
+    .body-text {
+      font-size: var(--fs-body);
+      color: var(--c-body);
+      margin: 0 0 1rem;
+      font-weight: var(--fw-body);
+      line-height: var(--lh-body);
+    }
+    .body-text:last-child { margin-bottom: 0; }
+    .gold { color: var(--gold-deep); }
+
+    .title-banner {
+      display: block;
+      width: 100%;
+      margin: 0 auto 1.15rem;
+      border-radius: var(--radius);
+    }
+    .title-banner--wide { margin-bottom: 0.9rem; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.is-in { opacity: 1; transform: none; }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Buttons — bright gold + white bold, with shimmer */
+    .cta {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      isolation: isolate;
+      min-height: 4rem;
+      padding: 1.1rem 1.5rem;
+      background: linear-gradient(135deg, #f0d08a 0%, #e2b85a 42%, #c9963c 100%);
+      color: #ffffff;
+      text-decoration: none;
+      font-family: var(--font-jp);
+      font-size: clamp(1.2rem, 4.2vw, 1.35rem);
+      font-weight: 700;
+      font-synthesis: weight;
+      letter-spacing: 0.1em;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      box-shadow:
+        0 8px 22px rgba(201, 150, 60, 0.38),
+        inset 0 1px 0 rgba(255, 255, 255, 0.45);
+      text-shadow: 0 1px 2px rgba(120, 80, 20, 0.35);
+      transition: filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      animation: cta-bounce 2.4s ease-in-out infinite;
+    }
+    .cta::before {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      top: 0;
+      left: -40%;
+      width: 45%;
+      height: 100%;
+      background: linear-gradient(
+        105deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.15) 35%,
+        rgba(255, 255, 255, 0.55) 50%,
+        rgba(255, 255, 255, 0.15) 65%,
+        transparent 100%
+      );
+      transform: skewX(-18deg);
+      animation: cta-shimmer 2.8s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .cta > * ,
+    .cta {
+      z-index: 1;
+    }
+    .cta:hover {
+      filter: brightness(1.06);
+      transform: translateY(-2px) scale(1.015);
+      box-shadow:
+        0 12px 28px rgba(201, 150, 60, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      color: #ffffff;
+      animation-play-state: paused;
+    }
+    .cta--block { width: 100%; }
+
+    @keyframes cta-shimmer {
+      0% { left: -45%; opacity: 0; }
+      15% { opacity: 1; }
+      55% { left: 120%; opacity: 1; }
+      56%, 100% { left: 120%; opacity: 0; }
+    }
+    @keyframes cta-bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    /* Hero — open background, soft light mist (no hard frame) */
+    .hero {
+      position: relative;
+      min-height: min(88svh, 820px);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      background: var(--ivory) url("assets/02-hero-mobile.webp") center top / cover no-repeat;
+    }
+    .hero__inner {
+      position: relative;
+      z-index: 1;
+      width: min(100%, var(--max));
+      margin: clamp(2.5rem, 10vw, 4.5rem) var(--wrap) 2rem;
+      padding: 1.35rem 0.85rem 1.2rem;
+      text-align: center;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      border-radius: 0;
+      animation: rise 0.85s ease both;
+    }
+    .hero__inner::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      left: 50%;
+      top: 42%;
+      width: 118%;
+      height: 88%;
+      transform: translate(-50%, -50%);
+      background:
+        radial-gradient(ellipse 70% 55% at 50% 45%,
+          rgba(255, 252, 245, 0.62) 0%,
+          rgba(255, 250, 240, 0.32) 42%,
+          rgba(255, 255, 255, 0.08) 68%,
+          rgba(255, 255, 255, 0) 100%);
+      filter: blur(10px);
+      pointer-events: none;
+    }
+    .hero__brand {
+      font-family: var(--font-en);
+      font-size: clamp(2.55rem, 10vw, 3.15rem);
+      font-weight: 700;
+      font-style: italic;
+      letter-spacing: 0.02em;
+      line-height: 1.05;
+      margin: 0;
+      color: var(--c-title);
+      text-shadow: 0 0 18px rgba(255, 255, 255, 0.85), 0 1px 0 rgba(255, 255, 255, 0.7);
+    }
+    .hero__brand-jp {
+      display: block;
+      font-family: var(--font-jp);
+      font-style: normal;
+      font-size: clamp(1.05rem, 3.6vw, 1.2rem);
+      letter-spacing: 0.18em;
+      margin-top: 0.55rem;
+      font-weight: 700;
+      color: var(--c-subtitle);
+      text-shadow: 0 0 14px rgba(255, 255, 255, 0.9);
+    }
+    .hero__lead {
+      margin: 1.15rem 0 0.7rem;
+      font-size: clamp(1.2rem, 4vw, 1.35rem);
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      line-height: 1.7;
+      color: var(--c-title);
+      text-shadow: 0 0 16px rgba(255, 255, 255, 0.95), 0 0 2px rgba(255, 255, 255, 0.8);
+    }
+    .hero__sub {
+      margin: 0 0 1.25rem;
+      font-size: var(--fs-body);
+      font-weight: 700;
+      color: var(--c-body);
+      line-height: var(--lh-body);
+      text-shadow: 0 0 14px rgba(255, 255, 255, 0.95);
+    }
+    .hero .cta {
+      width: 100%;
+      max-width: 24rem;
+      min-height: 4.15rem;
+      font-size: clamp(1.22rem, 4.4vw, 1.4rem);
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    /* Sections */
+    .section { padding: var(--sp) 0; }
+    .section--ivory { background: var(--ivory); }
+    .section--ice { background: linear-gradient(180deg, var(--ivory), var(--ice)); }
+    .section--paper { background: var(--paper); }
+    .section--lg { padding: var(--sp-lg) 0; }
+
+    .check-list {
+      list-style: none;
+      margin: 0.25rem 0 0;
+      padding: 0;
+    }
+    .check-list li {
+      position: relative;
+      padding: 0.95rem 0 0.95rem 1.7rem;
+      border-bottom: 1px solid var(--line);
+      font-size: var(--fs-body);
+      font-weight: var(--fw-body);
+      color: var(--c-title);
+      line-height: var(--lh-body);
+    }
+    .check-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 1.4rem;
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .cap {
+      margin-top: 1.75rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .cap:last-child { border-bottom: 0; padding-bottom: 0; }
+    .cap__num {
+      font-family: var(--font-en);
+      font-size: clamp(2rem, 7vw, 2.4rem);
+      color: var(--gold);
+      margin: 0 0 0.25rem;
+      line-height: 1;
+      font-weight: 700;
+    }
+    .cap__label {
+      font-size: var(--fs-subtitle);
+      letter-spacing: 0.08em;
+      color: var(--c-subtitle);
+      margin: 0 0 0.45rem;
+      font-weight: var(--fw-subtitle);
+    }
+    .cap h3 {
+      font-size: var(--fs-title);
+      margin: 0 0 1rem;
+      font-weight: var(--fw-title);
+      letter-spacing: 0.03em;
+      line-height: var(--lh-title);
+      color: var(--c-title);
+    }
+    .cap__visual {
+      margin: 0 0 0.9rem;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--ivory);
+      aspect-ratio: 1 / 1;
+    }
+    .cap__visual img { width: 100%; height: 100%; object-fit: cover; }
+    .cap__screen {
+      margin: 0 0 1.1rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #fff;
+    }
+    .cap__screen--solo {
+      width: min(100%, 34rem);
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 1.15rem;
+    }
+    .cap__screen img { width: 100%; height: auto; display: block; }
+    .cap__caption {
+      font-size: var(--fs-caption);
+      color: var(--muted);
+      margin: 0 0 1rem;
+      letter-spacing: 0.04em;
+      text-align: center;
+      font-weight: 700;
+    }
+    .cap ul { list-style: none; margin: 0; padding: 0; }
+    .cap li {
+      position: relative;
+      padding-left: 1rem;
+      margin-bottom: 0.9rem;
+      font-size: var(--fs-body);
+      color: var(--c-body);
+      font-weight: var(--fw-body);
+      line-height: var(--lh-body);
+    }
+    .cap li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .cap strong { color: var(--c-title); font-weight: 700; }
+
+    .recommend-list {
+      list-style: none;
+      margin: 0.25rem 0 0;
+      padding: 0;
+    }
+    .recommend-list li {
+      display: grid;
+      grid-template-columns: 2.4rem 1fr;
+      gap: 0.65rem;
+      padding: 1rem 0;
+      border-top: 1px solid var(--line);
+      font-size: var(--fs-body);
+      font-weight: var(--fw-body);
+      color: var(--c-title);
+      line-height: var(--lh-body);
+    }
+    .recommend-list li:last-child { border-bottom: 1px solid var(--line); }
+    .recommend-list__n {
+      font-family: var(--font-en);
+      color: var(--c-subtitle);
+      font-size: var(--fs-subtitle);
+      font-weight: 700;
+    }
+
+    .layers__diagram {
+      margin: 0.4rem auto 0;
+      max-width: 100%;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .offer {
+      padding: var(--sp-lg) 0;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(234, 210, 154, 0.28), transparent 55%),
+        linear-gradient(180deg, var(--ice) 0%, var(--ivory) 55%, var(--paper) 100%);
+    }
+    .countdown {
+      background: rgba(255, 255, 255, 0.92);
+      border: 2px solid rgba(178, 138, 70, 0.35);
+      padding: 1.1rem 0.85rem;
+      margin: 0.75rem 0 1.35rem;
+      text-align: center;
+      border-radius: var(--radius);
+    }
+    .countdown__label {
+      margin: 0 0 0.4rem;
+      font-size: var(--fs-caption);
+      letter-spacing: 0.14em;
+      color: var(--c-subtitle);
+      font-weight: 700;
+    }
+    .countdown__timer {
+      margin: 0;
+      font-family: var(--font-en);
+      font-size: clamp(1.45rem, 5.4vw, 1.85rem);
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+      line-height: 1.2;
+      color: var(--c-title);
+      font-weight: 700;
+    }
+    .plan {
+      background: var(--white);
+      border: 1px solid rgba(178, 138, 70, 0.28);
+      box-shadow: 0 10px 28px rgba(23, 36, 59, 0.06);
+      padding: 1.3rem 1.1rem 1.2rem;
+      margin-bottom: 1rem;
+      border-radius: var(--radius);
+    }
+    .plan:last-of-type { margin-bottom: 1.1rem; }
+    .plan__name {
+      margin: 0 0 0.3rem;
+      font-size: var(--fs-title);
+      font-weight: var(--fw-title);
+      letter-spacing: 0.05em;
+      color: var(--c-title);
+    }
+    .plan__meta {
+      margin: 0 0 0.95rem;
+      font-size: var(--fs-subtitle);
+      color: var(--c-subtitle);
+      letter-spacing: 0.04em;
+      font-weight: var(--fw-subtitle);
+    }
+    .plan__price {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.45rem 0.75rem;
+      margin-bottom: 0.95rem;
+    }
+    .plan__was {
+      font-size: 1.05rem;
+      color: var(--muted);
+      text-decoration: line-through;
+      font-weight: 700;
+    }
+    .plan__now {
+      font-size: clamp(1.85rem, 6vw, 2.15rem);
+      font-weight: 700;
+      color: var(--c-title);
+      line-height: 1;
+    }
+    .plan__now small {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-left: 0.12rem;
+    }
+    .plan__tag {
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      background: rgba(178, 138, 70, 0.16);
+      color: var(--gold-deep);
+      padding: 0.28rem 0.55rem;
+      font-weight: 700;
+    }
+    .plan ul {
+      list-style: none;
+      margin: 0 0 1rem;
+      padding: 0;
+    }
+    .plan li {
+      position: relative;
+      padding: 0.5rem 0 0.5rem 1rem;
+      border-top: 1px solid var(--line);
+      font-size: var(--fs-body);
+      color: var(--c-body);
+      font-weight: var(--fw-body);
+      line-height: var(--lh-body);
+    }
+    .plan li:last-child { border-bottom: 1px solid var(--line); }
+    .plan li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 1.15rem;
+      width: 0.35rem;
+      height: 0.35rem;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+    .plan__screen {
+      margin: 0 0 0.4rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .offer__note {
+      margin: 0.65rem 0 0;
+      text-align: center;
+      font-size: var(--fs-caption);
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    /* Testimonials as images */
+    .voices-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.15rem;
+      align-items: start;
+    }
+    .voice-card {
+      margin: 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(23, 36, 59, 0.04);
+    }
+    .voice-card img { width: 100%; height: auto; }
+
+    /* FAQ */
+    details.faq-item {
+      border-top: 1px solid var(--line);
+      padding: 1.05rem 0;
+    }
+    details.faq-item:last-child { border-bottom: 1px solid var(--line); }
+    details.faq-item summary {
+      list-style: none;
+      cursor: pointer;
+      font-weight: var(--fw-title);
+      font-size: var(--fs-subtitle);
+      letter-spacing: 0.03em;
+      padding-right: 1.5rem;
+      position: relative;
+      color: var(--c-title);
+      line-height: 1.55;
+    }
+    details.faq-item summary::-webkit-details-marker { display: none; }
+    details.faq-item summary::after {
+      content: "+";
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-family: var(--font-en);
+      color: var(--gold);
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+    details.faq-item[open] summary::after { content: "–"; }
+    .faq-a {
+      margin: 0.85rem 0 0.2rem;
+      font-size: var(--fs-body);
+      color: var(--c-body);
+      font-weight: var(--fw-body);
+      line-height: var(--lh-body);
+    }
+
+    /* Profile complete image */
+    .profile-complete {
+      margin: 0 auto;
+      max-width: 100%;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(178, 138, 70, 0.28);
+      background: #fff;
+    }
+    .profile-complete img { width: 100%; }
+    .disclaimer {
+      margin: 1.2rem 0 0;
+      font-size: var(--fs-caption);
+      color: var(--muted);
+      line-height: 1.7;
+      font-weight: 700;
+    }
+
+    .final {
+      padding: var(--sp-lg) 0;
+      background: linear-gradient(180deg, var(--paper), var(--ivory));
+      text-align: center;
+    }
+    .final .body-text {
+      color: var(--c-body);
+      margin-bottom: 0.35rem;
+    }
+
+    .footer {
+      padding: 1.75rem var(--wrap) 2.2rem;
+      background: var(--ivory);
+      color: var(--muted);
+      font-size: var(--fs-caption);
+      text-align: center;
+      border-top: 1px solid var(--line);
+      font-weight: 700;
+    }
+    .footer ul {
+      list-style: none;
+      margin: 0 0 0.9rem;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.65rem 1.1rem;
+    }
+    .footer a {
+      color: var(--ink-soft);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+    }
+    .footer a:hover { color: var(--gold-deep); }
+    .footer__note { margin: 0 0 0.45rem; line-height: 1.7; }
+    .footer__copy { margin: 0; letter-spacing: 0.08em; }
+
+    @media (min-width: 761px) {
+      :root {
+        --wrap: 1.5rem;
+        --max: 38rem;
+        --fs-title: 1.8rem;
+        --fs-subtitle: 1.4rem;
+        --fs-body: 1.28rem;
+      }
+      .hero {
+        background-image: url("assets/01-hero-desktop.webp");
+        background-position: center;
+        align-items: center;
+        min-height: min(86svh, 860px);
+      }
+      .hero__inner {
+        margin: 0 auto;
+        padding: 1.5rem 1rem 1.35rem;
+      }
+      .hero .cta {
+        max-width: 24rem;
+      }
+      .cap__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.9rem;
+        align-items: start;
+        margin-bottom: 0.9rem;
+      }
+      .cap__visual { margin-bottom: 0; }
+      /* お客様の声は常に1列（文字が読めるサイズを優先） */
+      .voices-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body class="lp-sp">
+  <header class="hero" id="top">
+    <div class="hero__inner">
+      <h1 class="hero__brand">
+        TimeWaver
+        <span class="hero__brand-jp">タイムウェーバー・セラピー</span>
+      </h1>
+      <p class="hero__lead">心・身体・現実に現れる問題を<br /><span class="gold">「周波数と情報フィールド」</span>から読み解き、整える</p>
+      <p class="hero__sub">情報フィールドにアクセスすると、現実は驚くほどスムーズに動き出します。</p>
+      <a class="cta" href="#menu">セッションメニューを見る</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="section section--paper section--lg reveal">
+      <div class="wrap">
+        <img class="title-banner" src="assets/banners/01-title-banner.webp" alt="こんなことはありませんか？" width="1600" height="420" loading="lazy" />
+        <ul class="check-list">
+          <li>頑張っているのに、なぜか結果が出ない</li>
+          <li>同じ問題が何度も繰り返される</li>
+          <li>人間関係やお金の流れが滞っている</li>
+          <li>心や身体の不調の原因がよく分からない</li>
+          <li>自分の可能性をもっと発揮したいのにブレーキがかかる</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section--ice reveal">
+      <div class="wrap">
+        <img class="title-banner" src="assets/banners/02-title-banner.webp" alt="情報フィールドを整え、望む現実を創造する" width="1600" height="420" loading="lazy" />
+        <p class="body-text">あなたは、人生のハンドルを握っていますか？</p>
+        <p class="body-text">もし、「情報フィールド」が整っていないとしたら、いくら頑張っても、現実はあなたの望む方向になかなか動いてくれません。</p>
+        <p class="body-text">その原因は、「タイムウェーバー」が読み解く「目に見えない情報」にあるかもしれません。</p>
+        <p class="body-text">ドイツで開発された最先端の波動調整機器「タイムウェーバー」を使用し、あなたの人生、心身、現実を形作っている「情報フィールド」に直接アクセスし、分析・調整を行います。</p>
+      </div>
+    </section>
+
+    <section class="section section--paper section--lg reveal">
+      <div class="wrap">
+        <img class="title-banner" src="assets/banners/03-title-banner.webp" alt="タイムウェーバーでできること" width="1600" height="420" loading="lazy" />
+
+        <article class="cap">
+          <p class="cap__num">01</p>
+          <p class="cap__label">現状の根本原因を特定</p>
+          <h3>目に見えない情報を、周波数レベルで洗い出す</h3>
+          <div class="cap__screen cap__screen--solo">
+            <img src="assets/07-timewaver-family-analysis.webp" alt="TimeWaverの分析画面" width="1200" height="800" loading="lazy" />
+          </div>
+          <ul>
+            <li><strong>目に見えない情報の分析：</strong>潜在意識、過去のトラウマ、家系のパターン、エネルギー的なブロックなど、顕在意識では気づけない「問題の根源」を周波数レベルで洗い出します。</li>
+            <li><strong>人生のあらゆる側面を網羅：</strong>健康、仕事、人間関係、経済状況、精神性など、多岐にわたるデータベースから、あなたの現状に影響を与えている情報を特定します。</li>
+          </ul>
+        </article>
+
+        <article class="cap">
+          <p class="cap__num">02</p>
+          <p class="cap__label">最適な情報の調整・注入</p>
+          <h3>情報フィールドのバランスを整え、現実化をサポート</h3>
+          <div class="cap__screen cap__screen--solo">
+            <img src="assets/08-timewaver-chakra-analysis.webp" alt="TimeWaverの調整画面" width="1200" height="800" loading="lazy" />
+          </div>
+          <ul>
+            <li><strong>周波数の最適化：</strong>特定されたマイナスの情報やブロックに対し、望む現実を創造するための最適な周波数（情報）を遠隔で送信し、情報フィールドのバランスを整えます。</li>
+            <li><strong>現実化のサポート：</strong>調整された情報フィールドは、あなた自身や環境に影響を与え、現実がスムーズに動き出すのをサポートします。</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section--ivory reveal">
+      <div class="wrap">
+        <img class="title-banner" src="assets/banners/04-title-banner.webp" alt="こんな方におすすめします" width="1600" height="420" loading="lazy" />
+        <ul class="recommend-list">
+          <li><span class="recommend-list__n">01</span><span>長年の課題や繰り返される問題から根本的に解放されたい方</span></li>
+          <li><span class="recommend-list__n">02</span><span>目標達成のブレーキとなっている見えない要因を取り除きたい方</span></li>
+          <li><span class="recommend-list__n">03</span><span>心身のバランスを整え、本来の健康と活力を取り戻したい方</span></li>
+          <li><span class="recommend-list__n">04</span><span>自分の才能や可能性を最大限に発揮し、人生を加速させたい方</span></li>
+          <li><span class="recommend-list__n">05</span><span>周波数やエネルギーといった、新しい視点からのアプローチに関心がある方</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section--paper section--lg reveal">
+      <div class="wrap">
+        <img class="title-banner" src="assets/banners/05-title-banner.webp" alt="人生には「見えない原因の階層」があります" width="1600" height="420" loading="lazy" />
+        <p class="body-text">私たちは何か問題が起きると、「気持ちの問題」「身体の問題」だけだと思いがちです。しかし実際には、その原因はもっと深いところにあることが少なくありません。</p>
+        <p class="body-text">なかなか行動できない、人間関係がうまくいかない、同じパターンを何度も繰り返す、原因が分からない不調が続く、やる気が出ない、望む未来に進めない――こうした事象は、一つの原因ではなく、いくつもの階層が影響し合っていることがあります。</p>
+        <p class="body-text">TimeWaverでは、その人全体を7つの階層から立体的に分析し、現在どこにバランスの乱れがあるのかを読み解いていきます。</p>
+        <div class="layers__diagram">
+          <img src="assets/diagrams/00-seven-layers-overview.png" alt="バランスを崩している場合と整った場合の7階層比較図" width="660" height="707" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <section class="offer reveal" id="menu">
+      <div class="wrap">
+        <img class="title-banner" src="assets/banners/06-special-offer-banner.webp" alt="ルミナ・アカデミー 体験プログラム参加者限定企画／本日より3日間の特別価格" width="1600" height="520" loading="lazy" />
+
+        <div class="countdown" aria-live="polite">
+          <p class="countdown__label">特別価格終了まで</p>
+          <p class="countdown__timer js-countdown">00日 00時間 00分 00秒</p>
+        </div>
+
+        <article class="plan">
+          <h3 class="plan__name">認定セラピー</h3>
+          <p class="plan__meta">1時間 ／ 4週間調整付き</p>
+          <div class="plan__price">
+            <span class="plan__was">55,000円</span>
+            <span class="plan__now">38,500<small>円</small></span>
+            <span class="plan__tag">3日間限定</span>
+          </div>
+          <ul>
+            <li>お名前・生年月日・お写真に基づき、事前分析をします。</li>
+            <li>チャクラ調整（7つのチャクラの状態を見て、バランスを整えます）</li>
+            <li>経絡解析（感情と深く関わる経絡の状態を解析し調整します）</li>
+            <li>環境・物質・エネルギー・精神・カルマ・意識の6階層にわたり分析し調整します。</li>
+            <li>テーマに合わせて向き合うべき事を知り、全体のバランスを図ります。</li>
+          </ul>
+          <a class="cta cta--block" href="https://lumina.syagapro.com/p/timewaver">このセッションを申し込む</a>
+        </article>
+
+        <article class="plan">
+          <h3 class="plan__name">統合セラピー</h3>
+          <p class="plan__meta">1時間半 ／ 4週間調整付き</p>
+          <div class="plan__price">
+            <span class="plan__was">75,000円</span>
+            <span class="plan__now">55,000<small>円</small></span>
+            <span class="plan__tag">3日間限定</span>
+          </div>
+          <ul>
+            <li>現在のテーマについてコーチングをしつつ、TimeWaverにて課題を特定します。</li>
+            <li>NLP（神経言語プログラミング）を活用しながら、望む状態へと導きます。</li>
+            <li>テーマに合わせて、TimeWaverでさらなる解析を行います。（例：人間関係・先祖の調整・タイムライン・コーチング・メンタルブロック等）</li>
+          </ul>
+          <div class="plan__screen">
+            <img src="assets/09-timewaver-qi-analysis.webp" alt="TimeWaver QI AI分析画面" width="1200" height="800" loading="lazy" />
+          </div>
+          <p class="cap__caption">✦ TimeWaver QI — ChatGPTなどのAIも活用</p>
+          <a class="cta cta--block" href="https://lumina.syagapro.com/p/timewaver">このセッションを申し込む</a>
+        </article>
+
+        <p class="offer__note">※いずれも何度か継続して受けることが推奨されています。</p>
+      </div>
+    </section>
+
+    <section class="section section--paper section--lg reveal">
+      <div class="wrap">
+        <img class="title-banner" src="assets/banners/08-title-banner.webp" alt="お客様の声" width="1600" height="420" loading="lazy" />
+        <div class="voices-grid">
+          <figure class="voice-card">
+            <img src="assets/testimonials/01-testimonial-card.webp" alt="40代男性・会社経営のお客様の声" width="900" height="1400" loading="lazy" />
+          </figure>
+          <figure class="voice-card">
+            <img src="assets/testimonials/02-testimonial-card.webp" alt="50代女性・セラピストのお客様の声" width="900" height="1400" loading="lazy" />
+          </figure>
+          <figure class="voice-card">
+            <img src="assets/testimonials/03-testimonial-card.webp" alt="40代女性・セラピストのお客様の声" width="900" height="1400" loading="lazy" />
+          </figure>
+          <figure class="voice-card">
+            <img src="assets/testimonials/04-testimonial-card.webp" alt="60代男性・会社経営のお客様の声" width="900" height="1400" loading="lazy" />
+          </figure>
+          <figure class="voice-card">
+            <img src="assets/testimonials/05-testimonial-card.webp" alt="50代男性・コーチのお客様の声" width="900" height="1400" loading="lazy" />
+          </figure>
+          <figure class="voice-card">
+            <img src="assets/testimonials/06-testimonial-card.webp" alt="50代女性・看護師のお客様の声" width="900" height="1400" loading="lazy" />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--ivory reveal">
+      <div class="wrap">
+        <img class="title-banner" src="assets/banners/09-title-banner.webp" alt="よくあるご質問" width="1600" height="420" loading="lazy" />
+        <details class="faq-item">
+          <summary>Q. どんな仕組みなのですか？</summary>
+          <p class="faq-a">A. 人の状態は、思考・感情・身体・環境などが相互に影響し合う「情報のパターン」として捉えられます。TimeWaverでは、そのパターンを分析し、バランスや偏りを可視化することで、全体の状態を把握していきます。ラジオニクスの考え方に基づき、情報の共鳴や相関をもとに読み取るアプローチです。（ラジオニクスとは、人や物が持つ見えない「情報（パターンや周波数）」を読み取り、バランスを整えるという考え方です）</p>
+        </details>
+        <details class="faq-item">
+          <summary>Q. なぜ、いろいろなことがわかり、変化が起こるのでしょうか？</summary>
+          <p class="faq-a">A. 無意識にある思考や感情のパターンは、自分では気づきにくいものです。それが整理されて明確になることで、認識や選択が変わり、行動が変化します。また、情報のバランスが整うことで、全体の調和がとれ、結果として現実の変化につながりやすくなります。</p>
+        </details>
+        <details class="faq-item">
+          <summary>Q. 定期的に受ける必要がありますか？</summary>
+          <p class="faq-a">A. 必須ではありませんが、状態のメンテナンス、変化の定着、次のステップへの進展などの目的で、少なくとも3回以上受けることをお勧めしています。定期的に受ける方達も多くいらっしゃいます。</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="section section--paper section--lg reveal">
+      <div class="wrap">
+        <div class="profile-complete">
+          <img src="assets/profile/03-yurina-profile-complete.webp" alt="講師プロフィール：天使・白石由利奈先生" width="1200" height="1600" loading="lazy" />
+        </div>
+        <p class="disclaimer">※本サービスは医療行為、診断、治療を目的としたものではありません。心身の状態や人生の方向性に関する気づきやサポートを提供するものであり、医療機関の代替とはなりません。体調に不安がある場合は、医師など専門機関へご相談ください。</p>
+      </div>
+    </section>
+
+    <section class="final reveal">
+      <div class="wrap">
+        <img class="title-banner" src="assets/banners/11-title-banner.webp" alt="情報フィールドを整え、本来の自分と現実を取り戻す一歩を" width="1600" height="420" loading="lazy" />
+        <p class="body-text">ルミナ・アカデミー体験プログラム参加者限定企画。<br />本日より3日間の特別価格でご案内しています。</p>
+        <div class="countdown" aria-live="polite">
+          <p class="countdown__label">特別価格終了まで</p>
+          <p class="countdown__timer js-countdown">00日 00時間 00分 00秒</p>
+        </div>
+        <a class="cta cta--block" href="https://lumina.syagapro.com/p/timewaver">セッションを申し込む</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <ul>
+      <li><a href="https://lumina.syagapro.com/p/pp" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a></li>
+      <li><a href="https://lumina.syagapro.com/p/tokushou" target="_blank" rel="noopener noreferrer">特定商取引法に基づく表記</a></li>
+    </ul>
+    <p class="footer__note">© SEEDS OF LIGHT — TimeWaver Therapy by Yurina Shiraishi</p>
+    <p class="footer__copy">Lumina Academy Experience Limited</p>
+  </footer>
+
+  <script>
+    (function () {
+      var STORAGE_KEY = "tw_lumina_offer_deadline_v2";
+      var HOURS = 72;
+
+      function pad(n) {
+        return n < 10 ? "0" + n : String(n);
+      }
+
+      function getDeadline() {
+        try {
+          var raw = localStorage.getItem(STORAGE_KEY);
+          if (raw) {
+            var n = parseInt(raw, 10);
+            if (!isNaN(n) && n > 0) return n;
+          }
+        } catch (e) {}
+        var deadline = Date.now() + HOURS * 60 * 60 * 1000;
+        try { localStorage.setItem(STORAGE_KEY, String(deadline)); } catch (e2) {}
+        return deadline;
+      }
+
+      function render(deadline) {
+        var nodes = document.querySelectorAll(".js-countdown");
+        var remain = Math.max(0, deadline - Date.now());
+        var totalSec = Math.floor(remain / 1000);
+        var days = Math.floor(totalSec / 86400);
+        var hours = Math.floor((totalSec % 86400) / 3600);
+        var minutes = Math.floor((totalSec % 3600) / 60);
+        var seconds = totalSec % 60;
+        var text = pad(days) + "日 " + pad(hours) + "時間 " + pad(minutes) + "分 " + pad(seconds) + "秒";
+        for (var i = 0; i < nodes.length; i++) nodes[i].textContent = text;
+      }
+
+      var deadline = getDeadline();
+      render(deadline);
+      setInterval(function () { render(deadline); }, 1000);
+    })();
+
+    (function () {
+      var els = document.querySelectorAll(".reveal");
+      if (!("IntersectionObserver" in window)) {
+        for (var i = 0; i < els.length; i++) els[i].classList.add("is-in");
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-in");
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+      for (var j = 0; j < els.length; j++) io.observe(els[j]);
+    })();
+  </script>
+</body>
+</html>
