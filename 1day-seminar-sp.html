@@ -397,9 +397,10 @@ p{margin:0 0 1.05em;}
       </p>
     </div>
     <div class="cta">
-      <form class="cta-form" action="https://lumina.syagapro.com/p/tp_1day" method="get" autocomplete="off">
+      <form class="cta-form" action="https://lumina.syagapro.com/r/GKgUm1zJAJTC/store" method="post" data-thanks="https://lumina.syagapro.com/p/tp_1day" autocomplete="off">
         <label class="cta-form__label" for="email-fv">メールアドレス</label>
         <input class="cta-form__input js-cta-email" id="email-fv" type="text" name="mail" placeholder="メールアドレス" inputmode="email" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" required>
+        <input type="hidden" name="rid" value="">
         <button class="cta__btn js-cta-submit" type="submit" disabled><span>▶︎ 無料で魔法を体験してみる</span></button>
       </form>
     </div>
@@ -701,9 +702,10 @@ p{margin:0 0 1.05em;}
       </div>
       <div class="cta" style="padding-bottom:1.6rem;">
         <img class="cta__which" src="assets/1day/line-which-you.png" alt="あなたは、どの魔法を使ってみたいですか？" width="800" height="113">
-        <form class="cta-form" action="https://lumina.syagapro.com/p/tp_1day" method="get" autocomplete="off">
+        <form class="cta-form" action="https://lumina.syagapro.com/r/GKgUm1zJAJTC/store" method="post" data-thanks="https://lumina.syagapro.com/p/tp_1day" autocomplete="off">
           <label class="cta-form__label" for="email-entry">メールアドレス</label>
           <input class="cta-form__input js-cta-email" id="email-entry" type="text" name="mail" placeholder="メールアドレス" inputmode="email" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" required>
+          <input type="hidden" name="rid" value="">
           <button class="cta__btn js-cta-submit" type="submit" disabled><span>▶︎ 無料で魔法を体験してみる</span></button>
         </form>
       </div>
@@ -734,11 +736,23 @@ p{margin:0 0 1.05em;}
     input.addEventListener("input", sync);
     form.addEventListener("submit", function(e){
       e.preventDefault();
-      if (!EMAIL_RE.test(input.value.trim())) {
+      var mail = input.value.trim();
+      if (!EMAIL_RE.test(mail)) {
         input.focus();
         return;
       }
-      location.href = form.getAttribute("action");
+      var thanks = form.getAttribute("data-thanks");
+      var iframeName = "optin_frame_" + String(Date.now());
+      var iframe = document.createElement("iframe");
+      iframe.name = iframeName;
+      iframe.title = "optin";
+      iframe.style.cssText = "position:absolute;width:0;height:0;border:0;visibility:hidden";
+      document.body.appendChild(iframe);
+      form.setAttribute("target", iframeName);
+      form.submit();
+      window.setTimeout(function(){
+        window.location.href = thanks;
+      }, 900);
     });
     sync();
   });
