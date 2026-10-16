@@ -187,6 +187,15 @@ p{margin:0 0 1.05em;}
 .cta__which{
   display:block;width:100%;height:auto;margin:0 0 .85rem;
 }
+.countdown{margin:0 auto .85rem;text-align:center;}
+.countdown__label{
+  margin:0 0 .15rem;font-size:.86rem;font-weight:700;
+  letter-spacing:.14em;color:var(--emphasis);
+}
+.countdown__timer{
+  margin:0;font-size:clamp(1.05rem,4.4vw,1.22rem);font-weight:800;
+  letter-spacing:.04em;color:var(--primary-deep);font-variant-numeric:tabular-nums;
+}
 .cta__btn{
   position:relative;display:block;width:100%;max-width:400px;margin:0 auto;
   padding:1.12rem 1rem;border-radius:999px;text-decoration:none;text-align:center;
@@ -397,6 +406,10 @@ p{margin:0 0 1.05em;}
       </p>
     </div>
     <div class="cta">
+      <div class="countdown" aria-live="polite">
+        <p class="countdown__label">受付終了まで</p>
+        <p class="countdown__timer js-countdown">0日 00時間 00分 00秒</p>
+      </div>
       <form class="cta-form" action="https://lumina.syagapro.com/r/GKgUm1zJAJTC/store" method="post" data-thanks="https://lumina.syagapro.com/p/tp_1day" autocomplete="off">
         <label class="cta-form__label" for="email-fv">メールアドレス</label>
         <input class="cta-form__input js-cta-email" id="email-fv" type="text" name="mail" placeholder="メールアドレス" inputmode="email" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" required>
@@ -702,6 +715,10 @@ p{margin:0 0 1.05em;}
       </div>
       <div class="cta" style="padding-bottom:1.6rem;">
         <img class="cta__which" src="assets/1day/line-which-you.png" alt="あなたは、どの魔法を使ってみたいですか？" width="800" height="113">
+        <div class="countdown" aria-live="polite">
+          <p class="countdown__label">受付終了まで</p>
+          <p class="countdown__timer js-countdown">0日 00時間 00分 00秒</p>
+        </div>
         <form class="cta-form" action="https://lumina.syagapro.com/r/GKgUm1zJAJTC/store" method="post" data-thanks="https://lumina.syagapro.com/p/tp_1day" autocomplete="off">
           <label class="cta-form__label" for="email-entry">メールアドレス</label>
           <input class="cta-form__input js-cta-email" id="email-entry" type="text" name="mail" placeholder="メールアドレス" inputmode="email" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" required>
@@ -725,6 +742,23 @@ p{margin:0 0 1.05em;}
 
 </div>
 <script>
+(function(){
+  var END = Date.parse("2026-10-21T23:59:59+09:00");
+  function pad(n){ return n < 10 ? "0" + n : String(n); }
+  function render(){
+    var nodes = document.querySelectorAll(".js-countdown");
+    var remain = Math.max(0, END - Date.now());
+    var total = Math.floor(remain / 1000);
+    var days = Math.floor(total / 86400);
+    var hours = Math.floor((total % 86400) / 3600);
+    var minutes = Math.floor((total % 3600) / 60);
+    var seconds = total % 60;
+    var text = days + "日 " + pad(hours) + "時間 " + pad(minutes) + "分 " + pad(seconds) + "秒";
+    for (var i = 0; i < nodes.length; i++) nodes[i].textContent = text;
+  }
+  render();
+  setInterval(render, 1000);
+})();
 (function(){
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   document.querySelectorAll(".cta-form").forEach(function(form){
